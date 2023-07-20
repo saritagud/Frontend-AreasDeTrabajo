@@ -1,6 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}",
+  ],
   theme: {
     extend: {
       colors: {
@@ -9,8 +13,12 @@ export default {
         gris: "#D9D9D9",
       },
       fontFamily: {
-        Molengo: ["Molengo", "sans-serif"],
+        Montserrat: ["Montserrat", "sans-serif"],
         OpenSans: ["Open Sans", "sans-serif"],
+      },
+      backgroundImage: {
+        principal: "url('/src/assets/oficina1.jpg')",
+        fondoLogin: "url('/src/assets/fondoLogin.jpg')"
       },
       screens: {
         p: "250px",
@@ -36,5 +44,5 @@ export default {
     },
   },
 
-  plugins: [],
+  plugins: [require("flowbite/plugin")],
 };
