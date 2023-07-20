@@ -1,6 +1,7 @@
 import ModalCrear from "./ModalCrear";
 import ModalEditar from "./ModalEditar";
 import ModalEliminar from "./ModalEliminar";
+import Footer from "../Footer"
 function PanelAdmin() {
   return (
     <>
@@ -19,6 +20,7 @@ function PanelAdmin() {
           </div>
         </div>
       </section>
+      <Footer/>
     </>
   );
 }
