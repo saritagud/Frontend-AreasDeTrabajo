@@ -17,8 +17,13 @@ export default {
         OpenSans: ["Open Sans", "sans-serif"],
       },
       backgroundImage: {
-        principal: "url('/src/assets/oficina1.jpg')",
-        fondoLogin: "url('/src/assets/fondoLogin.jpg')"
+        oficina1: "url('/src/assets/oficina1.jpg')",
+        oficina2: "url('/src/assets/oficina2.jpg')",
+        oficina3: "url('/src/assets/oficina3.jpg')",
+        oficina4: "url('/src/assets/oficina4.jpg')",
+        oficina5: "url('/src/assets/oficina5.jpg')",
+        fondoLogin: "url('/src/assets/fondoLogin.jpg')",
+        mapa: "url('/src/assets/mapa3.jpg')"
       },
       screens: {
         p: "250px",

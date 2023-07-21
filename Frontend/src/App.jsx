@@ -5,6 +5,7 @@ import Registro from "./Components/Registro"
 import PerfilUsuario from "./Components/PerfilUsuario";
 import Panel from "./Components/Admin/PanelAdmin"
 import VistaOficinas from "./Components/Oficinas/VistaOficinas";
+import DetallesOficina from "./Components/Oficinas/DetallesOficina";
 function App() {
   return (
     <div className="h-screen">
@@ -15,6 +16,7 @@ function App() {
       <Route path="/administrador" element={<Panel />} />
       <Route path="/usuario" element={<PerfilUsuario />} />
       <Route path="/oficinas" element={<VistaOficinas />} />
+      <Route path="/detalles" element={<DetallesOficina />} />
     </Routes>
       
     </div>
