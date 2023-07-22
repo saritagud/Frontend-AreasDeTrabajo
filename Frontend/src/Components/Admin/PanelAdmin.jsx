@@ -1,10 +1,12 @@
 import ModalCrear from "./ModalCrear";
 import ModalEditar from "./ModalEditar";
 import ModalEliminar from "./ModalEliminar";
-import Footer from "../Footer"
+import Footer from "../Footer";
+import HeaderAdmin from "./HeaderAdmin";
 function PanelAdmin() {
   return (
     <>
+      <HeaderAdmin />
       <section className="flex flex-col justify-center items-center h-screen gap-8 p-5">
         <img />
         <h1 className="font-Montserrat font-bold text-3xl">Admin</h1>
@@ -20,7 +22,7 @@ function PanelAdmin() {
           </div>
         </div>
       </section>
-      <Footer/>
+      <Footer />
     </>
   );
 }
