@@ -32,7 +32,7 @@ function Login() {
             </button>
             <div className="w-full text-center text-lg font-bold font-OpenSans">
               <p>¿No tienes una cuenta?</p>
-              <Link to={"/registro"} className="text-white">¡Registrate!</Link>
+              <Link to={"/register"} className="text-white">¡Registrate!</Link>
             </div>
           </form>
         </div>

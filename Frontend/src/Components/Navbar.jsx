@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Transition } from "@headlessui/react";
 import { NavLink } from "react-router-dom";
 
-function Nav() {
+function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div>
@@ -25,14 +25,14 @@ function Nav() {
                   </NavLink>
 
                   <NavLink
-                    to={"/registro"}
+                    to={"/register"}
                     className="text-azulOscuro   hover:bg-azulOscuro hover:text-white hover:rounded-md hover:transition-all block px-3 py-2 text-lg rounded-md font-Marcellus  text-center  "
                   >
                     Registro
                   </NavLink>
 
                   <NavLink
-                    to={"/administrador"}
+                    to={"/admin"}
                     className="text-azulOscuro   hover:bg-azulOscuro hover:text-white hover:rounded-md hover:transition-all block px-3 py-2 text-lg rounded-md font-Marcellus  text-center "
                   >
                     Administrador
@@ -106,7 +106,7 @@ function Nav() {
             <div className="lg:hidden" id="mobile-menu">
               <div ref={ref} className="px-2 pt-2 pb-3 space-y-2 sm:px-3 ">
                 <NavLink
-                  to={"/oficinas"}
+                  to={"/offices"}
                   className="text-azulOscuro   hover:bg-azulOscuro hover:text-white hover:rounded-md hover:transition-all block px-3 py-2 text-lg rounded-md font-OpenSans w-full text-left"
                 >
                   Oficinas
@@ -120,21 +120,21 @@ function Nav() {
                 </NavLink>
 
                 <NavLink
-                  to={"/registro"}
+                  to={"/register"}
                   className="text-azulOscuro   hover:bg-azulOscuro hover:text-white hover:rounded-md hover:transition-all block px-3 py-2 text-lg rounded-md font-OpenSans w-full text-left"
                 >
                   Registro
                 </NavLink>
 
                 <NavLink
-                  to={"/administrador"}
+                  to={"/admin"}
                   className="text-azulOscuro   hover:bg-azulOscuro hover:text-white hover:rounded-md hover:transition-all block px-3 py-2 text-lg rounded-md font-OpenSans w-full text-left"
                 >
                   Administrador
                 </NavLink>
 
                 <NavLink
-                  to={""}
+                  to={"/login"}
                   className="text-azulOscuro   hover:bg-azulOscuro hover:text-white hover:rounded-md hover:transition-all block px-3 py-2  text-lg rounded-md font-Marcellus w-full text-left transition-all duration-500"
                 >
                   Cerrar Sesión
@@ -148,4 +148,4 @@ function Nav() {
   );
 }
 
-export default Nav;
+export default Navbar;

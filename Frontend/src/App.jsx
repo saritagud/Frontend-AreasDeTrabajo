@@ -1,25 +1,31 @@
 import { Route, Routes } from "react-router-dom";
-import Landing from "./Components/Landing";
-import Login from "./Components/Login"
-import Registro from "./Components/Registro"
-import PerfilUsuario from "./Components/PerfilUsuario";
-import Panel from "./Components/Admin/PanelAdmin"
-import VistaOficinas from "./Components/Oficinas/VistaOficinas";
-import DetallesOficina from "./Components/Oficinas/DetallesOficina";
+import { Provider } from 'react-redux';
+import store from './app/store';
+import SessionChecker from './components/SessionChecker';
+import Landing from "./components/Landing";
+import Login from "./components/Login"
+import Registro from "./components/Registro";
+import PerfilUsuario from "./components/PerfilUsuario";
+import Panel from "./components/Admin/PanelAdmin"
+import VistaOficinas from "./components/Oficinas/VistaOficinas";
+import DetallesOficina from "./components/Oficinas/DetallesOficina";
 function App() {
   return (
-    <div className="h-screen">
-    <Routes>
-      <Route index element={<Landing />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/registro" element={<Registro />} />
-      <Route path="/administrador" element={<Panel />} />
-      <Route path="/usuario" element={<PerfilUsuario />} />
-      <Route path="/oficinas" element={<VistaOficinas />} />
-      <Route path="/detalles" element={<DetallesOficina />} />
-    </Routes>
-      
-    </div>
+    <Provider store={store}>
+      <div className="h-screen">
+        <Routes>
+          <Route index element={<Landing />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Registro />} />
+          <Route path="/admin" element={<Panel />} />
+          <Route path="/user" element={<PerfilUsuario />} />
+          <Route path="/offices" element={<VistaOficinas />} />
+          <Route path="/details" element={<DetallesOficina />} />
+        </Routes>
+
+      </div>
+      <SessionChecker />
+    </Provider>
   );
 }
 
