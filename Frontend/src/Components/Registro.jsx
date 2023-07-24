@@ -5,6 +5,7 @@ import { loginRequest, loginSuccess, loginFailure } from '../features/auth/authS
 import { register } from '../api/usersApi';
 import Navbar from "./Navbar";
 import { Link } from "react-router-dom";
+import paths from '../config/routePaths';
 import formValidation from '../validations/formValidation';
 import { toast } from 'react-hot-toast';
 import CustomToast, { typeToast } from './toast/CustomToast';
@@ -56,7 +57,7 @@ export default function Registro() {
             duration: 3000,
             position: 'top-right',
           });
-          navigate('/offices');
+          navigate(paths.OFFICES_PATH);
         }
       } catch (error) {
         dispatch(loginFailure(error));

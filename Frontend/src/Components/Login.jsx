@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { loginRequest, loginSuccess, loginFailure } from '../features/auth/authSlice';
 import Navbar from "./Navbar";
 import { Link } from "react-router-dom";
+import paths from '../config/routePaths';
 import { toast } from 'react-hot-toast';
 import CustomToast, { typeToast } from './toast/CustomToast';
 import { login } from '../api/usersApi';
@@ -53,7 +54,7 @@ export default function Login() {
             duration: 3000,
             position: 'top-right',
           });
-          navigate('/offices');
+          navigate(paths.OFFICES_PATH);
         }
       } catch (error) {
         // Manejo de error en caso de que falle la solicitud al servidor

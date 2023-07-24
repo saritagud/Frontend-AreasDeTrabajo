@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser, selectTokenExpiration, logout } from '../features/auth/authSlice'
 import { useNavigate } from 'react-router-dom';
+import paths from '../config/routePaths';
 import { toast } from 'react-hot-toast';
 import CustomToast, { typeToast } from './toast/CustomToast';
 
@@ -23,7 +24,7 @@ export default function SessionChecker() {
         if (minutesUntilExpiration <= 0) {
           // El token ha expirado, se cierra la sesión y redirigir al usuario a la página de inicio de sesión
           dispatch(logout());
-          navigate('/login');
+          navigate(paths.LOGIN_PATH);
           toast.custom((t) => <CustomToast message={'Tu sesión ha expirado.'} type={typeToast.error} />, {
             duration: 3000,
             position: 'top-right',

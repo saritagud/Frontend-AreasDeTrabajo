@@ -1,4 +1,4 @@
-import API_ENDPOINT from '../../config/API_ENDPOINT';
+import API_ENDPOINT from '../config/API_ENDPOINT';
 
 export const login = async (userData) => {
   try {
