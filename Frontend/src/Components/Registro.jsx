@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { loginRequest, loginSuccess, loginFailure } from '../features/auth/authSlice';
-import { register } from '../api';
+import { register } from '../api/usersApi';
 import Navbar from "./Navbar";
 import { Link } from "react-router-dom";
-import { formsAuthValidations } from '../validations/formAuthValidations';
+import formValidation from '../validations/formValidation';
+import { toast } from 'react-hot-toast';
+import CustomToast, { typeToast } from './toast/CustomToast';
 
-function Registro() {
+export default function Registro() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [userData, setUserData] = useState({ name: '', email: '', password: '', repeatPassword: '' });
   const [errors, setErrors] = useState({ name: '', email: '', password: '', repeatPassword: '' });
 
@@ -17,35 +22,49 @@ function Registro() {
     dispatch(loginRequest());
 
     // Validación de campos del formulario
-    let formIsValid = true;
     const { name: nombre, email, password, repeatPassword } = userData;
 
-    if (!formsAuthValidations.validateText(nombre)) {
-      setErrors(prevErrors => ({ ...prevErrors, nombre: 'Por favor ingrese su nombre.' }));
-      formIsValid = false;
-    }
+    const validateName = formValidation.validateText(nombre);
+    const validateEmail = formValidation.validateEmail(email);
+    const validatePassword = formValidation.validatePassword(password);
+    const validatePasswords = formValidation.validatePasswords(password, repeatPassword)
 
-    if (!formsAuthValidations.validateEmail(email)) {
-      setErrors(prevErrors => ({ ...prevErrors, email: 'Por favor ingrese su correo electrónico.' }));
-      formIsValid = false;
-    }
+    // Asignar mensajes si se llena mal el campo
+    if (!validateName) setErrors(prevErrors => ({ ...prevErrors, name: 'Por favor ingrese su nombre.' }));
+    if (!validateEmail) setErrors(prevErrors => ({ ...prevErrors, email: 'Por favor ingrese un correo electrónico válido.' }));
+    if (!validatePassword) setErrors(prevErrors => ({ ...prevErrors, password: 'incluir una mayúscula y un número. 6 caracteres min.' }));
+    if (!validatePasswords) setErrors(prevErrors => ({ ...prevErrors, repeatPassword: 'Las contraseñas no coinciden.' }));
 
-    if (!formsAuthValidations.validatePassword(password)) {
-      setErrors(prevErrors => ({ ...prevErrors, password: 'incluir una mayúscula y un número, 6 caracteres min.' }));
-      formIsValid = false;
-    }
-
-    if (!formsAuthValidations.validatePasswords(password, repeatPassword)) {
-      setErrors(prevErrors => ({ ...prevErrors, repeatPassword: 'Las contraseñas no coinciden.' }));
-      formIsValid = false;
-    }
+    const formIsValid = validateName && validateEmail && validatePassword && validatePasswords;
 
     if (formIsValid) {
       try {
         const responseData = await register({ nombre, email, password });
-        dispatch(loginSuccess(responseData));
+
+        if (responseData.error) {
+          // Si hay un error en la respuesta, muestra el mensaje de error en el toast
+          toast.custom((t) => <CustomToast message={responseData.error} type={typeToast.error} />, {
+            duration: 3000,
+            position: 'top-right',
+          });
+        } else {
+          // Si no hay error, se muestra el toast de éxito y actualiza el estado con la información del usuario
+          const { token } = responseData;
+          dispatch(loginSuccess(token));
+
+          toast.custom((t) => <CustomToast message='¡Registro completado con éxito!' type={typeToast.success} />, {
+            duration: 3000,
+            position: 'top-right',
+          });
+          navigate('/offices');
+        }
       } catch (error) {
         dispatch(loginFailure(error));
+        toast.error();
+        toast.custom((t) => <CustomToast message='Error al hacer el registro. Por favor, inténtelo de nuevo.' type={typeToast.error} />, {
+          duration: 3000,
+          position: 'top-right',
+        });
       }
     }
   };
@@ -57,25 +76,23 @@ function Registro() {
         <div className="bg-azulClaro bg-opacity-70 w-[80%] flex flex-col justify-center items-center h-[90vh] rounded-2xl gap-6">
           <h1 className="text-4xl font-Montserrat font-bold">Registro</h1>
           <form className="flex flex-col justify-center items-center font-OpenSans gap-3 w-[80%] sm:w-[60%] sm:gap-5 md:w-[50%] lg:w-[40%] xl:w-[30%]">
-            <div className="mb-2 block">
+            <div className="">
               <label className="w-full text-xl md:text-2xl 2xl:text-3xl ">Nombre</label>
               <input
                 className={`w-full rounded-xl p-2 text-white bg-azulOscuro text-lg font-sans sm:p-3 2xl:text-2xl 2xl:p-4 ${errors.name ? 'border-red-500' : ''}`}
                 name="name"
                 type="text"
-                placeholder="Oscar Williams"
                 value={userData.name}
                 onChange={(e) => { setUserData({ ...userData, name: e.target.value }) }}
               />
               {errors.name && <p className="text-red-500">{errors.name}</p>}
             </div>
 
-            <div className="mb-2 block">
+            <div className="">
               <label className="w-full text-xl md:text-2xl 2xl:text-3xl ">Correo</label>
               <input
                 className={`w-full rounded-xl p-2 text-white bg-azulOscuro text-lg font-sans sm:p-3 2xl:text-2xl 2xl:p-4 ${errors.email ? 'border-red-500' : ''}`}
                 name="email"
-                placeholder="ejemplo@ejemplo.com"
                 type="email"
                 value={userData.email}
                 onChange={(e) => setUserData({ ...userData, email: e.target.value })}
@@ -83,7 +100,7 @@ function Registro() {
               {errors.email && <p className="text-red-500">{errors.email}</p>}
             </div>
 
-            <div className="mb-2 block">
+            <div className="">
               <label className="w-full text-xl md:text-2xl 2xl:text-3xl ">Contraseña</label>
               <input
                 className={`w-full rounded-xl p-2 text-white bg-azulOscuro text-lg font-sans sm:p-3 2xl:text-2xl 2xl:p-4 ${errors.password ? 'border-red-500' : ''}`}
@@ -95,7 +112,7 @@ function Registro() {
               {errors.password && <p className="text-red-500">{errors.password}</p>}
             </div>
 
-            <div className="mb-2 block">
+            <div className="">
               <label className="w-full text-xl md:text-2xl 2xl:text-3xl ">Repetir Contraseña</label>
               <input
                 className={`w-full rounded-xl p-2 text-white bg-azulOscuro text-lg font-sans sm:p-3 2xl:text-2xl 2xl:p-4 ${errors.repeatPassword ? 'border-red-500' : ''}`}
@@ -124,5 +141,3 @@ function Registro() {
     </>
   );
 }
-
-export default Registro;

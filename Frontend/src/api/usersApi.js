@@ -1,4 +1,4 @@
-import API_ENDPOINT from '../config/API_ENDPOINT';
+import API_ENDPOINT from '../../config/API_ENDPOINT';
 
 export const login = async (userData) => {
   try {
@@ -11,8 +11,8 @@ export const login = async (userData) => {
     });
 
     if (!response.ok) {
-      const errorData = await response.json();
-      throw errorData.message || 'Error inesperado al iniciar sesión';
+      const { error } = await response.json();
+      return { error };
     }
 
     return response.json();
@@ -32,9 +32,8 @@ export const register = async (userData) => {
     });
 
     if (!response.ok) {
-      const errorData = await response.json();
-      console.log(errorData.error);
-      throw errorData.message || 'Error inesperado al registrarse';
+      const { error } = await response.json();
+      return { error };
     }
 
     return response.json();

@@ -1,4 +1,4 @@
-class FormsAuthValidations {
+class FormValidation {
   validateText = (text) => text.trim() !== '';
   validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -11,4 +11,5 @@ class FormsAuthValidations {
   validatePasswords = (password, confirmPassword) => password === confirmPassword;
 }
 
-export const formsAuthValidations = new FormsAuthValidations();
+const formValidation = new FormValidation();
+export default formValidation;

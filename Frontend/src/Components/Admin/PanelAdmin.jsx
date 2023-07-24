@@ -3,13 +3,16 @@ import ModalEditar from "./ModalEditar";
 import ModalEliminar from "./ModalEliminar";
 import Footer from "../Footer";
 import HeaderAdmin from "./HeaderAdmin";
-function PanelAdmin() {
+import Navbar from "../Navbar";
+
+export default function PanelAdmin() {
   return (
     <>
+      <Navbar />
       <HeaderAdmin />
       <section className="flex flex-col justify-center items-center h-screen gap-8 p-5">
         <img />
-        <h1 className="font-Montserrat font-bold text-3xl">Admin</h1>
+        <h1 className="font-Montserrat font-bold text-3xl">Panel de Administración</h1>
         <div className="flex justify-end w-full">
           <ModalCrear />
         </div>
@@ -26,5 +29,3 @@ function PanelAdmin() {
     </>
   );
 }
-
-export default PanelAdmin;

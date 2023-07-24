@@ -1,49 +1,98 @@
 import { useState } from "react";
 import { Transition } from "@headlessui/react";
 import { NavLink } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
+import { selectUser } from '../features/auth/authSlice'
+import { useLocation } from 'react-router-dom';
+import { logout } from '../features/auth/authSlice';
 
-function Navbar() {
+export default function Navbar() {
+  const user = useSelector(selectUser);
+  const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
+
+  const location = useLocation(); // Obtener la información de la ubicación actual
+  const currentPath = location.pathname; // Acceder a la ruta actual
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
   return (
     <div>
       <nav className="bg-verde">
         <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-end w-full h-20 lg:h-24">
             <div className="flex items-center justify-between w-full">
-              <img
-                src=""
-                alt="logo"
-                className="w-[40%] sm:w-[30%] md:w-[20%] xl:w-[15%]"
-              />
+              <NavLink
+                to={"/"}
+              >
+                <img
+                  src=""
+                  alt="logo"
+                  // className="w-[40%] sm:w-[30%] md:w-[20%] xl:w-[15%]"
+                />
+              </NavLink>
               <div className="hidden lg:block w-full">
                 <div className=" flex justify-end items-end w-full ">
+
                   <NavLink
-                    to={"/login"}
+                    to={"/offices"}
                     className="text-azulOscuro   hover:bg-azulOscuro hover:text-white hover:rounded-md hover:transition-all block px-3 py-2 text-lg rounded-md font-Marcellus  text-center xl:text-lg "
                   >
-                    Iniciar sesión
+                    Oficinas
                   </NavLink>
 
-                  <NavLink
-                    to={"/register"}
-                    className="text-azulOscuro   hover:bg-azulOscuro hover:text-white hover:rounded-md hover:transition-all block px-3 py-2 text-lg rounded-md font-Marcellus  text-center  "
-                  >
-                    Registro
-                  </NavLink>
+                  {
+                    !user ?
+                      <>
+                        {currentPath !== '/login' &&
+                          <NavLink
+                            to={"/login"}
+                            className="text-azulOscuro   hover:bg-azulOscuro hover:text-white hover:rounded-md hover:transition-all block px-3 py-2 text-lg rounded-md font-Marcellus  text-center xl:text-lg "
+                          >
+                            Iniciar sesión
+                          </NavLink>
+                        }
 
-                  <NavLink
-                    to={"/admin"}
-                    className="text-azulOscuro   hover:bg-azulOscuro hover:text-white hover:rounded-md hover:transition-all block px-3 py-2 text-lg rounded-md font-Marcellus  text-center "
-                  >
-                    Administrador
-                  </NavLink>
+                        {currentPath !== '/register' &&
+                          <NavLink
+                            to={"/register"}
+                            className="text-azulOscuro   hover:bg-azulOscuro hover:text-white hover:rounded-md hover:transition-all block px-3 py-2 text-lg rounded-md font-Marcellus  text-center  "
+                          >
+                            Registro
+                          </NavLink>
+                        }
 
-                  <NavLink
-                    to={"/login"}
-                    className="text-white hover:bg-white hover:text-azulOscuro block px-3 py-2  text-lg rounded-md font-Marcellus  text-left transition-all duration-500"
-                  >
-                    Cerrar Sesión
-                  </NavLink>
+                      </>
+                      :
+                      <>
+                        {user.admin &&
+                          <NavLink
+                            to={"/admin"}
+                            className="text-azulOscuro hover:bg-azulOscuro hover:text-white hover:rounded-md hover:transition-all block px-3 py-2 text-lg rounded-md font-Marcellus text-center"
+                          >
+                            Administrador
+                          </NavLink>
+                        }
+
+                        <NavLink
+                          to={"/profile"}
+                          className="text-azulOscuro hover:bg-azulOscuro hover:text-white hover:rounded-md hover:transition-all block px-3 py-2 text-lg rounded-md font-Marcellus text-center xl:text-lg"
+                        >
+                          Perfil
+                        </NavLink>
+
+                        <NavLink
+                          to={"/login"}
+                          className="text-azulOscuro hover:bg-white hover:text-red-500 block px-3 py-2  text-lg rounded-md font-Marcellus text-left transition-all duration-500"
+                          onClick={handleLogout}
+                        >
+                          Cerrar Sesión
+                        </NavLink>
+                      </>
+                  }
+
                 </div>
               </div>
             </div>
@@ -112,33 +161,56 @@ function Navbar() {
                   Oficinas
                 </NavLink>
 
-                <NavLink
-                  to={"/login"}
-                  className="text-azulOscuro   hover:bg-azulOscuro hover:text-white hover:rounded-md hover:transition-all block px-3 py-2 text-lg rounded-md font-OpenSans w-full text-left"
-                >
-                  Iniciar sesión
-                </NavLink>
+                {
+                  !user ?
+                    <>
+                      {currentPath !== '/login' &&
+                        <NavLink
+                          to={"/login"}
+                          className="text-azulOscuro   hover:bg-azulOscuro hover:text-white hover:rounded-md hover:transition-all block px-3 py-2 text-lg rounded-md font-OpenSans w-full text-left"
+                        >
+                          Iniciar sesión
+                        </NavLink>
+                      }
 
-                <NavLink
-                  to={"/register"}
-                  className="text-azulOscuro   hover:bg-azulOscuro hover:text-white hover:rounded-md hover:transition-all block px-3 py-2 text-lg rounded-md font-OpenSans w-full text-left"
-                >
-                  Registro
-                </NavLink>
+                      {currentPath !== '/register' &&
+                        <NavLink
+                          to={"/register"}
+                          className="text-azulOscuro   hover:bg-azulOscuro hover:text-white hover:rounded-md hover:transition-all block px-3 py-2 text-lg rounded-md font-OpenSans w-full text-left"
+                        >
+                          Registro
+                        </NavLink>
+                      }
 
-                <NavLink
-                  to={"/admin"}
-                  className="text-azulOscuro   hover:bg-azulOscuro hover:text-white hover:rounded-md hover:transition-all block px-3 py-2 text-lg rounded-md font-OpenSans w-full text-left"
-                >
-                  Administrador
-                </NavLink>
+                    </>
+                    :
+                    <>
+                      {user.admin &&
 
-                <NavLink
-                  to={"/login"}
-                  className="text-azulOscuro   hover:bg-azulOscuro hover:text-white hover:rounded-md hover:transition-all block px-3 py-2  text-lg rounded-md font-Marcellus w-full text-left transition-all duration-500"
-                >
-                  Cerrar Sesión
-                </NavLink>
+                        <NavLink
+                          to={"/admin"}
+                          className="text-azulOscuro   hover:bg-azulOscuro hover:text-white hover:rounded-md hover:transition-all block px-3 py-2 text-lg rounded-md font-OpenSans w-full text-left"
+                        >
+                          Administrador
+                        </NavLink>
+                      }
+
+                      <NavLink
+                        to={"/profile"}
+                        className="text-azulOscuro   hover:bg-azulOscuro hover:text-white hover:rounded-md hover:transition-all block px-3 py-2 text-lg rounded-md font-OpenSans w-full text-left"
+                      >
+                        Perfil
+                      </NavLink>
+
+                      <NavLink
+                        to={"/login"}
+                        className="text-azulOscuro   hover:bg-azulOscuro hover:text-white hover:rounded-md hover:transition-all block px-3 py-2  text-lg rounded-md font-Marcellus w-full text-left transition-all duration-500"
+                        onClick={handleLogout}
+                      >
+                        Cerrar Sesión
+                      </NavLink>
+                    </>
+                }
               </div>
             </div>
           )}
@@ -147,5 +219,3 @@ function Navbar() {
     </div>
   );
 }
-
-export default Navbar;

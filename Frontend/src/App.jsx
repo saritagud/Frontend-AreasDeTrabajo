@@ -9,24 +9,25 @@ import PerfilUsuario from "./components/PerfilUsuario";
 import Panel from "./components/Admin/PanelAdmin"
 import VistaOficinas from "./components/Oficinas/VistaOficinas";
 import DetallesOficina from "./components/Oficinas/DetallesOficina";
-function App() {
+import ProtectedRoute from "./auth/ProtectedRoute";
+import { Toaster } from 'react-hot-toast';
+
+export default function App() {
   return (
     <Provider store={store}>
       <div className="h-screen">
         <Routes>
           <Route index element={<Landing />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Registro />} />
-          <Route path="/admin" element={<Panel />} />
-          <Route path="/user" element={<PerfilUsuario />} />
+          <Route path="/login" element={<ProtectedRoute component={Login} />} />
+          <Route path="register" element={<ProtectedRoute component={Registro} />} />
+          <Route path="/admin" element={<ProtectedRoute adminComponent={Panel} />} />
+          <Route path="/profile" element={<ProtectedRoute userComponent={PerfilUsuario} />} />
           <Route path="/offices" element={<VistaOficinas />} />
           <Route path="/details" element={<DetallesOficina />} />
         </Routes>
-
       </div>
       <SessionChecker />
+      <Toaster />
     </Provider>
   );
 }
-
-export default App;
