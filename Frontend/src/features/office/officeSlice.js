@@ -1,35 +1,40 @@
-// Importamos createSlice de Redux Toolkit q ya teniamos configurado
 import { createSlice } from '@reduxjs/toolkit';
 
-// Creamos un slice de Redux para manejar el estado de las oficinas
 const officeSlice = createSlice({
     name: 'office',
     initialState: {
+        allOffices: [],
         offices: [],
+        totalPages: 0,
+        currentPage: 1,
         isLoading: false,
         error: null,
     },
     reducers: {
-        // Reducer para manejar la solicitud de obtener oficinas
-        getOfficesRequest: (state) => {
+        getAllOfficesRequest: (state) => {
             state.isLoading = true;
         },
-        // Reducer para manejar el exito al obtener oficinas
-        getOfficesSuccess: (state, action) => {
+        getAllOfficesSuccess: (state, action) => {
             state.isLoading = false;
             state.error = null;
-            state.offices = action.payload;
+            state.allOffices = action.payload;
+            state.totalPages = Math.ceil(action.payload.length / 6);
         },
-        // Reducer para manejar el fracaso al obtener oficinas
-        getOfficesFailure: (state, action) => {
+        getAllOfficesFailure: (state, action) => {
             state.isLoading = false;
             state.error = action.payload;
+        },
+        setCurrentPage: (state, action) => {
+            state.currentPage = action.payload;
         },
     },
 });
 
-// Exportamos las acciones y un selector para obtener las oficinas del estado y el reducer
-export const { getOfficesRequest, getOfficesSuccess, getOfficesFailure } =
+export const { getAllOfficesRequest, getAllOfficesSuccess, getAllOfficesFailure, setCurrentPage } =
     officeSlice.actions;
-export const selectOffices = (state) => state.office.offices;
+export const selectAllOffices = (state) => state.office.allOffices;
+export const selectOffices = (state) =>
+    state.office.allOffices.slice((state.office.currentPage - 1) * 6, state.office.currentPage * 6);
+export const selectTotalPages = (state) => state.office.totalPages;
+export const selectCurrentPage = (state) => state.office.currentPage;
 export default officeSlice.reducer;
