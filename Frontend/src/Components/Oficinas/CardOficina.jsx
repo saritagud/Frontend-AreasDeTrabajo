@@ -28,11 +28,12 @@ const CardOficina = () => {
   return (
     <>
       {offices.map((espacio) => {
-        const { titulo, direccion, precioDia } = espacio;
+        const { titulo, direccion, precioDia, imagenReferencia } = espacio;
         return (
           <section
-            className="bg-oficina1 h-[60vh] rounded-2xl mb-10 flex flex-col justify-end w-[80%] m-10"
+            className="h-[60vh] rounded-2xl mb-10 flex flex-col justify-end w-[80%] m-10"
             key={titulo}
+            style={{ backgroundImage: `url(${imagenReferencia})` }}
           >
             <div className="w-full font-OpenSans text-left text-xl p-3 bg-azulClaro bg-opacity-40 mb-10 flex flex-col gap-2">
               <h1 className="font-bold">{titulo}</h1>
@@ -45,6 +46,7 @@ const CardOficina = () => {
     </>
   );
 };
+
 
 
 export default CardOficina;

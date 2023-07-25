@@ -48,7 +48,9 @@ function Landing() {
         </h1>
         <CardOficina />
 
-        <button className="bg-azulOscuro p-5 text-white font-Montserrat text-xl rounded-xl mb-10 flex justify-center items-center gap-3">
+        <button
+          className="bg-azulOscuro p-5 text-white font-Montserrat text-xl rounded-xl mb-10 flex justify-center items-center gap-3"
+          onClick={() => window.location.href = 'http://localhost:5173/offices'}>
           Ver mas
           <FaArrowRight />
         </button>
