@@ -10,23 +10,23 @@ const Paginador = ({ currentPage, totalPages, onPageChange, route }) => {
   }
 
   const handlePageClick = (page) => {
-    onPageChange(page);
     handleNavigate(page);
+    onPageChange(page);
   };
 
   const handlePrevClick = () => {
     if (currentPage > 1) {
       const updatePage = currentPage - 1;
-      onPageChange(updatePage);
       handleNavigate(updatePage);
+      onPageChange(updatePage);
     }
   };
 
   const handleNextClick = () => {
     if (currentPage < totalPages) {
       const updatePage = currentPage + 1
-      onPageChange(updatePage);
       handleNavigate(updatePage);
+      onPageChange(updatePage);
     }
   };
 
@@ -42,7 +42,7 @@ const Paginador = ({ currentPage, totalPages, onPageChange, route }) => {
       {[...Array(totalPages)].map((_, i) => (
         <button
           key={i}
-          className={`px-2 py-1 rounded-md mx-1 ${i === currentPage - 1
+          className={`px-2 py-1 rounded-md mx-1 ${i + 1 === currentPage
             ? "bg-blue-500 text-white"
             : "bg-gray-200 text-gray-600 hover:bg-gray-300"
             }`}

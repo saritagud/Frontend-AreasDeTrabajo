@@ -1,6 +1,6 @@
 function Pagina404(){
     return(
-        <></>
+        <>Not found</>
     )
 }
 
