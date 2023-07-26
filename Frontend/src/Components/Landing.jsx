@@ -4,6 +4,8 @@ import { FaArrowRight } from "react-icons/fa";
 import NavBar from "./Navbar";
 import Footer from "./Footer";
 import CarruselPrincipal from "./CarruselPrincipal";
+import Lista6Oficinas from "../Components/Oficinas/Lista6Oficinas";
+
 function Landing() {
   return (
     <>
@@ -46,9 +48,11 @@ function Landing() {
         <h1 className="font-Montserrat text-2xl font-bold">
           Encuentra mas oficinas
         </h1>
-        <CardOficina />
+        <Lista6Oficinas />
 
-        <button className="bg-azulOscuro p-5 text-white font-Montserrat text-xl rounded-xl mb-10 flex justify-center items-center gap-3">
+        <button
+          className="bg-azulOscuro p-5 text-white font-Montserrat text-xl rounded-xl mb-10 flex justify-center items-center gap-3"
+          onClick={() => window.location.href = 'http://localhost:5173/offices'}>
           Ver mas
           <FaArrowRight />
         </button>
