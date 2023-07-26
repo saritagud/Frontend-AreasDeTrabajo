@@ -4,7 +4,7 @@ import { selectUser, selectTokenExpiration, logout } from '../features/auth/auth
 import { useNavigate } from 'react-router-dom';
 import paths from '../config/routePaths';
 import { toast } from 'react-hot-toast';
-import CustomToast, { typeToast } from './toast/CustomToast';
+import CustomToast, { typeToast } from '../Components/toast/CustomToast';
 
 export default function SessionChecker() {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ export default function SessionChecker() {
       const currentTime = Date.now(); // Obtiener la marca de tiempo actual
       const tokenExpirationInMilliseconds = tokenExpiration * 1000; // Convertir a milisegundos
       const timeUntilExpiration = tokenExpirationInMilliseconds - currentTime; // Calcular la diferencia en milisegundos
-      const minutesUntilExpiration = Math.ceil(timeUntilExpiration / 60000) - 18;
+      const minutesUntilExpiration = Math.ceil(timeUntilExpiration / 60000);
 
       if (user && tokenExpiration) {
         if (minutesUntilExpiration <= 0) {

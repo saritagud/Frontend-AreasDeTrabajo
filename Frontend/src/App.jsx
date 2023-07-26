@@ -2,7 +2,7 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import paths from "./config/routePaths";
 import { Provider } from 'react-redux';
 import store from './app/store';
-import SessionChecker from './components/SessionChecker';
+import SessionChecker from "./auth/SessionChecker";
 import ProtectedRoute from "./auth/ProtectedRoute";
 import Landing from "./components/Landing";
 import Login from "./components/Login"
