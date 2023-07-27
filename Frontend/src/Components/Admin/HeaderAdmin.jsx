@@ -1,61 +1,37 @@
-import { useState } from "react";
-import { FaBars, FaWindowClose } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { FaBars } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { toggleSidebar } from '../../features/sidebar/sidebarSlice';
 
-function HeaderAdmin() {
-  const [isOpen, setIsOpen] = useState(false);
+export default function HeaderAdmin() {
+  const dispatch = useDispatch();
+  const handleToggleSidebar = () => {
+    dispatch(toggleSidebar());
+  };
 
   return (
-    <>
-      <header className=" flex justify-between items-center p-5 bg-azulOscuro">
-        <nav>
-          <FaBars
-            onClick={() => setIsOpen(true)}
-            className="text-2xl text-white cursor-pointer"
+    <header className="shadow-lg flex items-center justify-between p-5 bg-azulOscuro">
+
+      {/* Botón del menú hamburguesa (solo visible en pantallas pequeñas) */}
+      <div className="lg:flex flex-1">
+        <button
+          onClick={handleToggleSidebar}
+          className="lg:hidden rounded bg-azulOscuro text-white dark:text-white hover:text-gray-200 dark:hover:text-gray-200 focus:outline-none shadow-lg p-2"
+        >
+          <FaBars className="w-6 h-6" />
+        </button>
+      </div>
+
+
+      <div className="flex items-center">
+        <NavLink to={"/"}>
+          <img
+            src=""
+            alt="logo"
+          // className="w-[40%] sm:w-[30%] md:w-[20%] xl:w-[15%]"
           />
-        </nav>
-      </header>
-
-      {isOpen && (
-        <div className="fixed inset-y-0 left-0 z-50 bg-gray-800 w-64 px-8 py-4 transition-transform duration-300 transform translate-x-0 md:translate-x-[-16rem]">
-          <button
-            onClick={() => setIsOpen(false)}
-            className="absolute top-4 right-4 text-white text-2xl"
-          >
-            <FaWindowClose />
-          </button>
-
-          <ul className="space-y-4 mt-10 font-Montserrat text-lg">
-            <li>
-              <Link to={""} className="text-white block hover:bg-white hover:text-black  hover:rounded-md w-full p-2" href="#home">
-                Oficinas
-              </Link>
-            </li>
-            <li>
-              <Link to={""} className="text-white block hover:bg-white hover:text-black  hover:rounded-md w-full p-2" href="#about">
-                Reservaciones
-              </Link>
-            </li>
-            <li>
-              <Link to={""}
-                className="text-white block hover:bg-white hover:text-black  hover:rounded-md w-full p-2"
-                href="#services"
-              >
-                Estadisticas
-              </Link>
-            </li>
-            <li>
-              <Link to={"/"}
-                className="text-white block hover:bg-white hover:text-black  hover:rounded-md w-full p-2"
-                href="#contact"
-              >
-                Inicio
-              </Link>
-            </li>
-          </ul>
-        </div>
-      )}
-    </>
+        </NavLink>
+      </div>
+    </header>
   );
 }
-export default HeaderAdmin;

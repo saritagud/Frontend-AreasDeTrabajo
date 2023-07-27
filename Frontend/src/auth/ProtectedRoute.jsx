@@ -18,6 +18,8 @@ export default function ProtectedRoute({ component: Component, userComponent: Us
     // Si no es admin no permitir que entre al panel admin
     if (user && !user.admin && currentPath == paths.ADMIN_PATH) return navigate(paths.OFFICES_PATH);
 
+    if(user && user.admin && currentPath == paths.ADMIN_PATH) return navigate(paths.ADMIN_OFFICES_PATH);
+
     // Si el usuario no está logueado se redirige al login o register
     if (!user){
       if(currentPath == paths.REGISTER_PATH) return navigate(paths.REGISTER_PATH);

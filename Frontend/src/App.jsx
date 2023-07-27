@@ -24,6 +24,10 @@ export default function App() {
           <Route path={paths.LOGIN_PATH} element={<ProtectedRoute component={Login} />} />
           <Route path={paths.REGISTER_PATH} element={<ProtectedRoute component={Registro} />} />
           <Route path={paths.ADMIN_PATH} element={<ProtectedRoute adminComponent={Panel} />} />
+          <Route path={paths.ADMIN_OFFICES_PATH} element={<ProtectedRoute adminComponent={Panel} />} />
+          <Route path={paths.ADMIN_BOOKINGS_PATH} element={<ProtectedRoute adminComponent={Panel} />} />
+          <Route path={paths.ADMIN_STATISTICS_PATH} element={<ProtectedRoute adminComponent={Panel} />} />
+          <Route path={paths.ADMIN_USERS_PATH} element={<ProtectedRoute adminComponent={Panel} />} />
           <Route path={paths.PROFILE_PATH} element={<ProtectedRoute userComponent={PerfilUsuario} />} />
           <Route path={paths.OFFICES_PAG_PATH} element={<VistaOficinas />} />
           <Route path={paths.DETAILS_PATH} element={<DetallesOficina />} />
