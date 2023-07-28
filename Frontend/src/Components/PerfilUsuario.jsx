@@ -12,7 +12,7 @@ export default function PerfilUsuario() {
       <section className="flex flex-col justify-center items-start h-screen p-10 font-Montserrat text-3xl gap-8 w-full">
         <h1>Perfil</h1>
 
-        <div className="bg-azulClaro p-5 w-full rounded-xl text-lg font-OpenSans flex flex-col gap-3 border-2 border-azulOscuro border-opacity-50 text-azulOscuro">
+        <div className="bg-azulClaro p-5 w-full rounded-xl text-lg font-OpenSans flex flex-col gap-3 border-2 border-azulOscuro border-opacity-50 text-azulOscuro lg:w-[80%] lg:h-[50vh] lg:justify-center">
           <h2 className="font-bold text-xl">Datos:</h2>
           <p>{user.nombre}</p>
           <p>{user.email}</p>
@@ -20,7 +20,7 @@ export default function PerfilUsuario() {
 
         <h2>Reservaciones</h2>
 
-        <div className="bg-azulClaro p-5 w-full rounded-xl text-lg font-OpenSans flex flex-col gap-3 border-2 border-azulOscuro border-opacity-50 text-azulOscuro">
+        <div className="bg-azulClaro p-5 w-full rounded-xl text-lg font-OpenSans flex flex-col gap-3 border-2 border-azulOscuro border-opacity-50 text-azulOscuro lg:w-[80%] lg:h-[50vh] lg:justify-center">
           <h2 className="font-bold text-xl">Datos</h2>
           <div className="flex justify-between">
             <p>Fecha</p>

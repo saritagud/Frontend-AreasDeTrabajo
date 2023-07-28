@@ -51,8 +51,8 @@ export default function Paginador({ currentPage, totalPages, onPageChange, route
     <>
       {
         totalPages >= 1 &&
-        <nav className='mb-9' aria-label="Paginator">
-          <ul className="flex items-center -space-x-px h-10 text-base">
+        <nav className='mb-9 ' aria-label="Paginator">
+          <ul className="flex items-center -space-x-px h-10 text-base mb-20">
             <li>
               <button
                 className={`flex items-center justify-center px-4 h-10 ml-0 leading-tight text-blue-500 bg-blue-100 border border-blue-200 rounded-l-lg hover:bg-blue-200 hover:text-blue-700 dark:bg-blue-800 dark:border-blue-900 dark:text-white dark:hover:bg-blue-900`}

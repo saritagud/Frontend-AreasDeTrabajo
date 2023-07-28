@@ -22,6 +22,11 @@ export default {
         oficina3: "url('/src/assets/oficina3.jpg')",
         oficina4: "url('/src/assets/oficina4.jpg')",
         oficina5: "url('/src/assets/oficina5.jpg')",
+        oficionaHorizontal1:  "url('/src/assets/oficinaHorizontal.jpg')",
+        oficionaHorizontal2:  "url('/src/assets/oficionaHorizontal2.jpg')",
+        oficionaHorizontal3:  "url('/src/assets/oficionaHorizontal3.jpg')",
+        oficionaHorizontal4:  "url('/src/assets/oficionaHorizontal4.jpg')",
+        oficionaHorizontal5:  "url('/src/assets/oficionaHorizontal5.jpg')",
         fondoLogin: "url('/src/assets/fondoLogin.jpg')",
         mapa: "url('/src/assets/mapa3.jpg')"
       },

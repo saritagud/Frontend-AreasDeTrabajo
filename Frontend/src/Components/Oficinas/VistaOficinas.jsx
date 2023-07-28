@@ -1,14 +1,23 @@
-import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { getAllOfficesRequest, getAllOfficesSuccess, getAllOfficesFailure, setCurrentPage, selectOffices, selectTotalPages, selectCurrentPage, selectIsLoadingOffices } from '../../features/office/officeSlice';
-import { getAllOffices } from '../../api/officeApi';
-import CardOficina from './CardOficina';
-import Paginador from '../Paginador';
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getAllOfficesRequest,
+  getAllOfficesSuccess,
+  getAllOfficesFailure,
+  setCurrentPage,
+  selectOffices,
+  selectTotalPages,
+  selectCurrentPage,
+  selectIsLoadingOffices,
+} from "../../features/office/officeSlice";
+import { getAllOffices } from "../../api/officeApi";
+import CardOficina from "./CardOficina";
+import Paginador from "../Paginador";
 import NavBar from "../Navbar";
 import Footer from "../Footer";
-import CenteredSpinner from '../CenteredSpinner';
-import paths from '../../config/routePaths';
+import CenteredSpinner from "../CenteredSpinner";
+import paths from "../../config/routePaths";
 
 export default function VistaOficinas() {
   const { pag } = useParams();
@@ -32,7 +41,8 @@ export default function VistaOficinas() {
 
         const pagInt = parseInt(pag, 10); // Convertir pag a un número entero
 
-        if (pag > 0 && pag <= calculatedTotalPages) dispatch(setCurrentPage(pagInt));
+        if (pag > 0 && pag <= calculatedTotalPages)
+          dispatch(setCurrentPage(pagInt));
         else dispatch(setCurrentPage(0));
       } catch (error) {
         dispatch(getAllOfficesFailure(error));
@@ -49,30 +59,42 @@ export default function VistaOficinas() {
   return (
     <>
       <NavBar />
-      <section className="mt-12 flex flex-col justify-center items-center">
-        <h1 className="font-Montserrat font-bold text-3xl">Todas las oficinas</h1>
+      <section className="mt-12 flex flex-col justify-center items-center lg:space-y-10">
+        <h1 className="font-Montserrat font-bold text-3xl ">
+          Todas las oficinas
+        </h1>
         {/* mapa */}
-        {
-          isLoadingOffices ? <><CenteredSpinner /></>
-            : <>
-              {offices.length === 0 ?
-                <div className="text-center text-3xl text-gray-600 my-28 italic">
-                  No se encontraron oficinas disponibles en este momento.
-                </div>
-                : <>
-                  {offices.map((office) => (
-                    <CardOficina
-                      key={office._id}
-                      imagenReferencia={office.imagenReferencia}
-                      titulo={office.titulo}
-                      direccion={office.direccion}
-                      precioDia={office.precioDia}
-                    />
-                  ))}
-                </>}
-              <Paginador currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} route={paths.OFFICES_ROUTE_PATH} />
-            </>
-        }
+        {isLoadingOffices ? (
+          <>
+            <CenteredSpinner />
+          </>
+        ) : (
+          <>
+            {offices.length === 0 ? (
+              <div className="text-center text-3xl text-gray-600 my-28 italic">
+                No se encontraron oficinas disponibles en este momento.
+              </div>
+            ) : (
+              <div className="w-full flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:gap-5">
+                {offices.map((office) => (
+                  <CardOficina
+                    key={office._id}
+                    imagenReferencia={office.imagenReferencia}
+                    titulo={office.titulo}
+                    direccion={office.direccion}
+                    precioDia={office.precioDia}
+                  />
+                ))}
+              </div>
+            )}
+            <Paginador
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+              route={paths.OFFICES_ROUTE_PATH}
+            />
+          </>
+        )}
       </section>
       <Footer />
     </>

@@ -61,16 +61,18 @@ function Landing() {
         </div>
       </section>
 
-      <section className="flex flex-col justify-start items-center w-full  bg-gris p-8 gap-10 mt-20">
-        <h1 className="font-Montserrat font-bold text-3xl text-center sm:mt-10">
-          ¿Necesitas una oficina?
-        </h1>
-        <p className="font-OpenSans text-center text-lg sm:text-xl tracking-wide leading-loose h-full">
-          Nuestra empresa ofrece oficinas de alquiler flexibles diseñadas para
-          satisfacer todas tus necesidades empresariales. ¡No pierdas más tiempo
-          buscando, ven a experimentar el futuro del trabajo con nosotros hoy
-          mismo!
-        </p>
+      <section className="flex flex-col justify-start items-center w-full  bg-gris p-8 gap-10 mt-20 lg:flex-row lg:justify-center">
+        <div className="w-full space-y-10 md:w-[50%]">
+          <h1 className="font-Montserrat font-bold text-3xl text-center sm:mt-10">
+            ¿Necesitas una oficina?
+          </h1>
+          <p className="font-OpenSans text-center text-lg sm:text-xl tracking-wide leading-loose h-full">
+            Nuestra empresa ofrece oficinas de alquiler flexibles diseñadas para
+            satisfacer todas tus necesidades empresariales. ¡No pierdas más
+            tiempo buscando, ven a experimentar el futuro del trabajo con
+            nosotros hoy mismo!
+          </p>
+        </div>
 
         <Carrusel />
       </section>
@@ -100,22 +102,24 @@ function Landing() {
         </button>
       </section>
 
-      <section className="flex flex-col justify-center items-center bg-gris p-8 gap-10 sm:p-14">
-        <h1 className="font-Montserrat text-3xl font-bold text-center">
-          ¿Por que buscar con nosotros?
-        </h1>
-        <p className="font-OpenSans text-center text-lg sm:text-xl">
-          Nuestra empresa ofrece una experiencia única, pensando en tu comodidad
-          y productividad. Disfrutarás de la máxima flexibilidad en términos de
-          duración de alquiler, sin preocupaciones por compromisos a largo
-          plazo. Nuestras oficinas están completamente equipadas con una moderna
-          infraestructura y todas las comodidades que necesitas para impulsar tu
-          rendimiento.
-        </p>
+      <section className="flex flex-col justify-center items-center bg-gris p-8 gap-10 sm:p-14 lg:flex-row ">
+        <div className="w-full space-y-10 md:w-[50%]">
+          <h1 className="font-Montserrat text-3xl font-bold text-center">
+            ¿Por que buscar con nosotros?
+          </h1>
+          <p className="font-OpenSans text-center text-lg sm:text-xl">
+            Nuestra empresa ofrece una experiencia única, pensando en tu
+            comodidad y productividad. Disfrutarás de la máxima flexibilidad en
+            términos de duración de alquiler, sin preocupaciones por compromisos
+            a largo plazo. Nuestras oficinas están completamente equipadas con
+            una moderna infraestructura y todas las comodidades que necesitas
+            para impulsar tu rendimiento.
+          </p>
+        </div>
 
         <img
           src="src\assets\equipo.jpg"
-          className="rounded-3xl sm:h-[80vh] sm:w-[80%] md:w-[70%]"
+          className="rounded-3xl sm:h-[80vh] sm:w-[80%] md:w-[70%] lg:w-[50%] lg:h-[70vh]"
         />
       </section>
       <Footer />
