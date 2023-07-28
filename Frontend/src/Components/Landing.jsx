@@ -40,19 +40,19 @@ function Landing() {
           <h1 className="bg-azulOscuro p-3 rounded-xl text-white font-Montserrat text-xl text-right ">Tu espacio de éxito, la oficina perfecta.</h1>
         </div>
 
-        <div className="flex items-center gap-4 w-full">
+        <div className="flex justify-end items-center gap-4 w-full">
 
-          <h1 className="bg-azulOscuro p-3 rounded-xl text-white font-Montserrat text-xl text-right ">Transforma tu visión en realidad, en nuestra oficina ideal.</h1>
+          <h1 className="bg-azulOscuro p-3 rounded-xl text-white font-Montserrat text-xl text-right sm:w-[70%]">Transforma tu visión en realidad, en nuestra oficina ideal.</h1>
           <img src="\src\assets\iconoOficina.jpg" className="rounded-full w-14" />
         </div>
 
       </section>
 
       <section className="flex flex-col justify-start items-center w-full  bg-gris p-8 gap-10 mt-20">
-        <h1 className="font-Montserrat font-bold text-3xl text-center">
+        <h1 className="font-Montserrat font-bold text-3xl text-center sm:mt-10">
           ¿Necesitas una oficina?
         </h1>
-        <p className="font-OpenSans text-center text-lg">
+        <p className="font-OpenSans text-center text-lg sm:text-xl">
           Nuestra empresa ofrece oficinas de alquiler flexibles diseñadas para
           satisfacer todas tus necesidades empresariales. ¡No pierdas más tiempo
           buscando, ven a experimentar el futuro del trabajo con nosotros hoy
@@ -63,7 +63,7 @@ function Landing() {
       </section>
 
       <section className="flex flex-col justify-center items-center mt-20">
-        <h1 className="font-Montserrat text-2xl font-bold">
+        <h1 className="font-Montserrat text-2xl font-bold sm:text-3xl">
           Encuentra mas oficinas
         </h1>
 
@@ -85,11 +85,11 @@ function Landing() {
         </button>
       </section>
 
-      <section className="flex flex-col justify-center items-center bg-gris p-8 gap-10">
+      <section className="flex flex-col justify-center items-center bg-gris p-8 gap-10 sm:p-14">
         <h1 className="font-Montserrat text-3xl font-bold text-center">
           ¿Por que buscar con nosotros?
         </h1>
-        <p className="font-OpenSans text-center text-lg">
+        <p className="font-OpenSans text-center text-lg sm:text-xl">
           Nuestra empresa ofrece una experiencia única, pensando en tu comodidad
           y productividad. Disfrutarás de la máxima flexibilidad en términos de
           duración de alquiler, sin preocupaciones por compromisos a largo
@@ -98,7 +98,7 @@ function Landing() {
           rendimiento.
         </p>
 
-        <img src="src\assets\equipo.jpg" className="rounded-3xl" />
+        <img src="src\assets\equipo.jpg" className="rounded-3xl sm:h-[80vh] sm:w-[80%]" />
       </section>
       <Footer />
     </>
