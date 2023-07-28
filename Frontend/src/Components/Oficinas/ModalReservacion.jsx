@@ -48,8 +48,8 @@ const handleSubmit = async (event) => {
       </button>
 
       {isOpen && (
-        <form onSubmit={handleSubmit} className="fixed flex justify-center items-center inset-0 backdrop-blur-sm   bg-opacity-30  min-h-screen">
-          <section className="bg-azulOscuro rounded-xl p-5 w-[90%] sm:w-[70%] lg:w-[50%] xl:w-[40%] text-black flex flex-col items-center gap-4 justify-center font-OpenSans dark:bg-verde2">
+        <form onSubmit={handleSubmit} className="fixed flex justify-center items-start inset-0 backdrop-blur-sm   bg-opacity-30 min-h-screen overflow-scroll ">
+          <section className="bg-azulOscuro rounded-xl p-5 w-[90%] sm:w-[70%] lg:w-[50%] xl:w-[40%] flex flex-col items-center gap-4 justify-center font-OpenSans m-8 overflow-auto text-white">
             <div className="flex justify-end mb-3 w-full ">
               <FaWindowClose
                 className="text-2xl cursor-pointer md:text-3xl"
@@ -81,7 +81,7 @@ const handleSubmit = async (event) => {
             </label>
             <textarea name="detalles" onChange={handleInputChange} className="w-full rounded-xl"></textarea>
 
-            <button type="submit" className="bg-azulClaro p-3 text-xl rounded-xl m-8 md:text-2xl md:w-[40%] 2xl:text-3xl 2xl:p-5 dark:bg-white dark:text-black">
+            <button type="submit" className="bg-azulClaro p-3 text-xl rounded-xl m-8 md:text-2xl md:w-[40%] 2xl:text-3xl 2xl:p-5 text-white">
               Reservar
             </button>
           </section>

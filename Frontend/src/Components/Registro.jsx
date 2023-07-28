@@ -226,7 +226,7 @@ export default function Registro() {
             </div>
           </form>
         </div>
-        <div className="sm:hidden lg:block">
+        <div className="hidden lg:block">
           <img src="/src/assets/fondoLogin.jpg" />
         </div>
       </section>
