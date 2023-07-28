@@ -15,13 +15,13 @@ export default function PanelAdmin() {
 
         {/* Contenido principal */}
         <div className="flex flex-col flex-1 p-5 m-2">
-          <section className="flex flex-col justify-center items-center gap-8">
+          <section className="flex flex-col justify-center items-center gap-8 min-h-screen">
             <h1 className="font-Montserrat font-bold text-3xl">Panel de Administración</h1>
             <div className="flex justify-end w-full">
               <ModalCrear />
             </div>
 
-            <div className="bg-azulClaro  w-full p-4 rounded-xl text-azulOscuro font-OpenSans text-xl flex justify-between">
+            <div className="bg-azulClaro  w-full p-4 rounded-xl text-azulOscuro font-OpenSans text-xl flex justify-between items-center md:h-20">
               <h1>Oficina</h1>
               <div className="flex gap-3">
                 <ModalEditar />
