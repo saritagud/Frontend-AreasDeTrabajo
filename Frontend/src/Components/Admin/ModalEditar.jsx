@@ -6,7 +6,7 @@ function ModalEditar() {
   return (
     <>
     <FaPencilAlt
-        className="text-right text-2xl text-azulOscuro flex items-end justify-end cursor-pointer hover:text-white 2xl:text-4xl"
+        className="text-right text-2xl text-azulOscuro flex items-end justify-end cursor-pointer hover:text-white 2xl:text-3xl"
         onClick={() => setIsOpen(true)}
       />
       {isOpen && (

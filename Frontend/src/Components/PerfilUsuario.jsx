@@ -10,17 +10,17 @@ export default function PerfilUsuario() {
     <>
       <Navbar />
       <section className="flex flex-col justify-center items-start h-screen p-10 font-Montserrat text-3xl gap-8 w-full xl:items-center xl:mb-10">
-        <h1 className="w-full xl:w-[75%] xl:text-left">Perfil</h1>
+        <h1 className="w-full xl:w-[70%] xl:text-left ">Perfil</h1>
 
-        <div className="bg-azulClaro p-5 w-full rounded-xl text-lg font-OpenSans flex flex-col gap-3 border-2 border-azulOscuro border-opacity-50 text-azulOscuro lg:w-[80%] lg:h-[50vh] lg:justify-center">
+        <div className="bg-azulClaro p-5 w-full rounded-xl text-lg font-OpenSans flex flex-col gap-3 border-2 border-azulOscuro border-opacity-50 text-azulOscuro lg:w-[80%] lg:h-[50vh] lg:justify-center 2xl:w-[70%]">
           <h2 className="font-bold text-xl">Datos:</h2>
           <p>{user.nombre}</p>
           <p>{user.email}</p>
         </div>
 
-        <h2 className="w-full xl:w-[75%] xl:text-left">Reservaciones</h2>
+        <h2 className="w-full xl:w-[70%] xl:text-left">Reservaciones</h2>
 
-        <div className="bg-azulClaro p-5 w-full rounded-xl text-lg font-OpenSans flex flex-col gap-3 border-2 border-azulOscuro border-opacity-50 text-azulOscuro lg:w-[80%] lg:h-[50vh] lg:justify-center">
+        <div className="bg-azulClaro p-5 w-full rounded-xl text-lg font-OpenSans flex flex-col gap-3 border-2 border-azulOscuro border-opacity-50 text-azulOscuro lg:w-[80%] lg:h-[50vh] lg:justify-center 2xl:w-[70%]">
           <h2 className="font-bold text-xl">Datos</h2>
           <div className="flex justify-between">
             <p>Fecha</p>

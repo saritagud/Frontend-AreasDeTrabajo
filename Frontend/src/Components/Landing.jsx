@@ -36,7 +36,7 @@ function Landing() {
       <section className="flex justify-center items-center">
         <CarruselPrincipal />
       </section>
-      <h1 className="font-Montserrat font-bold text-3xl text-center m-10">
+      <h1 className="font-Montserrat font-bold text-3xl text-center m-10 2xl:text-4xl">
         Prueba Nuestro Mapa Interactivo
       </h1>
       <section className="bg-mapa h-screen bg-no-repeat bg-cover bg-fixed flex flex-col justify-around items-center p-5">
@@ -51,7 +51,7 @@ function Landing() {
         </div>
 
         <div className="flex justify-end items-center gap-4 w-full">
-          <h1 className="bg-azulOscuro p-3 rounded-xl text-white font-Montserrat text-xl text-right sm:w-[70%] xl:w-[50%] xl:p-5">
+          <h1 className="bg-azulOscuro p-3 rounded-xl text-white font-Montserrat text-xl text-right sm:w-[70%] xl:w-[50%] xl:p-5 2xl:w-[40%]">
             Transforma tu visión en realidad, en nuestra oficina ideal.
           </h1>
           <img
@@ -63,10 +63,10 @@ function Landing() {
 
       <section className="flex flex-col justify-start items-center w-full  bg-gris p-8 gap-10 mt-20 lg:flex-row lg:justify-center">
         <div className="w-full space-y-10 md:w-[50%]">
-          <h1 className="font-Montserrat font-bold text-3xl text-center sm:mt-10">
+          <h1 className="font-Montserrat font-bold text-3xl text-center sm:mt-10 2xl:text-4xl">
             ¿Necesitas una oficina?
           </h1>
-          <p className="font-OpenSans text-center text-lg sm:text-xl tracking-wide leading-loose h-full">
+          <p className="font-OpenSans text-center text-lg sm:text-xl tracking-wide leading-loose h-full 2xl:text-2xl">
             Nuestra empresa ofrece oficinas de alquiler flexibles diseñadas para
             satisfacer todas tus necesidades empresariales. ¡No pierdas más
             tiempo buscando, ven a experimentar el futuro del trabajo con
@@ -78,7 +78,7 @@ function Landing() {
       </section>
 
       <section className="flex flex-col justify-center items-center mt-20 md:gap-10">
-        <h1 className="font-Montserrat text-2xl font-bold sm:text-3xl">
+        <h1 className="font-Montserrat text-2xl font-bold sm:text-3xl 2xl:text-4xl">
           Encuentra mas oficinas
         </h1>
         <div className="w-full flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:gap-5">
@@ -104,10 +104,10 @@ function Landing() {
 
       <section className="flex flex-col justify-center items-center bg-gris p-8 gap-10 sm:p-14 lg:flex-row ">
         <div className="w-full space-y-10 md:w-[50%]">
-          <h1 className="font-Montserrat text-3xl font-bold text-center">
+          <h1 className="font-Montserrat text-3xl font-bold text-center 2xl:text-4xl">
             ¿Por que buscar con nosotros?
           </h1>
-          <p className="font-OpenSans text-center text-lg sm:text-xl">
+          <p className="font-OpenSans text-center text-lg sm:text-xl 2xl:text-2xl">
             Nuestra empresa ofrece una experiencia única, pensando en tu
             comodidad y productividad. Disfrutarás de la máxima flexibilidad en
             términos de duración de alquiler, sin preocupaciones por compromisos
@@ -119,7 +119,7 @@ function Landing() {
 
         <img
           src="src\assets\equipo.jpg"
-          className="rounded-3xl sm:h-[80vh] sm:w-[80%] md:w-[70%] lg:w-[50%] lg:h-[70vh] xl:w-[40%]"
+          className="rounded-3xl sm:h-[80vh] sm:w-[80%] md:w-[70%] lg:w-[50%] lg:h-[70vh] xl:w-[40%] 2xl:w-[30%]"
         />
       </section>
       <Footer />
