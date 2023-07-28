@@ -25,3 +25,16 @@ export const getAllOffices = async () => {
         throw error;
     }
 };
+
+export const getOfficeDetails = async (id) => {
+    try {
+        const response = await fetch(`${API_ENDPOINT}/espaciosTrabajo/buscar/${id}`);
+        if (!response.ok) {
+            const { error } = await response.json();
+            return { error };
+        }
+        return response.json();
+    } catch (error) {
+        throw error;
+    }
+};
