@@ -1,7 +1,19 @@
-function CardOficina({ imagenReferencia, titulo, direccion, precioDia }) {
+import { useNavigate } from 'react-router-dom';
+import paths  from '../../config/routePaths';
+
+function CardOficina({ imagenReferencia, titulo, direccion, precioDia, id }) {
+  const navigate = useNavigate();
+  
+  const handleClick = () => {
+    navigate(`${paths.OFFICE_ROUTE_PATH}/${id}`);
+  };
+
+
+
   return (
     <>
       <section
+        onClick={handleClick}
         className="h-[60vh] rounded-2xl mb-10 flex flex-col justify-end w-[80%] m-10 sm:w-[50%] sm:h-[70vh] bg-no-repeat bg-contain border-r-2 border-b-2 border-black/30 md:w-[45%] lg:m-5 lg:w-[30%] lg:h-[60vh] xl:w-[25%] xl:h-[70vh] "
         style={{ backgroundImage: `url(${imagenReferencia})` }}
       >
@@ -16,4 +28,7 @@ function CardOficina({ imagenReferencia, titulo, direccion, precioDia }) {
 }
 
 export default CardOficina;
+
+
+
 
