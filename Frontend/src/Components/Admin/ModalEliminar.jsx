@@ -13,7 +13,7 @@ function ModalEliminar() {
       {isOpen && (
         <section className="fixed flex justify-center items-center inset-0 backdrop-blur-sm bg-black bg-opacity-30 min-h-screen overflow-scroll ">
           <div className="bg-azulOscuro rounded-xl p-5 w-[90%] sm:w-[70%] lg:w-[60%] xl:w-[50%] text-white flex flex-col gap-4 overflow-auto 2xl:p-10 font-Montserrat ">
-            <h1 className="text-[20px] sm:text-2xl text-center md:text-3xl 2xl:text-4xl font-bold">
+            <h1 className="text-xl text-center md:text-2xl 2xl:text-4xl font-bold">
               ¿Está seguro/a de eliminar esta pelicula?
             </h1>
 

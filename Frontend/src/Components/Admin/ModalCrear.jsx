@@ -6,7 +6,7 @@ function ModalCrear() {
   return (
     <>
       <button
-        className=" bg-azulOscuro p-3 text-xl rounded-xl m-5 text-white font-Montserrat hover:bg- md:text-2xl 2xl:text-3xl 2xl:p-5 "
+        className=" bg-azulOscuro p-3 text-xl rounded-xl m-5 text-white font-Montserrat hover:bg-azulClaro  2xl:text-3xl 2xl:p-5 "
         onClick={() => setIsOpen(true)}
       >
         Agregar Oficina
