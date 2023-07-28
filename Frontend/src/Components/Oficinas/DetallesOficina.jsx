@@ -36,9 +36,6 @@ function DetallesOficina() {
     return <CenteredSpinner />;
   }
 
-  const LATITUD = 25.774970944307736;
-  const LONGITUD = -100.23602809131316;
-
   return (
     <>
       <NavBar />
@@ -63,7 +60,7 @@ function DetallesOficina() {
 
           <p className="font-bold">Ubicación</p>
           {mapsLoaded ? (
-            <MapOffice lat={LATITUD} lng={LONGITUD} />
+            <MapOffice lat={details.ubicacion.latitud} lng={details.ubicacion.longitud} />
           ) : (
             <div>Loading map...</div>
           )}
