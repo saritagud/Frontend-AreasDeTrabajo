@@ -45,13 +45,13 @@ function Landing() {
             src="\src\assets\iconoOficina.jpg"
             className="rounded-full w-14"
           />
-          <h1 className="bg-azulOscuro p-3 rounded-xl text-white font-Montserrat text-xl text-right ">
+          <h1 className="bg-azulOscuro p-3 rounded-xl text-white font-Montserrat text-xl text-right  xl:p-5">
             Tu espacio de éxito, la oficina perfecta.
           </h1>
         </div>
 
         <div className="flex justify-end items-center gap-4 w-full">
-          <h1 className="bg-azulOscuro p-3 rounded-xl text-white font-Montserrat text-xl text-right sm:w-[70%]">
+          <h1 className="bg-azulOscuro p-3 rounded-xl text-white font-Montserrat text-xl text-right sm:w-[70%] xl:w-[50%] xl:p-5">
             Transforma tu visión en realidad, en nuestra oficina ideal.
           </h1>
           <img
@@ -119,7 +119,7 @@ function Landing() {
 
         <img
           src="src\assets\equipo.jpg"
-          className="rounded-3xl sm:h-[80vh] sm:w-[80%] md:w-[70%] lg:w-[50%] lg:h-[70vh]"
+          className="rounded-3xl sm:h-[80vh] sm:w-[80%] md:w-[70%] lg:w-[50%] lg:h-[70vh] xl:w-[40%]"
         />
       </section>
       <Footer />
