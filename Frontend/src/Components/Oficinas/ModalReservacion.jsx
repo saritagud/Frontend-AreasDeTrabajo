@@ -1,8 +1,43 @@
 import { FaWindowClose } from "react-icons/fa";
 import { useState } from "react";
+import { addReservation } from '../../api/officeApi';
 
 function ModalReservacion() {
   const [isOpen, setIsOpen] = useState(false);
+  const [reservationData, setReservationData] = useState({
+    fechaInicio: '',
+    fechaFin: '',
+    horaInicio: '',
+    horaFin: '',
+    detalles: ''
+  });
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setReservationData(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+  }
+
+const handleSubmit = async (event) => {
+  event.preventDefault();
+  try {
+    const response = await addReservation(reservationData);
+    if (response.error) {
+      // manejar error
+      alert('Ocurrió un error al agregar la reserva. Por favor intenta de nuevo.');
+    } else {
+      // manejar éxito
+      alert('La reserva fue agregada con éxito.');
+      setIsOpen(false);
+    }
+  } catch (error) {
+    // manejar error
+    alert('Ocurrió un error al agregar la reserva. Por favor intenta de nuevo.');
+  }
+}
+
   return (
     <>
       <button
@@ -13,8 +48,8 @@ function ModalReservacion() {
       </button>
 
       {isOpen && (
-        <form className="fixed flex justify-center items-center inset-0 backdrop-blur-sm   bg-opacity-30  min-h-screen">
-          <section className="bg-azulOscuro rounded-xl p-5 w-[90%] sm:w-[70%] lg:w-[50%] xl:w-[40%] text-white flex flex-col items-center gap-4 justify-center font-OpenSans dark:bg-verde2">
+        <form onSubmit={handleSubmit} className="fixed flex justify-center items-center inset-0 backdrop-blur-sm   bg-opacity-30  min-h-screen">
+          <section className="bg-azulOscuro rounded-xl p-5 w-[90%] sm:w-[70%] lg:w-[50%] xl:w-[40%] text-black flex flex-col items-center gap-4 justify-center font-OpenSans dark:bg-verde2">
             <div className="flex justify-end mb-3 w-full ">
               <FaWindowClose
                 className="text-2xl cursor-pointer md:text-3xl"
@@ -24,14 +59,29 @@ function ModalReservacion() {
             <label className="w-full text-xl md:text-2xl 2xl:text-3xl">
               Fecha del inicio reserva
             </label>
-            <input type="date" className="w-full rounded-xl"/>
+            <input type="date" name="fechaInicio" onChange={handleInputChange} className="w-full rounded-xl"/>
 
             <label className="w-full text-xl md:text-2xl 2xl:text-3xl">
               Fecha del fin de la reserva
             </label>
-            <input type="date" className="w-full rounded-xl"/>
+            <input type="date" name="fechaFin" onChange={handleInputChange} className="w-full rounded-xl"/>
 
-            <button className="bg-azulClaro p-3 text-xl rounded-xl m-8 md:text-2xl md:w-[40%] 2xl:text-3xl 2xl:p-5 dark:bg-white dark:text-black">
+            <label className="w-full text-xl md:text-2xl 2xl:text-3xl">
+              Hora del inicio reserva
+            </label>
+            <input type="time" name="horaInicio" onChange={handleInputChange} className="w-full rounded-xl"/>
+
+            <label className="w-full text-xl md:text-2xl 2xl:text-3xl">
+              Hora del fin de la reserva
+            </label>
+            <input type="time" name="horaFin" onChange={handleInputChange} className="w-full rounded-xl"/>
+
+            <label className="w-full text-xl md:text-2xl 2xl:text-3xl">
+              Detalles de la reserva
+            </label>
+            <textarea name="detalles" onChange={handleInputChange} className="w-full rounded-xl"></textarea>
+
+            <button type="submit" className="bg-azulClaro p-3 text-xl rounded-xl m-8 md:text-2xl md:w-[40%] 2xl:text-3xl 2xl:p-5 dark:bg-white dark:text-black">
               Reservar
             </button>
           </section>
@@ -42,3 +92,4 @@ function ModalReservacion() {
 }
 
 export default ModalReservacion;
+

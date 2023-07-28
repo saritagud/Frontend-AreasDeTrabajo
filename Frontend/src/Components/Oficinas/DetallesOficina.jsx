@@ -62,7 +62,7 @@ function DetallesOficina() {
           {mapsLoaded ? (
             <MapOffice lat={details.ubicacion.latitud} lng={details.ubicacion.longitud} />
           ) : (
-            <div>Loading map...</div>
+            <div>Cargando map...</div>
           )}
         </div>
       </section>
