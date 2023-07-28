@@ -79,6 +79,7 @@ export default function VistaOficinas() {
                 {offices.map((office) => (
                   <CardOficina
                     key={office._id}
+                    id={office._id}
                     imagenReferencia={office.imagenReferencia}
                     titulo={office.titulo}
                     direccion={office.direccion}

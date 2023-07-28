@@ -2,6 +2,7 @@ const paths = {
   LOGIN_PATH: '/login',
   REGISTER_PATH: '/register',
   PROFILE_PATH: '/profile',
+  OFFICE_ROUTE_PATH: '/office',
   OFFICE_PATH: '/office/:id', // Ruta para los detalles de una oficina
   OFFICES_PATH: '/offices/1', // Ruta predeterminada para los nav
   OFFICES_ROUTE_PATH: '/offices', //Ruta para controlar el paginador

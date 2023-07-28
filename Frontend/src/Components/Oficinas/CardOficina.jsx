@@ -1,11 +1,14 @@
 import { useNavigate } from 'react-router-dom';
+import paths  from '../../config/routePaths';
 
 function CardOficina({ imagenReferencia, titulo, direccion, precioDia, id }) {
   const navigate = useNavigate();
   
   const handleClick = () => {
-    navigate(`/office/${id}`);
+    navigate(`${paths.OFFICE_ROUTE_PATH}/${id}`);
   };
+
+
 
   return (
     <>

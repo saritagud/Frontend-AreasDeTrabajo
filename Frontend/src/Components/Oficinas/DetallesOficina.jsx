@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getOfficeDetails } from '../../api/officeApi';
 import CenteredSpinner from '../CenteredSpinner';
+import MapOffice from './MapOffice';
 
 function DetallesOficina() {
   const [details, setDetails] = useState(null);
@@ -41,7 +42,7 @@ function DetallesOficina() {
   return (
     <>
       <NavBar />
-      <section className="flex flex-col justify-center items-start min-h-screen  bg-azulClaro m-10 rounded-3xl text-xl font-OpenSans p-5 gap-5 text-azulOscuro">
+      <section className="flex flex-col justify-center items-start min-h-screen bg-azulClaro m-10 rounded-3xl text-xl font-OpenSans p-5 gap-5 text-azulOscuro">
         <h1 className="w-full text-2xl text-center font-bold mt-10">{details.titulo}</h1>
         <img src={details.imagenReferencia} className="rounded-3xl" />
 
@@ -62,7 +63,7 @@ function DetallesOficina() {
 
           <p className="font-bold">Ubicación</p>
           {mapsLoaded ? (
-            <Map lat={LATITUD} lng={LONGITUD} />
+            <MapOffice lat={LATITUD} lng={LONGITUD} />
           ) : (
             <div>Loading map...</div>
           )}
@@ -71,24 +72,6 @@ function DetallesOficina() {
       <Footer />
     </>
   );
-}
-
-// Funcionalidad del Mapa
-
-function Map({ lat, lng }) {
-  useEffect(() => {
-    const map = new window.google.maps.Map(document.getElementById('map'), {
-      center: { lat, lng },
-      zoom: 15,
-    });
-
-    new window.google.maps.Marker({
-      position: { lat, lng },
-      map,
-    });
-  }, [lat, lng]);
-
-  return <div id="map" style={{ width: '100%', height: '400px' }} />;
 }
 
 export default DetallesOficina;
