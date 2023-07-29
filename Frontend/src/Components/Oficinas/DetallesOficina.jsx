@@ -1,17 +1,17 @@
 import NavBar from "../Navbar";
 import Footer from "../Footer";
 import ModalReservacion from "./ModalReservacion";
-import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { getOfficeDetails } from '../../api/officeApi';
-import CenteredSpinner from '../CenteredSpinner';
-import MapOffice from './MapOffice';
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { getOfficeDetails } from "../../api/officeApi";
+import CenteredSpinner from "../CenteredSpinner";
+import MapOffice from "./MapOffice";
 
 function DetallesOficina() {
   const [details, setDetails] = useState(null);
   const [error, setError] = useState(null);
   const [mapsLoaded, setMapsLoaded] = useState(false);
-  
+
   const { id } = useParams();
 
   useEffect(() => {
@@ -21,7 +21,7 @@ function DetallesOficina() {
   }, [id]);
 
   useEffect(() => {
-    const script = document.createElement('script');
+    const script = document.createElement("script");
     script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik`;
     script.async = true;
     script.onload = () => setMapsLoaded(true);
@@ -39,32 +39,44 @@ function DetallesOficina() {
   return (
     <>
       <NavBar />
-      <section className="flex flex-col justify-center items-start min-h-screen bg-azulClaro m-10 rounded-3xl text-xl font-OpenSans p-5 gap-5 text-azulOscuro">
-        <h1 className="w-full text-2xl text-center font-bold mt-10">{details.titulo}</h1>
-        <img src={details.imagenReferencia} className="rounded-3xl" />
+      <section className="flex flex-col justify-center items-center min-h-screen bg-azulClaro m-10 rounded-3xl text-xl font-OpenSans p-5 gap-5 text-azulOscuro sm:p-10 ">
+        <div className="flex flex-col justify-center items-center w-full lg:flex-row lg:items-start lg:justify-start lg:gap-10">
+          <div className="w-full  flex flex-col justify-center items-center gap-10 ">
+            <h1 className="w-full text-2xl text-center font-bold mt-10 lg:mt-0">
+              {details.titulo}
+            </h1>
+            <img
+              src={details.imagenReferencia}
+              className="rounded-3xl min-h-[50vh] object-cover sm:w-[80%] sm:h-[70vh]"
+            />
+          </div>
 
-        <div className="space-y-4 ">
-          <p className="font-bold">Precio de alquiler</p>
-          <p>{details.precioDia}</p>
+          <div className="space-y-4 ">
+            <p className="font-bold">Precio de alquiler</p>
+            <p>{details.precioDia}</p>
 
-          <p className="font-bold">Descripción</p>
-          <p>{details.descripcion}</p>
+            <p className="font-bold">Descripción</p>
+            <p>{details.descripcion}</p>
 
-          <p className="font-bold">Dirección</p>
-          <p>{details.direccion}</p>
+            <p className="font-bold">Dirección</p>
+            <p>{details.direccion}</p>
 
-          <p className="font-bold">Capacidad</p>
-          <p>{details.capacidad}</p>
+            <p className="font-bold">Capacidad</p>
+            <p>{details.capacidad}</p>
 
-          <ModalReservacion />
+            <ModalReservacion />
+          </div>
 
-          <p className="font-bold">Ubicación</p>
+        </div>
+          <p className="font-bold lg:w-full lg:text-left lg:mt-10">Ubicación</p>
           {mapsLoaded ? (
-            <MapOffice lat={details.ubicacion.latitud} lng={details.ubicacion.longitud} />
+            <MapOffice
+              lat={details.ubicacion.latitud}
+              lng={details.ubicacion.longitud}
+            />
           ) : (
             <div>Cargando map...</div>
           )}
-        </div>
       </section>
       <Footer />
     </>

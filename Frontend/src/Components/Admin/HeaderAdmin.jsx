@@ -23,12 +23,12 @@ export default function HeaderAdmin() {
       </div>
 
 
-      <div className="flex items-center">
+      <div className="flex items-end justify-end w-full">
         <NavLink to={"/"}>
           <img
-            src=""
+            src="\src\assets\logo.png"
             alt="logo"
-          // className="w-[40%] sm:w-[30%] md:w-[20%] xl:w-[15%]"
+          className="h-20"
           />
         </NavLink>
       </div>

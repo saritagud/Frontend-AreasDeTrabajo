@@ -108,7 +108,7 @@ export default function Login() {
       <section className="min-h-screen bg-fondoLogin bg-bottom bg-no-repeat bg-contain flex flex-col justify-center items-center sm:m-10 lg:bg-none lg:flex-row">
         <div className="bg-azulClaro bg-opacity-80 w-[80%] flex flex-col justify-center items-center h-[90vh] rounded-2xl gap-5 sm:w-[70%] md:w-[50%]  xl:w-[35%] lg:min-h-screen lg:m-10 lg:gap-10">
           <h1 className="text-4xl font-Montserrat font-bold ">Login</h1>
-          <form className="flex flex-col justify-center items-center font-OpenSans gap-3 sm:gap-8 lg:pr-8 lg:pl-8">
+          <form className="flex flex-col justify-center items-center font-OpenSans gap-3 sm:gap-8 lg:pr-8 lg:pl-8 p-5">
             <div className="w-full">
               <label className="w-full text-xl md:text-2xl 2xl:text-3xl ">
                 Correo
@@ -162,7 +162,7 @@ export default function Login() {
           </form>
 
         </div>
-        <div className="sm:hidden lg:block">
+        <div className="hidden lg:block">
           <img src="/src/assets/fondoLogin.jpg"/>
         </div>
       </section>

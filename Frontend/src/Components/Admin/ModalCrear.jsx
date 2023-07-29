@@ -14,7 +14,7 @@ function ModalCrear() {
 
       {isOpen && (
         <form className="fixed flex justify-center items-start inset-0 backdrop-blur-sm bg-black bg-opacity-30  min-h-screen overflow-scroll">
-          <section className="bg-azulOscuro rounded-xl p-5 w-[90%] sm:w-[70%] lg:w-[50%] xl:w-[40%] text-white flex flex-col items-center gap-4 m-8 overflow-auto font-OpenSans dark:bg-verde2">
+          <section className="bg-azulOscuro rounded-xl p-5 w-[90%] sm:w-[70%] lg:w-[50%] xl:w-[40%] text-white flex flex-col items-center gap-4 m-8 overflow-auto font-OpenSans">
             <div className="flex justify-end mb-3 w-full ">
               <FaWindowClose
                 className="text-2xl cursor-pointer md:text-3xl"
