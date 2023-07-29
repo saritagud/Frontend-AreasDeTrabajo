@@ -28,7 +28,7 @@ export default function Navbar() {
               <img
                 src="\src\assets\logo.png"
                 alt="logo"
-                className="w-[20%] "
+                className="w-[20%]"
               />
             </NavLink>
             <div className="hidden lg:block w-full">
