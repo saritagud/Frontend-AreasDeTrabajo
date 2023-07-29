@@ -1,6 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}",
+  ],
   theme: {
     extend: {
       colors: {
@@ -9,8 +13,22 @@ export default {
         gris: "#D9D9D9",
       },
       fontFamily: {
-        Molengo: ["Molengo", "sans-serif"],
+        Montserrat: ["Montserrat", "sans-serif"],
         OpenSans: ["Open Sans", "sans-serif"],
+      },
+      backgroundImage: {
+        oficina1: "url('/src/assets/oficina1.jpg')",
+        oficina2: "url('/src/assets/oficina2.jpg')",
+        oficina3: "url('/src/assets/oficina3.jpg')",
+        oficina4: "url('/src/assets/oficina4.jpg')",
+        oficina5: "url('/src/assets/oficina5.jpg')",
+        oficionaHorizontal1:  "url('/src/assets/oficinaHorizontal.jpg')",
+        oficionaHorizontal2:  "url('/src/assets/oficionaHorizontal2.jpg')",
+        oficionaHorizontal3:  "url('/src/assets/oficionaHorizontal3.jpg')",
+        oficionaHorizontal4:  "url('/src/assets/oficionaHorizontal4.jpg')",
+        oficionaHorizontal5:  "url('/src/assets/oficionaHorizontal5.jpg')",
+        fondoLogin: "url('/src/assets/fondoLogin.jpg')",
+        mapa: "url('/src/assets/mapa3.jpg')"
       },
       screens: {
         p: "250px",
@@ -36,5 +54,5 @@ export default {
     },
   },
 
-  plugins: [],
+  plugins: [require("flowbite/plugin")],
 };
