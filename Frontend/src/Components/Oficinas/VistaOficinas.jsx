@@ -37,8 +37,6 @@ export default function VistaOficinas() {
         // Calcular totalPages y establecer currentPage después de obtener los datos
         const totalOffices = responseData.espacioTrabajo.length;
         const calculatedTotalPages = Math.ceil(totalOffices / 6);
-        dispatch(getAllOfficesSuccess(responseData.espacioTrabajo));
-
         const pagInt = parseInt(pag, 10); // Convertir pag a un número entero
 
         if (pag > 0 && pag <= calculatedTotalPages)

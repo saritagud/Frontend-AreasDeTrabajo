@@ -10,7 +10,7 @@ export default function HeaderAdmin() {
   };
 
   return (
-    <header className="shadow-lg flex items-center justify-between p-5 bg-azulOscuro">
+    <header className="shadow-lg flex items-center justify-between p-2 bg-azulOscuro">
 
       {/* Botón del menú hamburguesa (solo visible en pantallas pequeñas) */}
       <div className="lg:flex flex-1">
@@ -22,13 +22,15 @@ export default function HeaderAdmin() {
         </button>
       </div>
 
+      <div className="font-Montserrat font-bold text-2xl text-center text-white flex items-center justify-center w-full mx-3">Panel de Administración</div>
 
-      <div className="flex items-end justify-end w-full">
+      <div className="flex items-end justify-end w-full mx-3">
+
         <NavLink to={"/"}>
           <img
             src="\src\assets\logo.png"
             alt="logo"
-          className="h-20"
+            className="h-20"
           />
         </NavLink>
       </div>
