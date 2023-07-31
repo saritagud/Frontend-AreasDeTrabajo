@@ -63,6 +63,11 @@ function DetallesOficina() {
           <MapOffice
             lat={details.ubicacion.latitud}
             lng={details.ubicacion.longitud}
+            titulo={details.titulo}
+            descripcion={details.descripcion}
+            imagenReferencia={details.imagenReferencia}
+            direccion={details.direccion}
+            precioDia={details.precioDia}
           />
       </section>
       <Footer />
