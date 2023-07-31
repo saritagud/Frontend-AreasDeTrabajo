@@ -10,7 +10,6 @@ import MapOffice from "./MapOffice";
 function DetallesOficina() {
   const [details, setDetails] = useState(null);
   const [error, setError] = useState(null);
-  const [mapsLoaded, setMapsLoaded] = useState(false);
 
   const { id } = useParams();
 
@@ -19,14 +18,6 @@ function DetallesOficina() {
       .then((data) => setDetails(data.espacioTrabajo))
       .catch((error) => setError(error));
   }, [id]);
-
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik`;
-    script.async = true;
-    script.onload = () => setMapsLoaded(true);
-    document.body.appendChild(script);
-  }, []);
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -69,14 +60,15 @@ function DetallesOficina() {
 
         </div>
           <p className="font-bold lg:w-full lg:text-left lg:mt-10">Ubicación</p>
-          {mapsLoaded ? (
-            <MapOffice
-              lat={details.ubicacion.latitud}
-              lng={details.ubicacion.longitud}
-            />
-          ) : (
-            <div>Cargando map...</div>
-          )}
+          <MapOffice
+            lat={details.ubicacion.latitud}
+            lng={details.ubicacion.longitud}
+            titulo={details.titulo}
+            descripcion={details.descripcion}
+            imagenReferencia={details.imagenReferencia}
+            direccion={details.direccion}
+            precioDia={details.precioDia}
+          />
       </section>
       <Footer />
     </>
