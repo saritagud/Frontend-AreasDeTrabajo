@@ -27,10 +27,33 @@ const officeSlice = createSlice({
     setCurrentPage: (state, action) => {
       state.currentPage = action.payload;
     },
+    deleteOfficesRequest: (state) => {
+      state.isLoading = true;
+    },
+    deleteOfficesSuccess: (state, action) => {
+      state.isLoading = false;
+      state.error = null;
+      state.allOffices = state.allOffices.filter((office) => office._id !== action.payload);
+      state.totalPages = Math.ceil(state.allOffices.length / 6);
+    },
+    deleteOfficeFailure: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+    addOfficesRequest: (state) => {
+      state.isLoading = true;
+    },
+    addOfficesSuccess: (state) => {
+      state.isLoading = false;
+    },
+    addOfficesFailure: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    }
   },
 });
 
-export const { getAllOfficesRequest, getAllOfficesSuccess, getAllOfficesFailure, setCurrentPage } =
+export const { addOfficesFailure, addOfficesSuccess, addOfficesRequest, deleteOfficeFailure, deleteOfficesSuccess, deleteOfficesRequest, getAllOfficesRequest, getAllOfficesSuccess, getAllOfficesFailure, setCurrentPage } =
   officeSlice.actions;
 export const selectAllOffices = (state) => state.office.allOffices;
 export const selectOffices = (state) =>

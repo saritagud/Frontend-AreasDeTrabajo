@@ -4,14 +4,17 @@ import AdminSideBar from '../Sidebar/AdminSidebar'
 import Footer from '../../Footer';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllOfficesFailure, getAllOfficesRequest, getAllOfficesSuccess, selectCurrentPage, selectIsLoadingOffices, selectOffices, selectTotalPages, setCurrentPage } from '../../../features/office/officeSlice';
-import { getAllOffices } from '../../../api/officeApi';
+import { deleteOfficeFailure, deleteOfficesRequest, deleteOfficesSuccess, getAllOfficesFailure, getAllOfficesRequest, getAllOfficesSuccess, selectCurrentPage, selectIsLoadingOffices, selectOffices, selectTotalPages, setCurrentPage } from '../../../features/office/officeSlice';
+import { deleteOffice, getAllOffices } from '../../../api/officeApi';
 import CenteredSpinner from '../../CenteredSpinner';
 import Paginador from '../../Paginador';
 import paths from '../../../config/routePaths';
 import { useEffect } from 'react';
 import ModalEliminar from '../ModalEliminar';
-import ModalEditar from '../ModalEditar';
+import ModalEditar from './ModalEditar';
+import ModalCrear from './ModalCrear';
+import { toast } from 'react-hot-toast';
+import CustomToast, { typeToast } from "../../toast/CustomToast";
 
 export default function OfficePanel() {
 
@@ -51,6 +54,45 @@ export default function OfficePanel() {
     dispatch(setCurrentPage(page));
   };
 
+  const handleDelete = async (id) => {
+    try {
+      dispatch(deleteOfficesRequest());
+      await deleteOffice(id);
+      dispatch(deleteOfficesSuccess(id));
+
+      toast.custom(
+        (t) => (
+          <CustomToast
+            message="¡Oficina eliminada con éxito!"
+            type={typeToast.success}
+          />
+        ),
+        {
+          duration: 3000,
+          position: "top-right",
+        }
+      );
+
+      dispatch(setCurrentPage(1));
+      navigate(paths.ADMIN_OFFICES_PATH);
+
+    } catch (error) {
+      toast.custom(
+        (t) => (
+          <CustomToast
+            message="No se logró eliminar la Oficina"
+            type={typeToast.error}
+          />
+        ),
+        {
+          duration: 3000,
+          position: "top-right",
+        }
+      );
+      dispatch(deleteOfficeFailure(error));
+    }
+  };
+
 
   return (
     <>
@@ -64,6 +106,9 @@ export default function OfficePanel() {
           <div className="flex flex-col flex-1">
             <section className="flex flex-col px-10 m-0 items-center gap-8 min-h-screen">
               <h1 className="font-Montserrat font-bold text-3xl mt-14">Oficinas</h1>
+              <div className="flex justify-end w-full">
+                <ModalCrear />
+              </div>
 
               {isLoadingOffices ? (
                 <CenteredSpinner />
@@ -80,7 +125,10 @@ export default function OfficePanel() {
                           <h1>{office.titulo}</h1>
                           <div className="flex gap-3">
                             <ModalEditar />
-                            <ModalEliminar />
+                            <ModalEliminar
+                              elementName={"Oficina"}
+                              handleDelete={() => handleDelete(office._id)}
+                            />
                           </div>
                         </div>
                       ))}
