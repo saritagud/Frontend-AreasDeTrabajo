@@ -50,7 +50,7 @@ export default function Paginador({ currentPage, totalPages, onPageChange, route
   return (
     <>
       {
-        totalPages >= 1 &&
+        totalPages > 1 &&
         <nav className='mb-9 ' aria-label="Paginator">
           <ul className="flex items-center -space-x-px h-10 text-base mb-20">
             <li>

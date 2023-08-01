@@ -15,7 +15,7 @@ export const getOffices = async () => {
 
 export const getAllOffices = async () => {
   try {
-    const response = await fetch(`${API_ENDPOINT}/espaciosTrabajo`);
+    const response = await fetch(`${API_ENDPOINT}/espaciosTrabajo/?limit=100`);
     if (!response.ok) {
       const { error } = await response.json();
       return { error };
@@ -56,4 +56,17 @@ export const addReservation = async (espacioId, usuarioId, reservationData) => {
   } catch (error) {
     throw error;
   }
-}; 
+};
+
+export const getOfficesForMap = async () => {
+  try {
+    const response = await fetch(`${API_ENDPOINT}/espaciosTrabajo/mapa`);
+    if (!response.ok) {
+      const { error } = await response.json();
+      return { error };
+    }
+    return response.json();
+  } catch (error) {
+    throw error;
+  }
+};

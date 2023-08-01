@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -11,15 +11,17 @@ import {
   selectCurrentPage,
   selectIsLoadingOffices,
 } from "../../features/office/officeSlice";
-import { getAllOffices } from "../../api/officeApi";
+import { getAllOffices, getOfficesForMap } from "../../api/officeApi";
 import CardOficina from "./CardOficina";
 import Paginador from "../Paginador";
 import NavBar from "../Navbar";
 import Footer from "../Footer";
 import CenteredSpinner from "../CenteredSpinner";
 import paths from "../../config/routePaths";
+import MapOfficeGlobal from "../Oficinas/MapOfficeGlobal";
 
 export default function VistaOficinas() {
+  const [mapOffices, setMapOffices] = useState([]);
   const { pag } = useParams();
   const dispatch = useDispatch();
   const offices = useSelector(selectOffices);
@@ -37,8 +39,6 @@ export default function VistaOficinas() {
         // Calcular totalPages y establecer currentPage después de obtener los datos
         const totalOffices = responseData.espacioTrabajo.length;
         const calculatedTotalPages = Math.ceil(totalOffices / 6);
-        dispatch(getAllOfficesSuccess(responseData.espacioTrabajo));
-
         const pagInt = parseInt(pag, 10); // Convertir pag a un número entero
 
         if (pag > 0 && pag <= calculatedTotalPages)
@@ -53,9 +53,17 @@ export default function VistaOficinas() {
     getOffices();
   }, []);
 
+  useEffect(() => {
+    getOfficesForMap().then(data => {
+      setMapOffices(data.espaciosTrabajo);
+      console.log(mapOffices); // Agregar este mensaje de depuración
+    });
+  }, []);
+
   const handlePageChange = (page) => {
     dispatch(setCurrentPage(page));
   };
+  
   return (
     <>
       <NavBar />
@@ -63,7 +71,8 @@ export default function VistaOficinas() {
         <h1 className="font-Montserrat font-bold text-3xl ">
           Todas las oficinas
         </h1>
-        {/* mapa */}
+        {!isLoadingOffices && <MapOfficeGlobal offices={mapOffices} />}
+
         {isLoadingOffices ? (
           <>
             <CenteredSpinner />

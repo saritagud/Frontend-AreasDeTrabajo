@@ -14,7 +14,7 @@ export default function SideBar({ handleToggleSidebar }) {
   };
 
   return (
-    <aside className="shadow-lg top-0 left-0 z-40 w-64 h-screen" aria-label="Sidebar">
+    <aside className="shadow-lg top-0 left-0 z-40 w-64 h-full" aria-label="Sidebar">
       <div className="h-full px-3 py-4 overflow-y-auto bg-gray-200 dark:bg-gray-800">
         <div className="flex items-center justify-between mb-2">
           <h5 className="text-base font-semibold text-gray-500 uppercase dark:text-gray-400">Menu</h5>

@@ -2,7 +2,7 @@ import { ThreeCircles } from 'react-loader-spinner'
 
 export default function CenteredSpinner() {
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80vh' }}>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '70vh' }}>
       <ThreeCircles
         height="150"
         width="150"
