@@ -15,7 +15,7 @@ import { FaArrowRight } from "react-icons/fa";
 import NavBar from "./Navbar";
 import Footer from "./Footer";
 import CarruselPrincipal from "./CarruselPrincipal";
-
+import { useTranslation } from "react-i18next";
 function Landing() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -30,6 +30,9 @@ function Landing() {
       .catch((error) => dispatch(getAllOfficesFailure(error)));
   }, []);
 
+  const { t, i18n } = useTranslation();
+
+
   return (
     <>
       <NavBar />
@@ -37,7 +40,7 @@ function Landing() {
         <CarruselPrincipal />
       </section>
       <h1 className="font-Montserrat font-bold text-3xl text-center m-10 2xl:text-4xl">
-        Prueba Nuestro Mapa Interactivo
+      {t('title2')}
       </h1>
       <section className="bg-mapa h-screen bg-no-repeat bg-cover bg-fixed flex flex-col justify-around items-center p-5">
         <div className="flex items-center gap-4 w-full">
