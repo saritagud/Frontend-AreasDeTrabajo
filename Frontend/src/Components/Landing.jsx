@@ -40,7 +40,7 @@ function Landing() {
         <CarruselPrincipal />
       </section>
       <h1 className="font-Montserrat font-bold text-3xl text-center m-10 2xl:text-4xl">
-      {t('title2')}
+      {t('title1')}
       </h1>
       <section className="bg-mapa h-screen bg-no-repeat bg-cover bg-fixed flex flex-col justify-around items-center p-5">
         <div className="flex items-center gap-4 w-full">
@@ -49,13 +49,13 @@ function Landing() {
             className="rounded-full w-14"
           />
           <h1 className="bg-azulOscuro p-3 rounded-xl text-white font-Montserrat text-xl text-right  xl:p-5">
-            Tu espacio de éxito, la oficina perfecta.
+          {t('subtitle1')}
           </h1>
         </div>
 
         <div className="flex justify-end items-center gap-4 w-full">
           <h1 className="bg-azulOscuro p-3 rounded-xl text-white font-Montserrat text-xl text-right sm:w-[70%] xl:w-[50%] xl:p-5 2xl:w-[40%]">
-            Transforma tu visión en realidad, en nuestra oficina ideal.
+          {t('subtitle2')}
           </h1>
           <img
             src="\src\assets\iconoOficina.jpg"
