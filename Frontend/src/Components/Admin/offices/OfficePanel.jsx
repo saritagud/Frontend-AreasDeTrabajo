@@ -17,7 +17,6 @@ import { toast } from 'react-hot-toast';
 import CustomToast, { typeToast } from "../../toast/CustomToast";
 
 export default function OfficePanel() {
-
   const { pag } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -93,7 +92,6 @@ export default function OfficePanel() {
     }
   };
 
-export default function OfficePanel() {
   return (
     <>
       <div className="flex flex-col min-h-screen">
@@ -143,8 +141,7 @@ export default function OfficePanel() {
 
                 </>
               )}
-              
-              {/* Colocar las cards aquí */}
+
             </section>
           </div>
 
