@@ -93,7 +93,7 @@ export default function OfficePanel() {
     }
   };
 
-
+export default function OfficePanel() {
   return (
     <>
       <div className="flex flex-col min-h-screen">
@@ -143,6 +143,8 @@ export default function OfficePanel() {
 
                 </>
               )}
+              
+              {/* Colocar las cards aquí */}
             </section>
           </div>
 
