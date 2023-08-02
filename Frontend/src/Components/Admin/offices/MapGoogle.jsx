@@ -1,17 +1,18 @@
 import React, { memo, useMemo } from "react";
 import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api";
 
-export default function MapGoogle({ state, setState }) {
+export default function MapGoogle({ state, setState, ubicacion }) {
+    
     const { isLoaded } = useLoadScript({
         googleMapsApiKey: "AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik",
     });
 
     if (!isLoaded) return <p>Cargando...</p>
-    return <Map state={state} setState={setState}/>
+    return <Map state={state} setState={setState}  ubicacion={ubicacion}/>
 }
 
-function Map({ state, setState}) {
-    const center = useMemo(() => ({lat: 40, lng: -80}), [])
+function Map({ state, setState, ubicacion}) {
+    const center = useMemo(() => (ubicacion ? {lat: parseInt(state['ubicacion[latitud]']), lng: parseInt(state['ubicacion[longitud]'])} : {lat: 40, lng: -80}), [])
 
     return <GoogleMap
         zoom={10}

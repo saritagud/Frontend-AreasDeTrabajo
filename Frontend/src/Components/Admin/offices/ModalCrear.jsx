@@ -64,8 +64,8 @@ function ModalCrear() {
       const data = e.currentTarget;
       const formData = new FormData(data);
 
-      formData.set("longitud", state["ubicacion[longitud]"]);
-      formData.set("latitud", state["ubicacion[latitud]"]);
+      formData.append('ubicacion[latitud]', state['ubicacion[latitud]']);
+      formData.append('ubicacion[longitud]', state['ubicacion[longitud]']);
 
       dispatch(addOfficesRequest());
       const newOffice = await addOffice(formData);
@@ -221,7 +221,7 @@ function ModalCrear() {
                   value={state["ubicacion[longitud]"]}
                 />
 
-                <MapGoogle state={state} setState={setState} />
+                <MapGoogle state={state} setState={setState} ubicacion={false} />
 
                 <button className="bg-azulClaro p-3 text-xl rounded-xl m-8 md:text-2xl md:w-[40%] 2xl:text-3xl 2xl:p-5 dark:bg-white dark:text-black">
                   Agregar

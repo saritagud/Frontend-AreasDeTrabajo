@@ -30,6 +30,7 @@ export default function OfficePanel() {
   useEffect(() => {
     const getOffices = async () => {
       try {
+        dispatch(getAllOfficesRequest());
         const responseData = await getAllOffices();
         dispatch(getAllOfficesSuccess(responseData.espacioTrabajo));
 
@@ -46,7 +47,6 @@ export default function OfficePanel() {
       }
     };
 
-    dispatch(getAllOfficesRequest());
     getOffices();
   }, []);
 
@@ -121,10 +121,10 @@ export default function OfficePanel() {
                   ) : (
                     <div className="w-full flex flex-col justify-center items-center gap-5 lg:flex-row lg:flex-wrap">
                       {offices.map((office) => (
-                        <div className="bg-azulClaro  w-full p-4 rounded-xl text-azulOscuro font-OpenSans text-xl flex justify-between items-center md:h-20">
+                        <div key={office._id} className="bg-azulClaro  w-full p-4 rounded-xl text-azulOscuro font-OpenSans text-xl flex justify-between items-center md:h-20">
                           <h1>{office.titulo}</h1>
                           <div className="flex gap-3">
-                            <ModalEditar />
+                            <ModalEditar id={office._id} />
                             <ModalEliminar
                               elementName={"Oficina"}
                               handleDelete={() => handleDelete(office._id)}

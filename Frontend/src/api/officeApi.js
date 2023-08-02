@@ -106,3 +106,18 @@ export const deleteOffice = async (id) => {
     throw error;
   }
 }
+
+export const editOffice = async (office, id) => {
+  try {
+    const response = await fetch(`${API_ENDPOINT}/espaciosTrabajo/editar/${id}`, {
+      method: 'PUT',
+      body: office
+    });
+    if (!response.ok) {
+      return response.json()
+    }
+    return response.json();
+  } catch (error) {
+    throw error;
+  }
+}
