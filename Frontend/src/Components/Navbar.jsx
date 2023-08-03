@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Transition } from "@headlessui/react";
 import { NavLink } from "react-router-dom";
 import paths from "../config/routePaths";
@@ -6,7 +6,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectUser } from "../features/auth/authSlice";
 import { useLocation } from "react-router-dom";
 import { logout } from "../features/auth/authSlice";
-
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 export default function Navbar() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
@@ -19,17 +20,31 @@ export default function Navbar() {
     dispatch(logout());
   };
 
+  const { i18n, t } = useTranslation(["Welcome to React"]);
+
+
+  const handleChangeLanguage = (language) => {
+    i18n.changeLanguage(language);
+  };
+
   return (
     <nav className="shadow-lg">
       <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-end w-full h-20 lg:h-24">
           <div className="flex items-center justify-between w-full">
+            <div className="" id="navbarNav">
+              <div>
+                <button onClick={() => handleChangeLanguage("en")}>
+                  English
+                </button>
+                <button onClick={() => handleChangeLanguage("es")}>
+                  Español
+                </button>
+                {/* Agrega más botones para otros idiomas */}
+              </div>
+            </div>
             <NavLink to={"/"}>
-              <img
-                src="\src\assets\logo.png"
-                alt="logo"
-                className="w-[20%]"
-              />
+              <img src="\src\assets\logo.png" alt="logo" className="w-[20%]" />
             </NavLink>
             <div className="hidden lg:block w-full">
               <div className=" flex justify-end items-end w-full ">

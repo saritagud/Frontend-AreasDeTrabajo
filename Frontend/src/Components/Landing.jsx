@@ -15,7 +15,7 @@ import { FaArrowRight } from "react-icons/fa";
 import NavBar from "./Navbar";
 import Footer from "./Footer";
 import CarruselPrincipal from "./CarruselPrincipal";
-
+import { useTranslation } from "react-i18next";
 function Landing() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -30,6 +30,9 @@ function Landing() {
       .catch((error) => dispatch(getAllOfficesFailure(error)));
   }, []);
 
+  const { t, i18n } = useTranslation();
+
+
   return (
     <>
       <NavBar />
@@ -37,7 +40,7 @@ function Landing() {
         <CarruselPrincipal />
       </section>
       <h1 className="font-Montserrat font-bold text-3xl text-center m-10 2xl:text-4xl">
-        Prueba Nuestro Mapa Interactivo
+      {t('title1')}
       </h1>
       <section className="bg-mapa h-screen bg-no-repeat bg-cover bg-fixed flex flex-col justify-around items-center p-5">
         <div className="flex items-center gap-4 w-full">
@@ -46,13 +49,13 @@ function Landing() {
             className="rounded-full w-14"
           />
           <h1 className="bg-azulOscuro p-3 rounded-xl text-white font-Montserrat text-xl text-right  xl:p-5">
-            Tu espacio de éxito, la oficina perfecta.
+          {t('subtitle1')}
           </h1>
         </div>
 
         <div className="flex justify-end items-center gap-4 w-full">
           <h1 className="bg-azulOscuro p-3 rounded-xl text-white font-Montserrat text-xl text-right sm:w-[70%] xl:w-[50%] xl:p-5 2xl:w-[40%]">
-            Transforma tu visión en realidad, en nuestra oficina ideal.
+          {t('subtitle2')}
           </h1>
           <img
             src="\src\assets\iconoOficina.jpg"
@@ -64,13 +67,10 @@ function Landing() {
       <section className="flex flex-col justify-start items-center w-full  bg-gris p-8 gap-10 mt-20 lg:flex-row lg:justify-center">
         <div className="w-full space-y-10 md:w-[50%]">
           <h1 className="font-Montserrat font-bold text-3xl text-center sm:mt-10 2xl:text-4xl">
-            ¿Necesitas una oficina?
+          {t('title2')}
           </h1>
           <p className="font-OpenSans text-center text-lg sm:text-xl tracking-wide leading-loose h-full 2xl:text-2xl">
-            Nuestra empresa ofrece oficinas de alquiler flexibles diseñadas para
-            satisfacer todas tus necesidades empresariales. ¡No pierdas más
-            tiempo buscando, ven a experimentar el futuro del trabajo con
-            nosotros hoy mismo!
+          {t('p1')}
           </p>
         </div>
 
@@ -79,7 +79,7 @@ function Landing() {
 
       <section className="flex flex-col justify-center items-center mt-20 md:gap-10">
         <h1 className="font-Montserrat text-2xl font-bold sm:text-3xl 2xl:text-4xl">
-          Encuentra mas oficinas
+        {t('title3')}
         </h1>
         <div className="w-full flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:gap-5">
           {allOffices.slice(0, 6).map((office) => (
@@ -98,7 +98,7 @@ function Landing() {
           className="bg-azulOscuro p-5 text-white font-Montserrat text-xl rounded-xl mb-10 flex justify-center items-center gap-3"
           onClick={() => navigate(paths.OFFICES_PATH)}
         >
-          Ver mas
+          {t('buttonAllOffices')}
           <FaArrowRight />
         </button>
       </section>
