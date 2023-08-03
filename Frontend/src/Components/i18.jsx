@@ -21,6 +21,12 @@ const resources = {
       "buttonAllOffices": "Ver mas",
       "title4": "¿Por que buscar con nosotros?",
       "p2": "Nuestra empresa ofrece una experiencia única, pensando en tu comodidad y productividad. Disfrutarás de la máxima flexibilidad en términos de duración de alquiler, sin preocupaciones por compromisos a largo plazo. Nuestras oficinas están completamente equipadas con una moderna infraestructura y todas las comodidades que necesitas para impulsar tu rendimiento.",
+      "login": "Inicio de sesión",
+      "email": "Correo",
+      "password": "Contraseña",
+      "buttonLogin": "Ingresar",
+      "linkRegister1": "¿No tienes una cuenta?",
+      "linkRegister2": "¡Registrate!",
 
     }
   },
@@ -43,6 +49,12 @@ const resources = {
       "buttonAllOffices": "See more",
       "title4": "Why search with us?",
       "p2": "Our company offers a unique experience, thinking about your comfort and productivity. You'll enjoy maximum flexibility in terms of rental length, without worrying about long-term commitments. Our offices are fully equipped with a modern infrastructure and all the comforts you need to boost your performance.",
+      "login": "Login",
+      "email": "Email",
+      "password": "Password",
+      "buttonLogin": "Get into",
+      "linkRegister1": "You do not have an account?",
+      "linkRegister2": "Sign up!",
     }
   }
 };
