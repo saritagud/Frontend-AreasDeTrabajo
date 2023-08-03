@@ -27,6 +27,14 @@ const resources = {
       "buttonLogin": "Ingresar",
       "linkRegister1": "¿No tienes una cuenta?",
       "linkRegister2": "¡Registrate!",
+      "register": "Registro",
+      "name": "Nombre",
+      "email1": "Correo",
+      "password1": "Contraseña",
+      "repeatPassword": "Repetir Contraseña",
+      "buttonRegister": "Registrarse",
+      "linkLogin1": "¿Ya tienes una cuenta?",
+      "linkLogin2": "¡Inicia Sesión!",
 
     }
   },
@@ -55,6 +63,14 @@ const resources = {
       "buttonLogin": "Get into",
       "linkRegister1": "You do not have an account?",
       "linkRegister2": "Sign up!",
+      "register": "Registro",
+      "name": "Name",
+      "email1": "Email",
+      "password1": "Password",
+      "repeatPassword": "Repeat Password",
+      "buttonRegister": "Check in",
+      "linkLogin1": "Do you already have an account?",
+      "linkLogin2": "Log in!",
     }
   }
 };
