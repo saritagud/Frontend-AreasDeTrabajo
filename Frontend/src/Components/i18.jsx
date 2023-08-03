@@ -41,7 +41,21 @@ const resources = {
       "contact": "Contacto",
       "offices":"Oficinas",
       "admin":"Administrador",
-      "logout": "Cerrar Sesión"
+      "logout": "Cerrar Sesión",
+      "image": "Imagen",
+      "titleModal": "Titulo de la oficina",
+      "description": "Descripcion",
+      "price": "Precio",
+      "capacity": "Capacidad",
+      "direction": "Dirección",
+      "ubication": "Ubicación",
+      "buttonUpdate": "Editar",
+      "buttonAdd": "Agregar Oficina",
+      "officesNotFond": "No se encontraron Oficinas disponibles en este momento.",
+      "confirmDelete": "¿Está seguro/a de eliminar esta",
+      "buttonDelete1": "Volver atrás",
+      "buttonDelete2": "Eliminar",
+
     }
   },
   en: {
@@ -83,7 +97,20 @@ const resources = {
       "contact": "Contact",
       "offices":"Offices",
       "admin":"Administrator",
-      "logout": "Sign off"
+      "logout": "Sign off",
+      "image": "Image",
+      "titleModal": "Office title",
+      "description": "Description",
+      "price": "Price",
+      "capacity": "Capacity",
+      "direction": "Direction",
+      "ubication": "Ubication",
+      "buttonUpdate": "Edit",
+      "buttonAdd": "Add Office",
+      "officesNotFond": "No Offices available at this time.",
+      "confirmDelete": "Are you sure to delete this",
+      "buttonDelete1": "Go back",
+      "buttonDelete2": "Delete",
     }
   }
 };
