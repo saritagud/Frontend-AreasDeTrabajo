@@ -19,6 +19,7 @@ import Footer from "../Footer";
 import CenteredSpinner from "../CenteredSpinner";
 import paths from "../../config/routePaths";
 import MapOfficeGlobal from "../Oficinas/MapOfficeGlobal";
+import { useTranslation } from "react-i18next";
 
 export default function VistaOficinas() {
   const [mapOffices, setMapOffices] = useState([]);
@@ -54,7 +55,7 @@ export default function VistaOficinas() {
   }, []);
 
   useEffect(() => {
-    getOfficesForMap().then(data => {
+    getOfficesForMap().then((data) => {
       setMapOffices(data.espaciosTrabajo);
       console.log(mapOffices); // Agregar este mensaje de depuración
     });
@@ -63,13 +64,14 @@ export default function VistaOficinas() {
   const handlePageChange = (page) => {
     dispatch(setCurrentPage(page));
   };
-  
+  const { t } = useTranslation();
+
   return (
     <>
       <NavBar />
       <section className="mt-12 flex flex-col justify-center items-center lg:space-y-10">
         <h1 className="font-Montserrat font-bold text-3xl ">
-          Todas las oficinas
+        {t("allOffices")}
         </h1>
         {!isLoadingOffices && <MapOfficeGlobal offices={mapOffices} />}
 
@@ -81,7 +83,7 @@ export default function VistaOficinas() {
           <>
             {offices.length === 0 ? (
               <div className="text-center text-3xl text-gray-600 my-28 italic">
-                No se encontraron oficinas disponibles en este momento.
+                {t("officesNotFound")}
               </div>
             ) : (
               <div className="w-full flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:gap-5">

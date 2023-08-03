@@ -5,6 +5,7 @@ import paths from '../../../config/routePaths';
 import CloseButton from './CloseButton';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../../features/auth/authSlice';
+import { useTranslation } from "react-i18next";
 
 export default function SideBar({ handleToggleSidebar }) {
   const dispatch = useDispatch();
@@ -12,18 +13,19 @@ export default function SideBar({ handleToggleSidebar }) {
   const handleLogout = () => {
     dispatch(logout());
   };
+  const { t } = useTranslation();
 
   return (
     <aside className="shadow-lg top-0 left-0 z-40 w-64 h-full" aria-label="Sidebar">
       <div className="h-full px-3 py-4 overflow-y-auto bg-gray-200 dark:bg-gray-800">
         <div className="flex items-center justify-between mb-2">
-          <h5 className="text-base font-semibold text-gray-500 uppercase dark:text-gray-400">Menu</h5>
+          <h5 className="text-base font-semibold text-gray-500 uppercase dark:text-gray-400">{t("menu")}</h5>
           {handleToggleSidebar && <CloseButton handleClose={handleToggleSidebar} />}
         </div>
 
         <ul className="space-y-2 font-medium">
           <li className="mb-2">
-            <span className="text-xs text-gray-500 uppercase dark:text-gray-400">Sección Administrativa</span>
+            <span className="text-xs text-gray-500 uppercase dark:text-gray-400">{t("sectionAdmin")}</span>
           </li>
           <li>
             <NavLink
@@ -33,7 +35,7 @@ export default function SideBar({ handleToggleSidebar }) {
               activeClassName="bg-blue-500 dark:bg-blue-600"
             >
               <FiHome className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
-              <span className="flex-1 ml-3 whitespace-nowrap">Oficinas</span>
+              <span className="flex-1 ml-3 whitespace-nowrap">{t("offices")}</span>
             </NavLink>
           </li>
           <li>
@@ -44,7 +46,7 @@ export default function SideBar({ handleToggleSidebar }) {
               activeClassName="bg-blue-500 dark:bg-blue-600"
             >
               <FiCalendar className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
-              <span className="flex-1 ml-3 whitespace-nowrap">Reservaciones</span>
+              <span className="flex-1 ml-3 whitespace-nowrap">{t("reservation")}</span>
             </NavLink>
           </li>
           <li>
@@ -55,7 +57,7 @@ export default function SideBar({ handleToggleSidebar }) {
               activeClassName="bg-blue-500 dark:bg-blue-600"
             >
               <FiBarChart2 className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
-              <span className="flex-1 ml-3 whitespace-nowrap">Estadísticas</span>
+              <span className="flex-1 ml-3 whitespace-nowrap">{t("statistics")}</span>
             </NavLink>
           </li>
 
@@ -67,13 +69,13 @@ export default function SideBar({ handleToggleSidebar }) {
               activeClassName="bg-blue-500 dark:bg-blue-600"
             >
               <FiUsers className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
-              <span className="flex-1 ml-3 whitespace-nowrap">Usuarios</span>
+              <span className="flex-1 ml-3 whitespace-nowrap">{t("users")}</span>
             </NavLink>
           </li>
 
           {/* Sección 2 */}
           <li className="mt-5 mb-2">
-            <span className="text-xs text-gray-500 uppercase dark:text-gray-400">Navegar</span>
+            <span className="text-xs text-gray-500 uppercase dark:text-gray-400">{t("browse")}</span>
           </li>
 
           <li>
@@ -84,7 +86,7 @@ export default function SideBar({ handleToggleSidebar }) {
               activeClassName="bg-blue-500 dark:bg-blue-600"
             >
               <FiHome className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
-              <span className="flex-1 ml-3 whitespace-nowrap">Inicio</span>
+              <span className="flex-1 ml-3 whitespace-nowrap">{t("start")}</span>
             </NavLink>
           </li>
 
@@ -96,7 +98,7 @@ export default function SideBar({ handleToggleSidebar }) {
               activeClassName="bg-blue-500 dark:bg-blue-600"
             >
               <FiUsers className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
-              <span className="flex-1 ml-3 whitespace-nowrap">Perfil</span>
+              <span className="flex-1 ml-3 whitespace-nowrap">{t("profile")}</span>
             </NavLink>
           </li>
 
@@ -111,7 +113,7 @@ export default function SideBar({ handleToggleSidebar }) {
               activeClassName="bg-blue-500 dark:bg-blue-600"
             >
               <FiLogOut className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
-              <span className="flex-1 ml-3 whitespace-nowrap">Cerrar Sesión</span>
+              <span className="flex-1 ml-3 whitespace-nowrap">{t("logout")}</span>
             </NavLink>
           </li>
         </ul>

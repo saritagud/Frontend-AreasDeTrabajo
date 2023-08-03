@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import BookingCard from './BookingCard';
+import BookingCard from "./BookingCard";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getBookingsRequest,
@@ -13,7 +13,7 @@ import {
   selectIsLoadingBookings,
   deleteBookingRequest,
   deleteAllBookingSuccess,
-  deleteBookingFailure
+  deleteBookingFailure,
 } from "../../../features/bookings/bookingsSlice";
 import { getAllBookings, deleteBooking } from "../../../api/bookingsApi";
 import Paginador from "../../Paginador";
@@ -24,6 +24,7 @@ import AdminSideBar from "../Sidebar/AdminSidebar";
 import Footer from "../../Footer";
 import { toast } from "react-hot-toast";
 import CustomToast, { typeToast } from "../../toast/CustomToast";
+import { useTranslation } from "react-i18next";
 
 export default function BookingsPanel() {
   const { pag } = useParams();
@@ -83,7 +84,6 @@ export default function BookingsPanel() {
 
       dispatch(setCurrentPage(1));
       navigate(paths.ADMIN_BOOKINGS_PATH);
-
     } catch (error) {
       toast.custom(
         (t) => (
@@ -100,7 +100,7 @@ export default function BookingsPanel() {
       dispatch(deleteBookingFailure(error));
     }
   };
-
+  const { t } = useTranslation();
   return (
     <>
       <div className="flex flex-col min-h-screen">
@@ -112,7 +112,9 @@ export default function BookingsPanel() {
           {/* Contenido principal */}
           <div className="flex flex-col flex-1">
             <section className="flex flex-col px-10 m-0 items-center gap-8 min-h-screen">
-              <h1 className="font-Montserrat font-bold text-3xl mt-14">Reservaciones</h1>
+              <h1 className="font-Montserrat font-bold text-3xl mt-14">
+              {t("reservation")}
+              </h1>
 
               {isLoadingBookings ? (
                 <CenteredSpinner />
@@ -120,12 +122,16 @@ export default function BookingsPanel() {
                 <>
                   {bookings.length === 0 ? (
                     <div className="text-center text-3xl text-gray-600 my-28 italic">
-                      No se encontraron reservaciones disponibles en este momento.
+                      {t("reservationNotFound")}
                     </div>
                   ) : (
                     <div className="w-full flex flex-col justify-center items-center gap-5 lg:flex-row lg:flex-wrap">
                       {bookings.map((booking) => (
-                        <BookingCard key={booking._id} booking={booking} handleDelete={handleDelete} />
+                        <BookingCard
+                          key={booking._id}
+                          booking={booking}
+                          handleDelete={handleDelete}
+                        />
                       ))}
                       <Paginador
                         currentPage={currentPage}
@@ -136,15 +142,13 @@ export default function BookingsPanel() {
                       />
                     </div>
                   )}
-
                 </>
               )}
             </section>
           </div>
-
         </div>
         <Footer />
       </div>
     </>
-  )
+  );
 }

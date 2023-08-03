@@ -128,7 +128,7 @@ export default function OfficePanel() {
                 <>
                   {offices.length === 0 ? (
                     <div className="text-center text-3xl text-gray-600 my-28 italic">
-                      {t("officesNotFond")}
+                      {t("officesNotFound")}
                     </div>
                   ) : (
                     <div className="w-full flex flex-col justify-center items-center gap-5 lg:flex-row lg:flex-wrap">

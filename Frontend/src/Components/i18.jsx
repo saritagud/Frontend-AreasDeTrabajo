@@ -51,11 +51,19 @@ const resources = {
       "ubication": "Ubicación",
       "buttonUpdate": "Editar",
       "buttonAdd": "Agregar Oficina",
-      "officesNotFond": "No se encontraron Oficinas disponibles en este momento.",
+      "officesNotFound": "No se encontraron Oficinas disponibles en este momento.",
       "confirmDelete": "¿Está seguro/a de eliminar esta",
       "buttonDelete1": "Volver atrás",
       "buttonDelete2": "Eliminar",
-
+      "priceOffice": "Precio de alquiler",
+      "allOffices": "Todas las oficinas",
+      "reservationNotFound": "No se encontraron Resrvaciones disponibles en este momento.",
+      "menu": "Menu",
+      "sectionAdmin": "Sección Administrativa",
+      "statistics": "Estadísticas",
+      "users": "Usuarios",
+      "browse": "Navegar",
+      "start": "Inicio",
     }
   },
   en: {
@@ -111,6 +119,8 @@ const resources = {
       "confirmDelete": "Are you sure to delete this",
       "buttonDelete1": "Go back",
       "buttonDelete2": "Delete",
+      "priceOffice": "Rental price",
+      "allOffices": "All offices",
     }
   }
 };
