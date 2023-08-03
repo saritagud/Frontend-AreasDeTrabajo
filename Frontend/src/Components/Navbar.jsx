@@ -27,7 +27,6 @@ export default function Navbar() {
       <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-end w-full h-20 lg:h-24">
           <div className="flex items-center justify-between w-full">
-            <div className="" id="navbarNav"></div>
             <NavLink to={"/"}>
               <img src="\src\assets\logo.png" alt="logo" className="w-[20%]" />
             </NavLink>
