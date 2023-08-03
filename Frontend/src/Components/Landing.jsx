@@ -67,13 +67,10 @@ function Landing() {
       <section className="flex flex-col justify-start items-center w-full  bg-gris p-8 gap-10 mt-20 lg:flex-row lg:justify-center">
         <div className="w-full space-y-10 md:w-[50%]">
           <h1 className="font-Montserrat font-bold text-3xl text-center sm:mt-10 2xl:text-4xl">
-            ¿Necesitas una oficina?
+          {t('title2')}
           </h1>
           <p className="font-OpenSans text-center text-lg sm:text-xl tracking-wide leading-loose h-full 2xl:text-2xl">
-            Nuestra empresa ofrece oficinas de alquiler flexibles diseñadas para
-            satisfacer todas tus necesidades empresariales. ¡No pierdas más
-            tiempo buscando, ven a experimentar el futuro del trabajo con
-            nosotros hoy mismo!
+          {t('p1')}
           </p>
         </div>
 
@@ -82,7 +79,7 @@ function Landing() {
 
       <section className="flex flex-col justify-center items-center mt-20 md:gap-10">
         <h1 className="font-Montserrat text-2xl font-bold sm:text-3xl 2xl:text-4xl">
-          Encuentra mas oficinas
+        {t('title3')}
         </h1>
         <div className="w-full flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:gap-5">
           {allOffices.slice(0, 6).map((office) => (
@@ -101,7 +98,7 @@ function Landing() {
           className="bg-azulOscuro p-5 text-white font-Montserrat text-xl rounded-xl mb-10 flex justify-center items-center gap-3"
           onClick={() => navigate(paths.OFFICES_PATH)}
         >
-          Ver mas
+          {t('buttonAllOffices')}
           <FaArrowRight />
         </button>
       </section>
