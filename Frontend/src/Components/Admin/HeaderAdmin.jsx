@@ -2,7 +2,6 @@ import { FaBars } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { toggleSidebar } from "../../features/sidebar/sidebarSlice";
-import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 
 export default function HeaderAdmin() {
@@ -12,10 +11,6 @@ export default function HeaderAdmin() {
   };
 
   const { i18n, t } = useTranslation();
-
-  const handleChangeLanguage = (language) => {
-    i18n.changeLanguage(language);
-  };
 
   return (
     <header className="shadow-lg flex items-center justify-between p-2 bg-azulOscuro">
@@ -37,11 +32,6 @@ export default function HeaderAdmin() {
         <NavLink to={"/"}>
           <img src="\src\assets\logo.png" alt="logo" className="h-20" />
         </NavLink>
-      </div>
-
-      <div>
-        <button onClick={() => handleChangeLanguage("en")}>English</button>
-        <button onClick={() => handleChangeLanguage("es")}>Español</button>
       </div>
     </header>
   );

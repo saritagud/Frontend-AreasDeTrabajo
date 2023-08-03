@@ -99,7 +99,7 @@ const resources = {
       "buttonLogin": "Get into",
       "linkRegister1": "You do not have an account?",
       "linkRegister2": "Sign up!",
-      "register": "Registro",
+      "register": "Register",
       "name": "Name",
       "email1": "Email",
       "password1": "Password",
