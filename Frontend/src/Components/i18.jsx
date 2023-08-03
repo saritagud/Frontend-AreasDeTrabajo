@@ -64,6 +64,7 @@ const resources = {
       "users": "Usuarios",
       "browse": "Navegar",
       "start": "Inicio",
+      "adminPanel": "Panel de Administración",
     }
   },
   en: {
@@ -121,6 +122,14 @@ const resources = {
       "buttonDelete2": "Delete",
       "priceOffice": "Rental price",
       "allOffices": "All offices",
+      "reservationNotFound": "No Reservations available at this time.",
+      "menu": "Menu",
+      "sectionAdmin": "Administrative Section",
+      "statistics": "Statistics",
+      "users": "Users",
+      "browse": "Browse",
+      "start": "Start",
+      "adminPanel": "Administration panel",
     }
   }
 };
