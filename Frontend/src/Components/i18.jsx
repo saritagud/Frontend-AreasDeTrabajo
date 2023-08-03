@@ -38,7 +38,6 @@ const resources = {
       "profile": "Perfil",
       "data": "Datos",
       "reservation": "Reservaciones",
-      "contact": "Contacto",
       "offices":"Oficinas",
       "admin":"Administrador",
       "logout": "Cerrar Sesión",
@@ -65,6 +64,14 @@ const resources = {
       "browse": "Navegar",
       "start": "Inicio",
       "adminPanel": "Panel de Administración",
+      "error404": "Página no encontrada",
+      "error404-2": "Lo sentimos, no pudimos encontrar la página que estas buscando.",
+      "buttonBackStart": "Regresar al inicio",
+      "contact": "Contacto",
+      "socialMedia": "Redes Sociales",
+      "developers": "Desarrolladores",
+      "copyright": ". Todos los derechos reservados.",
+      
     }
   },
   en: {
@@ -103,7 +110,6 @@ const resources = {
       "profile": "Profile",
       "data": "Data",
       "reservation": "Reservation",
-      "contact": "Contact",
       "offices":"Offices",
       "admin":"Administrator",
       "logout": "Sign off",
@@ -130,6 +136,13 @@ const resources = {
       "browse": "Browse",
       "start": "Start",
       "adminPanel": "Administration panel",
+      "error404": "Page not found",
+      "error404-2": "Sorry, we couldn't find the page you're looking for.",
+      "buttonBackStart": "Back to start",
+      "contact": "Contact",
+      "socialMedia": "Social Media",
+      "developers": "Developers",
+      "copyright": ". All rights reserved.",
     }
   }
 };
