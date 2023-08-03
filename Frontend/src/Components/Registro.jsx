@@ -13,7 +13,7 @@ import paths from "../config/routePaths";
 import formValidation from "../validations/formValidation";
 import { toast } from "react-hot-toast";
 import CustomToast, { typeToast } from "./toast/CustomToast";
-
+import { useTranslation } from "react-i18next";
 export default function Registro() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -128,16 +128,18 @@ export default function Registro() {
     }
   };
 
+  const { t, i18n } = useTranslation();
+
   return (
     <>
       <Navbar />
       <section className="min-h-screen bg-fondoLogin bg-bottom bg-no-repeat bg-contain gap-6 flex flex-col justify-center items-center center lg:bg-none lg:flex-row">
         <div className="bg-azulClaro bg-opacity-80 w-[80%] flex flex-col justify-center items-center min-h-screen rounded-2xl gap-6 m-20 sm:pt-20 sm:pb-20 sm:w-[70%] md:w-[50%] lg:w-[40%] xl:w-[35%]">
-          <h1 className="text-4xl font-Montserrat font-bold ">Registro</h1>
+          <h1 className="text-4xl font-Montserrat font-bold ">{t("register")}</h1>
           <form className="flex flex-col justify-center items-center font-OpenSans gap-5 w-[80%] sm:gap-8">
             <div className="w-full">
               <label className="w-full text-xl md:text-2xl 2xl:text-3xl ">
-                Nombre
+              {t("name")}
               </label>
               <input
                 className={`w-full rounded-xl p-2 text-white bg-azulOscuro text-lg font-sans sm:p-3 2xl:text-2xl 2xl:p-4 ${
@@ -155,7 +157,7 @@ export default function Registro() {
 
             <div className="w-full">
               <label className="w-full text-xl md:text-2xl 2xl:text-3xl ">
-                Correo
+              {t("email1")}
               </label>
               <input
                 className={`w-full rounded-xl p-2 text-white bg-azulOscuro text-lg font-sans sm:p-3 2xl:text-2xl 2xl:p-4 ${
@@ -173,7 +175,7 @@ export default function Registro() {
 
             <div className="w-full">
               <label className="w-full text-xl md:text-2xl 2xl:text-3xl ">
-                Contraseña
+              {t("password1")}
               </label>
               <input
                 className={`w-full rounded-xl p-2 text-white bg-azulOscuro text-lg font-sans sm:p-3 2xl:text-2xl 2xl:p-4 ${
@@ -193,7 +195,7 @@ export default function Registro() {
 
             <div className="w-full">
               <label className="w-full text-xl md:text-2xl 2xl:text-3xl ">
-                Repetir Contraseña
+              {t("repeatPassword")}
               </label>
               <input
                 className={`w-full rounded-xl p-2 text-white bg-azulOscuro text-lg font-sans sm:p-3 2xl:text-2xl 2xl:p-4 ${
@@ -215,13 +217,13 @@ export default function Registro() {
               onClick={handleRegister}
               className="bg-verde p-3 text-xl rounded-xl sm:p-4 2xl:text-3xl 2xl:p-5 ur:p-6 bg-azulOscuro text-white"
             >
-              Registrarse
+              {t("buttonRegister")}
             </button>
 
             <div className="w-full text-center text-lg font-bold font-OpenSans sm:text-xl">
-              <p>¿Ya tienes una cuenta?</p>
+              <p>{t("linkLogin1")}</p>
               <Link to={"/login"} className="text-white">
-                ¡Inicia Sesión!
+              {t("linkLogin2")}
               </Link>
             </div>
           </form>

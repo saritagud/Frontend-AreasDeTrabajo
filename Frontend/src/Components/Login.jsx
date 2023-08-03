@@ -13,6 +13,7 @@ import { toast } from "react-hot-toast";
 import CustomToast, { typeToast } from "./toast/CustomToast";
 import { login } from "../api/usersApi";
 import formValidation from "../validations/formValidation";
+import { useTranslation } from "react-i18next";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -102,16 +103,18 @@ export default function Login() {
     }
   };
 
+  const { t, i18n } = useTranslation();
+
   return (
     <>
       <Navbar />
       <section className="min-h-screen bg-fondoLogin bg-bottom bg-no-repeat bg-contain flex flex-col justify-center items-center sm:m-10 lg:bg-none lg:flex-row">
         <div className="bg-azulClaro bg-opacity-80 w-[80%] flex flex-col justify-center items-center h-[90vh] rounded-2xl gap-5 sm:w-[70%] md:w-[50%]  xl:w-[35%] lg:min-h-screen lg:m-10 lg:gap-10">
-          <h1 className="text-4xl font-Montserrat font-bold ">Login</h1>
+          <h1 className="text-4xl font-Montserrat font-bold ">{t("login")}</h1>
           <form className="flex flex-col justify-center items-center font-OpenSans gap-3 sm:gap-8 lg:pr-8 lg:pl-8 p-5">
             <div className="w-full">
               <label className="w-full text-xl md:text-2xl 2xl:text-3xl ">
-                Correo
+              {t("email")}
               </label>
               <input
                 className={`w-full rounded-xl p-2 text-white bg-azulOscuro text-lg font-sans sm:p-3 2xl:text-2xl 2xl:p-4 ${
@@ -129,7 +132,7 @@ export default function Login() {
 
             <div className="w-full">
               <label className="w-full text-xl md:text-2xl 2xl:text-3xl ">
-                Contraseña
+              {t("password")}
               </label>
               <input
                 className={`w-full rounded-xl p-2 text-white bg-azulOscuro text-lg font-sans sm:p-3 2xl:text-2xl 2xl:p-4 ${
@@ -151,12 +154,11 @@ export default function Login() {
               onClick={handleLogin}
               className="bg-verde p-3 text-xl rounded-xl sm:p-4 2xl:text-3xl 2xl:p-5 ur:p-6 bg-azulOscuro text-white"
             >
-              Ingresar
+              {t("buttonLogin")}
             </button>
             <div className="w-full text-center text-lg font-bold font-OpenSans sm:text-xl">
-              <p>¿No tienes una cuenta?</p>
+              <p>{t("linkRegister1")}</p>
               <Link to={"/register"} className="text-white">
-                ¡Registrate!
               </Link>
             </div>
           </form>

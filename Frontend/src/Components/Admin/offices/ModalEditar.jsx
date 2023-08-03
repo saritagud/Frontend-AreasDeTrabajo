@@ -3,29 +3,35 @@ import { useState } from "react";
 import MapGoogle from "./MapGoogle";
 import { useDispatch, useSelector } from "react-redux";
 import { editOffice, getOfficeDetails } from "../../../api/officeApi";
-import { editOfficeFailure, editOfficeRequest, editOfficeSuccess, loadOfficesFailure, loadOfficesRequest, loadOfficesSuccess, selectIsLoadingOffice } from "../../../features/office/officeSlice";
+import {
+  editOfficeFailure,
+  editOfficeRequest,
+  editOfficeSuccess,
+  loadOfficesFailure,
+  loadOfficesRequest,
+  loadOfficesSuccess,
+  selectIsLoadingOffice,
+} from "../../../features/office/officeSlice";
 import CenteredSpinner from "../../CenteredSpinner";
 import { toast } from "react-hot-toast";
 import CustomToast, { typeToast } from "../../toast/CustomToast";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 function ModalEditar({ id }) {
-
   const dispatch = useDispatch();
   const isLoadingOffices = useSelector(selectIsLoadingOffice);
 
   const [state, setState] = useState({});
 
-
-
   const [isOpen, setIsOpen] = useState(false);
 
   const loadOffice = async () => {
     try {
-      dispatch(loadOfficesRequest())
-      const data = await getOfficeDetails(id)
-      dispatch(loadOfficesSuccess())
-      const office = data.espacioTrabajo
+      dispatch(loadOfficesRequest());
+      const data = await getOfficeDetails(id);
+      dispatch(loadOfficesSuccess());
+      const office = data.espacioTrabajo;
 
       setState({
         titulo: office.titulo.toString(),
@@ -35,11 +41,11 @@ function ModalEditar({ id }) {
         "ubicacion[longitud]": office.ubicacion.longitud.toString(),
         capacidad: office.capacidad.toString(),
         direccion: office.direccion.toString(),
-      })
+      });
     } catch (error) {
-      dispatch(loadOfficesFailure(error))
+      dispatch(loadOfficesFailure(error));
     }
-  }
+  };
 
   const error = undefined;
 
@@ -81,21 +87,23 @@ function ModalEditar({ id }) {
       const data = e.currentTarget;
       const formData = new FormData(data);
 
-      formData.append('ubicacion[latitud]', state['ubicacion[latitud]']);
-      formData.append('ubicacion[longitud]', state['ubicacion[longitud]']);
+      formData.append("ubicacion[latitud]", state["ubicacion[latitud]"]);
+      formData.append("ubicacion[longitud]", state["ubicacion[longitud]"]);
 
-      dispatch(editOfficeRequest())
+      dispatch(editOfficeRequest());
       const editarOffice = await editOffice(formData, id);
 
       if (!editarOffice.ok) {
-        console.log(editarOffice)
-        return dispatch(editOfficeFailure(editarOffice))
+        console.log(editarOffice);
+        return dispatch(editOfficeFailure(editarOffice));
       }
 
-      dispatch(editOfficeSuccess({
-        office: editarOffice.espacioTrabajo, 
-        id:id
-      }))
+      dispatch(
+        editOfficeSuccess({
+          office: editarOffice.espacioTrabajo,
+          id: id,
+        })
+      );
 
       toast.custom(
         (t) => (
@@ -109,8 +117,6 @@ function ModalEditar({ id }) {
           position: "top-right",
         }
       );
-
-      
     } catch (error) {
       toast.custom(
         (t) => (
@@ -125,15 +131,18 @@ function ModalEditar({ id }) {
         }
       );
 
-      dispatch(editOfficeFailure(error))
+      dispatch(editOfficeFailure(error));
     }
   };
-
+  const { t, i18n } = useTranslation();
   return (
     <>
       <FaPencilAlt
         className="text-right text-2xl text-azulOscuro flex items-end justify-end cursor-pointer hover:text-white 2xl:text-3xl"
-        onClick={() => { setIsOpen(true); loadOffice() }}
+        onClick={() => {
+          setIsOpen(true);
+          loadOffice();
+        }}
       />
       {isOpen && (
         <form
@@ -152,18 +161,17 @@ function ModalEditar({ id }) {
                   />
                 </div>
                 <label className="w-full text-xl md:text-2xl 2xl:text-3xl">
-                  Imagen
+                  {t("image")}
                 </label>
                 <input
                   className="w-full rounded-xl p-2 text-white text-lg md:text-xl 2xl:text-2xl"
                   type="file"
-                  
                   name="imagenReferencia"
                   onChange={handleChangeImage}
                 />
 
                 <label className="w-full text-xl md:text-2xl 2xl:text-3xl">
-                  Titulo de la oficina
+                  {t("titleModal")}
                 </label>
                 <input
                   className="w-full rounded-xl p-2 text-black text-lg font-sans 2xl:text-2xl 2xl:p-4"
@@ -174,7 +182,7 @@ function ModalEditar({ id }) {
                 />
 
                 <label className="w-full text-xl md:text-2xl 2xl:text-3xl">
-                  Descripcion
+                  {t("description")}
                 </label>
                 <textarea
                   className="w-full rounded-xl p-2 text-black text-lg font-sans 2xl:text-2xl 2xl:p-4"
@@ -185,7 +193,7 @@ function ModalEditar({ id }) {
                 ></textarea>
 
                 <label className="w-full text-xl md:text-2xl 2xl:text-3xl">
-                  Precio
+                  {t("price")}
                 </label>
                 <input
                   className="w-full rounded-xl p-2 text-black text-lg font-sans 2xl:text-2xl 2xl:p-4"
@@ -196,7 +204,7 @@ function ModalEditar({ id }) {
                 />
 
                 <label className="w-full text-xl md:text-2xl 2xl:text-3xl">
-                  Capacidad
+                  {t("capacity")}
                 </label>
                 <input
                   className="w-full rounded-xl p-2 text-black text-lg font-sans 2xl:text-2xl 2xl:p-4"
@@ -207,7 +215,7 @@ function ModalEditar({ id }) {
                 />
 
                 <label className="w-full text-xl md:text-2xl 2xl:text-3xl">
-                  Dirección
+                  {t("direction")}
                 </label>
                 <input
                   className="w-full rounded-xl p-2 text-black text-lg font-sans 2xl:text-2xl 2xl:p-4"
@@ -218,7 +226,7 @@ function ModalEditar({ id }) {
                 />
 
                 <label className="w-full text-xl md:text-2xl 2xl:text-3xl">
-                  Ubicación
+                  {t("ubication")}
                 </label>
 
                 <input
@@ -239,7 +247,7 @@ function ModalEditar({ id }) {
                 <MapGoogle state={state} setState={setState} ubicacion={true} />
 
                 <button className="bg-azulClaro p-3 text-xl rounded-xl m-8 md:text-2xl md:w-[40%] 2xl:text-3xl 2xl:p-5 dark:bg-white dark:text-black">
-                  Agregar
+                {t("buttonUpdate")}
                 </button>
               </>
             )}

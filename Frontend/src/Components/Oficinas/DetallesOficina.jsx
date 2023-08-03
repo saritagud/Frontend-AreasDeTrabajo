@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { getOfficeDetails } from "../../api/officeApi";
 import CenteredSpinner from "../CenteredSpinner";
 import MapOffice from "./MapOffice";
-
+import { useTranslation } from "react-i18next";
 function DetallesOficina() {
   const [details, setDetails] = useState(null);
   const [error, setError] = useState(null);
@@ -26,6 +26,7 @@ function DetallesOficina() {
   if (!details) {
     return <CenteredSpinner />;
   }
+  const { t } = useTranslation();
 
   return (
     <>
@@ -43,32 +44,31 @@ function DetallesOficina() {
           </div>
 
           <div className="space-y-4 ">
-            <p className="font-bold">Precio de alquiler</p>
+            <p className="font-bold">{t("priceOffice")}</p>
             <p>{details.precioDia}</p>
 
-            <p className="font-bold">Descripción</p>
+            <p className="font-bold">{t("description")}</p>
             <p>{details.descripcion}</p>
 
-            <p className="font-bold">Dirección</p>
+            <p className="font-bold">{t("direction")}</p>
             <p>{details.direccion}</p>
 
-            <p className="font-bold">Capacidad</p>
+            <p className="font-bold">{t("capacity")}</p>
             <p>{details.capacidad}</p>
 
             <ModalReservacion />
           </div>
-
         </div>
-          <p className="font-bold lg:w-full lg:text-left lg:mt-10">Ubicación</p>
-          <MapOffice
-            lat={details.ubicacion.latitud}
-            lng={details.ubicacion.longitud}
-            titulo={details.titulo}
-            descripcion={details.descripcion}
-            imagenReferencia={details.imagenReferencia}
-            direccion={details.direccion}
-            precioDia={details.precioDia}
-          />
+        <p className="font-bold lg:w-full lg:text-left lg:mt-10">{t("ubication")}</p>
+        <MapOffice
+          lat={details.ubicacion.latitud}
+          lng={details.ubicacion.longitud}
+          titulo={details.titulo}
+          descripcion={details.descripcion}
+          imagenReferencia={details.imagenReferencia}
+          direccion={details.direccion}
+          precioDia={details.precioDia}
+        />
       </section>
       <Footer />
     </>
