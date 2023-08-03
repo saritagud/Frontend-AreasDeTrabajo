@@ -38,7 +38,10 @@ const resources = {
       "profile": "Perfil",
       "data": "Datos",
       "reservation": "Reservaciones",
-
+      "contact": "Contacto",
+      "offices":"Oficinas",
+      "admin":"Administrador",
+      "logout": "Cerrar Sesión"
     }
   },
   en: {
@@ -76,7 +79,11 @@ const resources = {
       "linkLogin2": "Log in!",
       "profile": "Profile",
       "data": "Data",
-      "reservation": "Resrvation",
+      "reservation": "Reservation",
+      "contact": "Contact",
+      "offices":"Offices",
+      "admin":"Administrator",
+      "logout": "Sign off"
     }
   }
 };
