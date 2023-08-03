@@ -1,23 +1,22 @@
-"use client";
-
-import { Dropdown } from "flowbite-react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import i18next from "i18next";
-import { DropdownItem } from "flowbite-react/lib/esm/components/Dropdown/DropdownItem";
-export default function ButtonLenguage() {
+
+export default function LanguageSelect() {
   const { i18n } = useTranslation();
+  const [selectedLanguage, setSelectedLanguage] = useState(i18n.language);
 
   const handleChangeLanguage = (language) => {
+    setSelectedLanguage(language);
     i18n.changeLanguage(language);
   };
+
   return (
-    <Dropdown inline label="Idioma">
-      <DropdownItem onClick={() => handleChangeLanguage("es")}>
-        Español
-      </DropdownItem>
-      <DropdownItem onClick={() => handleChangeLanguage("en")}>
-        Ingles
-      </DropdownItem>
-    </Dropdown>
+    <select
+      value={selectedLanguage}
+      onChange={(e) => handleChangeLanguage(e.target.value)}
+    >
+      <option value="es">Español</option>
+      <option value="en">Inglés</option>
+    </select>
   );
 }
