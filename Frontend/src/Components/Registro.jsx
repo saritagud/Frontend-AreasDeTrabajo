@@ -135,7 +135,7 @@ export default function Registro() {
       <Navbar />
       <section className="min-h-screen bg-fondoLogin bg-bottom bg-no-repeat bg-contain gap-6 flex flex-col justify-center items-center center lg:bg-none lg:flex-row">
         <div className="bg-azulClaro bg-opacity-80 w-[80%] flex flex-col justify-center items-center min-h-screen rounded-2xl gap-6 m-20 sm:pt-20 sm:pb-20 sm:w-[70%] md:w-[50%] lg:w-[40%] xl:w-[35%]">
-          <h1 className="text-4xl font-Montserrat font-bold ">Registro</h1>
+          <h1 className="text-4xl font-Montserrat font-bold ">{t("register")}</h1>
           <form className="flex flex-col justify-center items-center font-OpenSans gap-5 w-[80%] sm:gap-8">
             <div className="w-full">
               <label className="w-full text-xl md:text-2xl 2xl:text-3xl ">

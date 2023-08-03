@@ -35,6 +35,9 @@ const resources = {
       "buttonRegister": "Registrarse",
       "linkLogin1": "¿Ya tienes una cuenta?",
       "linkLogin2": "¡Inicia Sesión!",
+      "profile": "Perfil",
+      "data": "Datos",
+      "reservation": "Reservaciones",
 
     }
   },
@@ -71,6 +74,9 @@ const resources = {
       "buttonRegister": "Check in",
       "linkLogin1": "Do you already have an account?",
       "linkLogin2": "Log in!",
+      "profile": "Profile",
+      "data": "Data",
+      "reservation": "Resrvation",
     }
   }
 };
