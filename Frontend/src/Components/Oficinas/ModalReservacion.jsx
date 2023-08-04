@@ -5,6 +5,8 @@ import { addReservation } from '../../api/bookingsApi';
 import { addBookingRequest, addBookingSuccess, addBookingFailure } from '../../features/bookings/bookingsSlice';
 import { selectUser } from '../../features/auth/authSlice';
 import { setEspacioId, selectEspacioId } from '../../features/office/officeSlice';
+import CustomToast, { typeToast } from "../toast/CustomToast";
+import { toast } from "react-hot-toast";
 
 function ModalReservacion() {
   const dispatch = useDispatch();
@@ -31,29 +33,125 @@ function ModalReservacion() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (!isLoggedIn) {
-      alert('Debes iniciar sesión para realizar una reserva.');    
+      toast.custom(
+        (t) => (
+          <CustomToast
+            message="Debes iniciar sesión para realizar una reserva."
+            type={typeToast.warning}
+          />
+        ),
+        {
+          duration: 3000,
+          position: "top-right",
+        }
+      );
       return;
     }
+    
+    // Validar que todos los campos sean obligatorios
+    if (!reservationData.fechaInicio || !reservationData.fechaFin || !reservationData.horaInicio || !reservationData.horaFin) {
+      toast.custom(
+        (t) => (
+          <CustomToast
+            message="Todos los campos son obligatorios."
+            type={typeToast.warning}
+          />
+        ),
+        {
+          duration: 3000,
+          position: "top-right",
+        }
+      );
+      return;
+    }
+    
+    // Verificar que la fecha de inicio sea anterior a la fecha de finalización
+    if (new Date(reservationData.fechaInicio) > new Date(reservationData.fechaFin)) {
+      toast.custom(
+        (t) => (
+          <CustomToast
+            message="La fecha de inicio debe ser anterior a la fecha de finalización."
+            type={typeToast.warning}
+          />
+        ),
+        {
+          duration: 3000,
+          position: "top-right",
+        }
+      );
+      return;
+    }
+    
+    // Verificar que la hora de inicio sea anterior a la hora de finalización
+    if (reservationData.horaInicio >= reservationData.horaFin) {
+      toast.custom(
+        (t) => (
+          <CustomToast
+            message="La hora de inicio debe ser anterior a la hora de finalización."
+            type={typeToast.warning}
+          />
+        ),
+        {
+          duration: 3000,
+          position: "top-right",
+        }
+      );
+      return;
+    }
+    
     try {
       dispatch(addBookingRequest());
       const response = await addReservation(espacioId, user.id, reservationData);
       if (response.error) {
         // manejar error
-        alert('Ocurrió un error al agregar la reserva. Por favor intenta de nuevo.');
+        toast.custom(
+          (t) => (
+            <CustomToast
+              message="Ocurrió un error al agregar la reserva. Por favor intenta de nuevo."
+              type={typeToast.error}
+            />
+          ),
+          {
+            duration: 3000,
+            position: "top-right",
+          }
+        );
         dispatch(addBookingFailure(response.error));
       } else {
         // manejar éxito
-        alert('La reserva fue agregada con éxito.');
+        toast.custom(
+          (t) => (
+            <CustomToast
+              message="La reserva fue agregada con éxito."
+              type={typeToast.success}
+            />
+          ),
+          {
+            duration: 3000,
+            position: "top-right",
+          }
+        );
         setIsOpen(false);
         dispatch(addBookingSuccess(response));
       }
     } catch (error) {
       // manejar error
-      alert('Ocurrió un error al agregar la reserva. Por favor intenta de nuevo.');
+      toast.custom(
+        (t) => (
+          <CustomToast
+            message="Ocurrió un error al agregar la reserva. Por favor intenta de nuevo."
+            type={typeToast.error}
+          />
+        ),
+        {
+          duration: 3000,
+          position: "top-right",
+        }
+      );
       dispatch(addBookingFailure(error));
     }
   }
-  
+
   return (
     <>
       <button
