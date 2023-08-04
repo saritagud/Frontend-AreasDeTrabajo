@@ -7,11 +7,14 @@ import { getOfficeDetails } from "../../api/officeApi";
 import CenteredSpinner from "../CenteredSpinner";
 import MapOffice from "./MapOffice";
 import { useTranslation } from "react-i18next";
+
+//Funcion para renderizar los detalles de una oficina
 function DetallesOficina() {
   const [details, setDetails] = useState(null);
   const [error, setError] = useState(null);
 
   const { id } = useParams();
+  const { t } = useTranslation();
 
   useEffect(() => {
     getOfficeDetails(id)
@@ -26,8 +29,7 @@ function DetallesOficina() {
   if (!details) {
     return <CenteredSpinner />;
   }
-  const { t } = useTranslation();
-
+  
   return (
     <>
       <NavBar />
