@@ -10,7 +10,7 @@ const officeSlice = createSlice({
     isLoading: false,
     isLoadingOffice: false,
     error: null,
-    espacioId: null, // Agrega una nueva propiedad al estado inicial para almacenar el valor de espacioId
+    espacioId: null,
   },
   reducers: {
     getAllOfficesRequest: (state) => {
@@ -81,7 +81,7 @@ const officeSlice = createSlice({
       state.error = action.payload;
     },
     
-     // Crea un nuevo reducer para actualizar el valor de espacioId en el estado
+     // cremos un nuevo reducer para actualizar el valor de espacioId en el estado
      setEspacioId: (state, action) => {
        state.espacioId = action.payload;
      }
@@ -91,7 +91,6 @@ const officeSlice = createSlice({
 export const { editOfficeFailure, editOfficeSuccess, editOfficeRequest, loadOfficesRequest, loadOfficesSuccess, loadOfficesFailure, addOfficesFailure, addOfficesSuccess, addOfficesRequest, deleteOfficeFailure, deleteOfficesSuccess, deleteOfficesRequest, getAllOfficesRequest, getAllOfficesSuccess, getAllOfficesFailure, setCurrentPage } =
   officeSlice.actions;
 
-// Exporta la acción creada y el selector para acceder al valor de espacioId desde el estado
 export const { setEspacioId } =  officeSlice.actions;
 export const selectAllOffices = (state) => state.office.allOffices;
 export const selectEspacioId =  (state) => state.office.espacioId;
