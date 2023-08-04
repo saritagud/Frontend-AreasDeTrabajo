@@ -47,9 +47,10 @@ const authSlice = createSlice({
       state.isLoading = true;
     },
     loginSuccess: (state, action) => {
+      console.log('loginSuccess called with payload:', action.payload);
       state.isLoading = false;
       state.error = null;
-
+    
       const token = action.payload;
       const decodedData = decodeToken(action.payload);
       if (decodedData) {
@@ -79,8 +80,14 @@ const authSlice = createSlice({
   },
 });
 
-export const { loginRequest, loginSuccess, loginFailure, logout } = authSlice.actions;
+export const { loginRequest, loginSuccess, loginFailure, logout } =
+  authSlice.actions;
+
 export const selectUser = (state) => state.auth.user;
 export const selectToken = (state) => state.auth.token;
 export const selectTokenExpiration = (state) => state.auth.tokenExpiration;
+
+// Exporta el selector para acceder al valor de userId desde el estado
+export const selectUserId = (state) => state.auth.user?._id;
+
 export default authSlice.reducer;

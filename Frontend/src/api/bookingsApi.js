@@ -20,9 +20,10 @@ export const getAllBookings = async () => {
   }
 };
 
+// Peticion para traer todos las reservaciones de un usuario
 export const getBookingsByUser = async (userId) => {
   try {
-    const response = await fetch(`${API_ENDPOINT}/reservaciones/${userId}`, {
+    const response = await fetch(`${API_ENDPOINT}/reservaciones/2/${userId}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -34,7 +35,8 @@ export const getBookingsByUser = async (userId) => {
       return { error: mensaje };
     }
 
-    return response.json();
+    const data = await response.json();
+    return data.reservaciones; // Devuelve el arreglo de reservaciones
   } catch (error) {
     throw error;
   }
@@ -54,6 +56,26 @@ export const deleteBooking = async (bookingId) => {
       return { error: mensaje };
     }
 
+    return response.json();
+  } catch (error) {
+    throw error;
+  }
+};
+
+// Peticion para añadir una reservacion
+export const addReservation = async (espacioId, usuarioId, reservationData) => {
+  try {
+    const response = await fetch(`${API_ENDPOINT}/reservaciones/nuevaReservacion/${espacioId}/${usuarioId}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(reservationData)
+    });
+    if (!response.ok) {
+      const { error } = await response.json();
+      return { error };
+    }
     return response.json();
   } catch (error) {
     throw error;

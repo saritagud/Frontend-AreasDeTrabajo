@@ -54,6 +54,18 @@ const bookingsSlice = createSlice({
     setCurrentPage: (state, action) => {
       state.currentPage = action.payload;
     },
+    addBookingRequest: (state) => { // reducer para manejar el envío de reservas
+      state.isLoading = true;
+    },
+    addBookingSuccess: (state, action) => { // reducer para manejar el envio exitoso de una reserva
+      state.isLoading = false;
+      state.error = null;
+      // actualizmao el estado segun sea necesario
+    },
+    addBookingFailure: (state, action) => { // reducer para manejar errores al enviar una reserva
+      state.isLoading = false;
+      state.error = action.payload;
+    }
   },
 });
 
@@ -66,7 +78,10 @@ export const {
   deleteAllBookingSuccess,
   deleteUserBookingSuccess,
   deleteBookingFailure,
-  setCurrentPage
+  setCurrentPage,
+  addBookingRequest, // exportar acciones para manejar el envío de reservas
+  addBookingSuccess,
+  addBookingFailure
 } = bookingsSlice.actions;
 
 export const selectAllBookings = (state) =>
@@ -76,4 +91,5 @@ export const selectIsLoadingBookings = (state) => state.bookings.isLoading;
 export const selectBookingError = (state) => state.bookings.error;
 export const selectTotalPages = (state) => state.bookings.totalPages;
 export const selectCurrentPage = (state) => state.bookings.currentPage;
+
 export default bookingsSlice.reducer;
