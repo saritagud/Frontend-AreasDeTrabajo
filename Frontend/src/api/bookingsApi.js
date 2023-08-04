@@ -59,3 +59,22 @@ export const deleteBooking = async (bookingId) => {
     throw error;
   }
 };
+
+export const addReservation = async (espacioId, usuarioId, reservationData) => {
+  try {
+    const response = await fetch(`${API_ENDPOINT}/reservaciones/nuevaReservacion/${espacioId}/${usuarioId}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(reservationData)
+    });
+    if (!response.ok) {
+      const { error } = await response.json();
+      return { error };
+    }
+    return response.json();
+  } catch (error) {
+    throw error;
+  }
+};

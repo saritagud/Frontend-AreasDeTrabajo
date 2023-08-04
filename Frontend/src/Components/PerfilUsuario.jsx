@@ -19,6 +19,7 @@ export default function PerfilUsuario() {
           <h2 className="font-bold text-xl">{t("data")}</h2>
           <p>{user.nombre}</p>
           <p>{user.email}</p>
+          <p>{user.id}</p>
         </div>
 
         <h2 className="wp-full xl:w-[70%] xl:text-left">{t("reservation")}</h2>

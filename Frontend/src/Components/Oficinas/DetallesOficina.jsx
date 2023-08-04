@@ -7,13 +7,17 @@ import { getOfficeDetails } from "../../api/officeApi";
 import CenteredSpinner from "../CenteredSpinner";
 import MapOffice from "./MapOffice";
 import { useTranslation } from "react-i18next";
+import { useDispatch } from 'react-redux';
+import { setEspacioId } from '../../features/office/officeSlice';
 
 //Funcion para renderizar los detalles de una oficina
 function DetallesOficina() {
   const [details, setDetails] = useState(null);
   const [error, setError] = useState(null);
 
+  const dispatch = useDispatch();
   const { id } = useParams();
+  dispatch(setEspacioId(id));
   const { t } = useTranslation();
 
   useEffect(() => {

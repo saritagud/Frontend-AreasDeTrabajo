@@ -41,3 +41,23 @@ export const register = async (userData) => {
     throw error;
   }
 };
+
+export const getUserById = async (userId) => {
+  try {
+    const response = await fetch(`${API_ENDPOINT}/users/getbyid/${userId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      const { error } = await response.json();
+      return { error };
+    }
+
+    return response.json();
+  } catch (error) {
+    throw error;
+  }
+};
