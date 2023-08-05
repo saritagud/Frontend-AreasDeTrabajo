@@ -47,7 +47,6 @@ const authSlice = createSlice({
       state.isLoading = true;
     },
     loginSuccess: (state, action) => {
-      console.log('loginSuccess called with payload:', action.payload);
       state.isLoading = false;
       state.error = null;
     

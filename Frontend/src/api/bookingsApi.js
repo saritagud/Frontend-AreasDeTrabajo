@@ -36,18 +36,19 @@ export const getBookingsByUser = async (userId) => {
     }
 
     const data = await response.json();
-    return data.reservaciones; // Devuelve el arreglo de reservaciones
+    return data.reservaciones;
   } catch (error) {
     throw error;
   }
 };
 
-export const deleteBooking = async (bookingId) => {
+export const deleteBooking = async (bookingId, token) => {
   try {
     const response = await fetch(`${API_ENDPOINT}/reservaciones/eliminarReservacion/${bookingId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
       },
     });
 

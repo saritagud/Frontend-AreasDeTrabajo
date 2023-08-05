@@ -114,12 +114,11 @@ export default function Login() {
           <form className="flex flex-col justify-center items-center font-OpenSans gap-3 sm:gap-8 lg:pr-8 lg:pl-8 p-5">
             <div className="w-full">
               <label className="w-full text-xl md:text-2xl 2xl:text-3xl ">
-              {t("email")}
+                {t("email")}
               </label>
               <input
-                className={`w-full rounded-xl p-2 text-white bg-azulOscuro text-lg font-sans sm:p-3 2xl:text-2xl 2xl:p-4 ${
-                  errors.email ? "border-red-500" : ""
-                }`}
+                className={`w-full rounded-xl p-2 text-white bg-azulOscuro text-lg font-sans sm:p-3 2xl:text-2xl 2xl:p-4 ${errors.email ? "border-red-500" : ""
+                  }`}
                 name="email"
                 type="email"
                 value={userData.email}
@@ -132,12 +131,11 @@ export default function Login() {
 
             <div className="w-full">
               <label className="w-full text-xl md:text-2xl 2xl:text-3xl ">
-              {t("password")}
+                {t("password")}
               </label>
               <input
-                className={`w-full rounded-xl p-2 text-white bg-azulOscuro text-lg font-sans sm:p-3 2xl:text-2xl 2xl:p-4 ${
-                  errors.password ? "border-red-500" : ""
-                }`}
+                className={`w-full rounded-xl p-2 text-white bg-azulOscuro text-lg font-sans sm:p-3 2xl:text-2xl 2xl:p-4 ${errors.password ? "border-red-500" : ""
+                  }`}
                 name="password"
                 type="password"
                 value={userData.password}
@@ -159,13 +157,14 @@ export default function Login() {
             <div className="w-full text-center text-lg font-bold font-OpenSans sm:text-xl">
               <p>{t("linkRegister1")}</p>
               <Link to={"/register"} className="text-white">
+                {t("linkRegister2")}
               </Link>
             </div>
           </form>
 
         </div>
         <div className="hidden lg:block">
-          <img src="/src/assets/fondoLogin.jpg"/>
+          <img src="/src/assets/fondoLogin.jpg" />
         </div>
       </section>
     </>

@@ -53,30 +53,32 @@ export const getOfficesForMap = async () => {
   }
 };
 
-export const addOffice = async (oficina) => {
+export const addOffice = async (oficina, token) => {
   try {
     const response = await fetch(`${API_ENDPOINT}/espaciosTrabajo/nuevo`, {
       method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
       body: oficina
     });
     const data = await response.json();
     if (data.ok === true) {
       return data
     }; // Se agrego con éxito la oficina
-
-    console.log(data)
+    
     return data.error;
   } catch (error) {
     throw error;
   }
 }
 
-export const deleteOffice = async (id) => {
+export const deleteOffice = async (id, token) => {
   try {
     const response = await fetch(`${API_ENDPOINT}/espaciosTrabajo/eliminar/${id}`, {
       method: 'DELETE',
       headers: {
-        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
       },
     });
     if (!response.ok) {
@@ -89,10 +91,13 @@ export const deleteOffice = async (id) => {
   }
 }
 
-export const editOffice = async (office, id) => {
+export const editOffice = async (office, id, token) => {
   try {
     const response = await fetch(`${API_ENDPOINT}/espaciosTrabajo/editar/${id}`, {
       method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
       body: office
     });
     if (!response.ok) {

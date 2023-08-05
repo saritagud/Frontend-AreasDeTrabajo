@@ -15,6 +15,7 @@ import {
   deleteAllBookingSuccess,
   deleteBookingFailure,
 } from "../../../features/bookings/bookingsSlice";
+import { selectToken } from '../../../features/auth/authSlice';
 import { getAllBookings, deleteBooking } from "../../../api/bookingsApi";
 import Paginador from "../../Paginador";
 import paths from "../../../config/routePaths";
@@ -35,6 +36,9 @@ export default function BookingsPanel() {
   const totalPages = useSelector(selectTotalPages);
   const currentPage = useSelector(selectCurrentPage);
   const isLoadingBookings = useSelector(selectIsLoadingBookings);
+  const token = useSelector(selectToken);
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     const getBookings = async () => {
@@ -66,7 +70,7 @@ export default function BookingsPanel() {
   const handleDelete = async (id) => {
     try {
       dispatch(deleteBookingRequest());
-      await deleteBooking(id);
+      await deleteBooking(id, token);
       dispatch(deleteAllBookingSuccess(id));
 
       toast.custom(
@@ -100,7 +104,7 @@ export default function BookingsPanel() {
       dispatch(deleteBookingFailure(error));
     }
   };
-  const { t } = useTranslation();
+
   return (
     <>
       <div className="flex flex-col min-h-screen">
