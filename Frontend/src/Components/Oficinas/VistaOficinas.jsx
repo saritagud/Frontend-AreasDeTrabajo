@@ -30,6 +30,8 @@ export default function VistaOficinas() {
   const currentPage = useSelector(selectCurrentPage);
   const isLoadingOffices = useSelector(selectIsLoadingOffices);
 
+  const { t } = useTranslation();
+
   useEffect(() => {
     const getOffices = async () => {
       try {
@@ -57,14 +59,12 @@ export default function VistaOficinas() {
   useEffect(() => {
     getOfficesForMap().then((data) => {
       setMapOffices(data.espaciosTrabajo);
-      console.log(mapOffices); // Agregar este mensaje de depuración
     });
   }, []);
 
   const handlePageChange = (page) => {
     dispatch(setCurrentPage(page));
   };
-  const { t } = useTranslation();
 
   return (
     <>

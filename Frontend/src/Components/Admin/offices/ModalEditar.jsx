@@ -12,6 +12,7 @@ import {
   loadOfficesSuccess,
   selectIsLoadingOffice,
 } from "../../../features/office/officeSlice";
+import { selectToken } from '../../../features/auth/authSlice';
 import CenteredSpinner from "../../CenteredSpinner";
 import { toast } from "react-hot-toast";
 import CustomToast, { typeToast } from "../../toast/CustomToast";
@@ -20,6 +21,8 @@ import { useTranslation } from "react-i18next";
 
 function ModalEditar({ id }) {
   const dispatch = useDispatch();
+  const token = useSelector(selectToken);
+
   const isLoadingOffices = useSelector(selectIsLoadingOffice);
 
   const [state, setState] = useState({});
@@ -91,10 +94,9 @@ function ModalEditar({ id }) {
       formData.append("ubicacion[longitud]", state["ubicacion[longitud]"]);
 
       dispatch(editOfficeRequest());
-      const editarOffice = await editOffice(formData, id);
+      const editarOffice = await editOffice(formData, id, token);
 
       if (!editarOffice.ok) {
-        console.log(editarOffice);
         return dispatch(editOfficeFailure(editarOffice));
       }
 

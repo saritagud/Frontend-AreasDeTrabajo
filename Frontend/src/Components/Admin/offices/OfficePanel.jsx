@@ -17,6 +17,7 @@ import {
   selectTotalPages,
   setCurrentPage,
 } from "../../../features/office/officeSlice";
+import { selectToken } from '../../../features/auth/authSlice';
 import { deleteOffice, getAllOffices } from "../../../api/officeApi";
 import CenteredSpinner from "../../CenteredSpinner";
 import Paginador from "../../Paginador";
@@ -32,12 +33,13 @@ import { useTranslation } from "react-i18next";
 export default function OfficePanel() {
   const { pag } = useParams();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-
+  const navigate = useNavigate();  
+  
   const offices = useSelector(selectOffices);
   const totalPages = useSelector(selectTotalPages);
   const currentPage = useSelector(selectCurrentPage);
   const isLoadingOffices = useSelector(selectIsLoadingOffices);
+  const token = useSelector(selectToken);
 
   useEffect(() => {
     const getOffices = async () => {
@@ -53,7 +55,7 @@ export default function OfficePanel() {
 
         if (pag > 0 && pag <= calculatedTotalPages)
           dispatch(setCurrentPage(pagInt));
-        else dispatch(setCurrentPage(0));
+        else dispatch(setCurrentPage(1));
       } catch (error) {
         dispatch(getAllOfficesFailure(error));
       }
@@ -69,7 +71,7 @@ export default function OfficePanel() {
   const handleDelete = async (id) => {
     try {
       dispatch(deleteOfficesRequest());
-      await deleteOffice(id);
+      await deleteOffice(id, token);
       dispatch(deleteOfficesSuccess(id));
 
       toast.custom(

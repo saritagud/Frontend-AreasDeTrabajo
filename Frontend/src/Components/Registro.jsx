@@ -14,9 +14,11 @@ import formValidation from "../validations/formValidation";
 import { toast } from "react-hot-toast";
 import CustomToast, { typeToast } from "./toast/CustomToast";
 import { useTranslation } from "react-i18next";
+
 export default function Registro() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
 
   const [userData, setUserData] = useState({
     name: "",
@@ -127,8 +129,6 @@ export default function Registro() {
       }
     }
   };
-
-  const { t, i18n } = useTranslation();
 
   return (
     <>

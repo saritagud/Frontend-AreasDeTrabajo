@@ -4,6 +4,7 @@ import MapGoogle from "./MapGoogle";
 import { useDispatch, useSelector } from "react-redux";
 import { addOffice, getAllOffices } from "../../../api/officeApi";
 import { addOfficesFailure, addOfficesRequest, addOfficesSuccess, getAllOfficesSuccess, selectIsLoadingOffices } from "../../../features/office/officeSlice";
+import { selectToken } from '../../../features/auth/authSlice';
 import CenteredSpinner from "../../CenteredSpinner";
 import { toast } from "react-hot-toast";
 import CustomToast, { typeToast } from "../../toast/CustomToast";
@@ -11,6 +12,7 @@ import { useTranslation } from "react-i18next";
 function ModalCrear() {
   const dispatch = useDispatch();
   const isLoadingOffices = useSelector(selectIsLoadingOffices);
+  const token = useSelector(selectToken);
 
   const [state, setState] = useState({
     imagenReferencia: "",
@@ -23,8 +25,6 @@ function ModalCrear() {
     direccion: "",
   });
   const [isOpen, setIsOpen] = useState(false);
-
-  const error = undefined;
 
   const validacion = () => {
     let claves = Object.keys(state);
@@ -58,6 +58,18 @@ function ModalCrear() {
 
       if (error) {
         alert("Ingresaste un campo inválido");
+        toast.custom(
+          (t) => (
+            <CustomToast
+              message="No se logró Agregar la Oficina"
+              type={typeToast.error}
+            />
+          ),
+          {
+            duration: 3000,
+            position: "top-right",
+          }
+        );
         return;
       }
 
@@ -68,10 +80,10 @@ function ModalCrear() {
       formData.append('ubicacion[longitud]', state['ubicacion[longitud]']);
 
       dispatch(addOfficesRequest());
-      const newOffice = await addOffice(formData);
+      await addOffice(formData, token);
       const responseData = await getAllOffices()
       dispatch(getAllOfficesSuccess(responseData.espacioTrabajo));
-      
+
       toast.custom(
         (t) => (
           <CustomToast
@@ -118,7 +130,7 @@ function ModalCrear() {
         className=" bg-azulOscuro p-3 text-xl rounded-xl m-5 text-white font-Montserrat hover:bg- md:text-2xl 2xl:text-3xl 2xl:p-5 "
         onClick={() => setIsOpen(true)}
       >
-      {t("buttonAdd")}
+        {t("buttonAdd")}
       </button>
 
       {isOpen && (
@@ -138,7 +150,7 @@ function ModalCrear() {
                   />
                 </div>
                 <label className="w-full text-xl md:text-2xl 2xl:text-3xl">
-                {t("image")}
+                  {t("image")}
                 </label>
                 <input
                   className="w-full rounded-xl p-2 text-white text-lg md:text-xl 2xl:text-2xl"
@@ -148,7 +160,7 @@ function ModalCrear() {
                 />
 
                 <label className="w-full text-xl md:text-2xl 2xl:text-3xl">
-                {t("titleModal")}
+                  {t("titleModal")}
                 </label>
                 <input
                   className="w-full rounded-xl p-2 text-black text-lg font-sans 2xl:text-2xl 2xl:p-4"
@@ -159,7 +171,7 @@ function ModalCrear() {
                 />
 
                 <label className="w-full text-xl md:text-2xl 2xl:text-3xl">
-                {t("description")}
+                  {t("description")}
                 </label>
                 <textarea
                   className="w-full rounded-xl p-2 text-black text-lg font-sans 2xl:text-2xl 2xl:p-4"
@@ -170,7 +182,7 @@ function ModalCrear() {
                 ></textarea>
 
                 <label className="w-full text-xl md:text-2xl 2xl:text-3xl">
-                {t("price")}
+                  {t("price")}
                 </label>
                 <input
                   className="w-full rounded-xl p-2 text-black text-lg font-sans 2xl:text-2xl 2xl:p-4"
@@ -181,7 +193,7 @@ function ModalCrear() {
                 />
 
                 <label className="w-full text-xl md:text-2xl 2xl:text-3xl">
-                {t("capacity")}
+                  {t("capacity")}
                 </label>
                 <input
                   className="w-full rounded-xl p-2 text-black text-lg font-sans 2xl:text-2xl 2xl:p-4"
@@ -192,7 +204,7 @@ function ModalCrear() {
                 />
 
                 <label className="w-full text-xl md:text-2xl 2xl:text-3xl">
-                {t("direction")}
+                  {t("direction")}
                 </label>
                 <input
                   className="w-full rounded-xl p-2 text-black text-lg font-sans 2xl:text-2xl 2xl:p-4"
@@ -203,7 +215,7 @@ function ModalCrear() {
                 />
 
                 <label className="w-full text-xl md:text-2xl 2xl:text-3xl">
-                {t("ubication")}
+                  {t("ubication")}
                 </label>
 
                 <input
@@ -224,7 +236,7 @@ function ModalCrear() {
                 <MapGoogle state={state} setState={setState} ubicacion={false} />
 
                 <button className="bg-azulClaro p-3 text-xl rounded-xl m-8 md:text-2xl md:w-[40%] 2xl:text-3xl 2xl:p-5 dark:bg-white dark:text-black">
-                {t("buttonAdd")}
+                  {t("buttonAdd")}
                 </button>
               </>
             )}
