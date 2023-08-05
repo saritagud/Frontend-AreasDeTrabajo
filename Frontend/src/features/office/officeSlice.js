@@ -81,10 +81,25 @@ const officeSlice = createSlice({
       state.error = action.payload;
     },
     
-     // cremos un nuevo reducer para actualizar el valor de espacioId en el estado
      setEspacioId: (state, action) => {
        state.espacioId = action.payload;
-     }
+     },
+
+     searchOfficesRequest: (state) => {
+      state.isLoading = true;
+    },
+    searchOfficesSuccess: (state, action) => {
+      state.isLoading = false;
+      state.error = null;
+      state.allOffices = action.payload;
+      state.totalPages = Math.ceil(action.payload.length / 6);
+    },
+    searchOfficesFailure: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+
+     
   },
 });
 
@@ -101,6 +116,7 @@ export const selectTotalPages = (state) => state.office.totalPages;
 export const selectCurrentPage = (state) => state.office.currentPage;
 export const selectIsLoadingOffices = (state) => state.office.isLoading;
 export const selectIsLoadingOffice = (state) => state.office.isLoadingOffice;
+export const { searchOfficesRequest, searchOfficesSuccess, searchOfficesFailure } = officeSlice.actions;
 
 export default officeSlice.reducer;
 

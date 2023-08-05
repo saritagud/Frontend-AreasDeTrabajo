@@ -32,7 +32,7 @@ function MapOfficeGlobal({ offices }) {
         });
       }
 
-      let currentInfoWindow = null; // Referencia a la ventana de información abierta actualmente
+      let currentInfoWindow = null; // referencia a la ventana de info abierta actualmente
 
       offices.forEach(office => {
         const marker = new window.google.maps.Marker({
@@ -69,10 +69,10 @@ function MapOfficeGlobal({ offices }) {
 
         marker.addListener('click', () => {
           if (currentInfoWindow) {
-            currentInfoWindow.close(); // Cerrar la ventana de información abierta actualmente
+            currentInfoWindow.close(); // cerramos la ventana de info abierta actualmente
           }
           infoWindow.open(map, marker);
-          currentInfoWindow = infoWindow; // Actualizar la referencia a la ventana de información abierta actualmente
+          currentInfoWindow = infoWindow; // actualizamos la referencia a la ventana de info abierta actualmente
         });
       });
     }

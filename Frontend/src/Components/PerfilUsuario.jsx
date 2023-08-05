@@ -9,13 +9,13 @@ import { getUserBookingsSuccess, selectUserBookings } from "../features/bookings
 
 export default function PerfilUsuario() {
   const user = useSelector(selectUser);
-  const bookings = useSelector(selectUserBookings); // Usa el selector para obtener las reservas del usuario desde el estado de Redux
+  const bookings = useSelector(selectUserBookings);
   const dispatch = useDispatch();
 
   const { t, i18n } = useTranslation();
 
   useEffect(() => {
-    // Obtiene las reservas del usuario al montar el componente
+    // obtenemos las reservas del usuario al montar el componente
     getBookingsByUser(user.id).then((res) => dispatch(getUserBookingsSuccess(res)));
   }, [dispatch, user.id]);
 
@@ -42,12 +42,12 @@ export default function PerfilUsuario() {
               <p className="text-right text-sm">{booking.precioTotal}</p>
               <img src={booking.espacioId.imagenReferencia} alt={booking.espacioId.titulo} className="w-full rounded-lg" />
               <h3 className="font-bold text-lg">{booking.espacioId.titulo}</h3>
-              <p className="text-sm mt-2 font-bold">Ubicacion:</p> {/* Agrega un margin-top y la clase font-bold */}
+              <p className="text-sm mt-2 font-bold">Ubicacion:</p>
               <p className="text-sm">{booking.espacioId.direccion}</p>
-              <p className="text-sm font-bold">Fecha:</p> {/* Agrega la clase font-bold */}
-              <p className="text-sm">{new Date(booking.fechaInicioYFinal.fechaInicio).toLocaleDateString()} - {new Date(booking.fechaInicioYFinal.fechaFin).toLocaleDateString()}</p> {/* Usa toLocaleDateString para formatear las fechas */}
-              <p className="text-sm font-bold">Hora:</p> {/* Agrega la clase font-bold */}
-              <p className="text-sm">{new Date(booking.horaInicioYFinal.horaInicio).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - {new Date(booking.horaInicioYFinal.horaFin).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p> {/* Usa toLocaleTimeString para formatear las horas */}
+              <p className="text-sm font-bold">Fecha:</p>
+              <p className="text-sm">{new Date(booking.fechaInicioYFinal.fechaInicio).toLocaleDateString()} - {new Date(booking.fechaInicioYFinal.fechaFin).toLocaleDateString()}</p>
+              <p className="text-sm font-bold">Hora:</p>
+              <p className="text-sm">{new Date(booking.horaInicioYFinal.horaInicio).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - {new Date(booking.horaInicioYFinal.horaFin).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
             </div>
           )) :
             <div className="text-center text-2xl text-gray-600 italic">

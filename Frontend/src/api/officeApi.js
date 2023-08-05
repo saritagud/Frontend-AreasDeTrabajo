@@ -108,3 +108,25 @@ export const editOffice = async (office, id, token) => {
     throw error;
   }
 }
+
+//Consulra para buscar una oficina
+export const searchOffices = async (keyword) => {
+  try {
+    const response = await fetch(`${API_ENDPOINT}/espaciosTrabajo/buscar`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ palabraClave: keyword }),
+    });
+
+    if (!response.ok) {
+      const { mensaje } = await response.json();
+      return { error: mensaje };
+    }
+
+    return response.json();
+  } catch (error) {
+    throw error;
+  }
+};
