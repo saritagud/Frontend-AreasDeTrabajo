@@ -113,11 +113,10 @@ function ButtonPDF({ data }) {
       fontFamily: "Helvetica-Bold",
     },
     map: {
-      display:'flex',
+      display: "flex",
       flexDirection: "column",
       justifyContent: "flex-start",
       alignItems: "flex-start",
-
     },
     totalIngresos: { marginBottom: "0.3cm" },
     negrita: { fontFamily: "Helvetica-Bold" },
@@ -172,8 +171,8 @@ function ButtonPDF({ data }) {
           <Text style={styles.map}>
             {oficinasMejorRendimiento.map((ofiMejorRendimiento) => (
               <View key={ofiMejorRendimiento._id}>
-                
-                <Text style={styles.negrita}>.{ofiMejorRendimiento.titulo} </Text>
+                <Text style={styles.negrita}>Titulo:</Text>
+                {ofiMejorRendimiento.titulo}
               </View>
             ))}
           </Text>

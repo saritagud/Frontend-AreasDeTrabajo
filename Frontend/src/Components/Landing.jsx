@@ -20,6 +20,7 @@ function Landing() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const allOffices = useSelector(selectAllOffices);
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     dispatch(getAllOfficesRequest());
@@ -30,7 +31,6 @@ function Landing() {
       .catch((error) => dispatch(getAllOfficesFailure(error)));
   }, []);
 
-  const { t, i18n } = useTranslation();
 
   return (
     <>
