@@ -16,7 +16,7 @@ import Pagina404 from "./Components/Pagina404";
 import { Toaster } from 'react-hot-toast';
 import ScrollToTop from "./Components/ScrollToTop";
 import UsersPanel from "./Components/Admin/users/UsersPanel";
-import StatisticsPanel from "./Components/Admin/statistics/StatisticsPanel";
+import StatisticsPanel from "./Components/Admin/statistics/StatiticsPanel";
 
 export default function App() {
   return (
