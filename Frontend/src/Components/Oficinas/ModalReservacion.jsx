@@ -1,9 +1,19 @@
 import { FaWindowClose } from "react-icons/fa";
 import { useState } from "react";
-import { addReservation } from '../../api/officeApi';
+import { useDispatch, useSelector } from 'react-redux';
+import { addReservation } from '../../api/bookingsApi';
+import { addBookingRequest, addBookingSuccess, addBookingFailure } from '../../features/bookings/bookingsSlice';
+import { selectUser } from '../../features/auth/authSlice';
+import { setEspacioId, selectEspacioId } from '../../features/office/officeSlice';
+import CustomToast, { typeToast } from "../toast/CustomToast";
+import { toast } from "react-hot-toast";
 
 function ModalReservacion() {
+  const dispatch = useDispatch();
+  const user = useSelector(selectUser);
+  const isLoggedIn = !!user;
   const [isOpen, setIsOpen] = useState(false);
+  const espacioId = useSelector(selectEspacioId);
   const [reservationData, setReservationData] = useState({
     fechaInicio: '',
     fechaFin: '',
@@ -20,23 +30,127 @@ function ModalReservacion() {
     }));
   }
 
-const handleSubmit = async (event) => {
-  event.preventDefault();
-  try {
-    const response = await addReservation(reservationData);
-    if (response.error) {
-      // manejar error
-      alert('Ocurrió un error al agregar la reserva. Por favor intenta de nuevo.');
-    } else {
-      // manejar éxito
-      alert('La reserva fue agregada con éxito.');
-      setIsOpen(false);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (!isLoggedIn) {
+      toast.custom(
+        (t) => (
+          <CustomToast
+            message="Debes iniciar sesión para realizar una reserva."
+            type={typeToast.warning}
+          />
+        ),
+        {
+          duration: 3000,
+          position: "top-right",
+        }
+      );
+      return;
     }
-  } catch (error) {
-    // manejar error
-    alert('Ocurrió un error al agregar la reserva. Por favor intenta de nuevo.');
+    
+    // validamos que todos los campos sean obligatorios
+    if (!reservationData.fechaInicio || !reservationData.fechaFin || !reservationData.horaInicio || !reservationData.horaFin || !reservationData.detalles) {
+      toast.custom(
+        (t) => (
+          <CustomToast
+            message="Todos los campos son obligatorios."
+            type={typeToast.warning}
+          />
+        ),
+        {
+          duration: 3000,
+          position: "top-right",
+        }
+      );
+      return;
+    }
+    
+    // verificamos que la fecha de inicio sea anterior a la fecha de finalizasion
+    if (new Date(reservationData.fechaInicio) > new Date(reservationData.fechaFin)) {
+      toast.custom(
+        (t) => (
+          <CustomToast
+            message="La fecha de inicio debe ser anterior a la fecha de finalización."
+            type={typeToast.warning}
+          />
+        ),
+        {
+          duration: 3000,
+          position: "top-right",
+        }
+      );
+      return;
+    }
+    
+    // verificamos que la hora de inicio sea anterior a la hora de finalizacion
+    if (reservationData.horaInicio >= reservationData.horaFin) {
+      toast.custom(
+        (t) => (
+          <CustomToast
+            message="La hora de inicio debe ser anterior a la hora de finalización."
+            type={typeToast.warning}
+          />
+        ),
+        {
+          duration: 3000,
+          position: "top-right",
+        }
+      );
+      return;
+    }
+    
+    try {
+      dispatch(addBookingRequest());
+      const response = await addReservation(espacioId, user.id, reservationData);
+      if (response.error) {
+        // manejamos el error
+        toast.custom(
+          (t) => (
+            <CustomToast
+              message="Ocurrió un error al agregar la reserva. Por favor intenta de nuevo."
+              type={typeToast.error}
+            />
+          ),
+          {
+            duration: 3000,
+            position: "top-right",
+          }
+        );
+        dispatch(addBookingFailure(response.error));
+      } else {
+        // manejar el proceso exitoso
+        toast.custom(
+          (t) => (
+            <CustomToast
+              message="La reserva fue agregada con éxito."
+              type={typeToast.success}
+            />
+          ),
+          {
+            duration: 3000,
+            position: "top-right",
+          }
+        );
+        setIsOpen(false);
+        dispatch(addBookingSuccess(response));
+      }
+    } catch (error) {
+      // mmanejamos el error
+      toast.custom(
+        (t) => (
+          <CustomToast
+            message="Ocurrió un error al agregar la reserva. Por favor intenta de nuevo."
+            type={typeToast.error}
+          />
+        ),
+        {
+          duration: 3000,
+          position: "top-right",
+        }
+      );
+      dispatch(addBookingFailure(error));
+    }
   }
-}
 
   return (
     <>
@@ -59,29 +173,29 @@ const handleSubmit = async (event) => {
             <label className="w-full text-xl md:text-2xl 2xl:text-3xl">
               Fecha del inicio reserva
             </label>
-            <input type="date" name="fechaInicio" onChange={handleInputChange} className="w-full rounded-xl"/>
+            <input type="date" name="fechaInicio" onChange={handleInputChange} className="w-full rounded-xl text-black"/>
 
             <label className="w-full text-xl md:text-2xl 2xl:text-3xl">
               Fecha del fin de la reserva
             </label>
-            <input type="date" name="fechaFin" onChange={handleInputChange} className="w-full rounded-xl"/>
+            <input type="date" name="fechaFin" onChange={handleInputChange} className="w-full rounded-xl text-black"/>
 
             <label className="w-full text-xl md:text-2xl 2xl:text-3xl">
               Hora del inicio reserva
             </label>
-            <input type="time" name="horaInicio" onChange={handleInputChange} className="w-full rounded-xl"/>
+            <input type="time" name="horaInicio" onChange={handleInputChange} className="w-full rounded-xl text-black"/>
 
             <label className="w-full text-xl md:text-2xl 2xl:text-3xl">
               Hora del fin de la reserva
             </label>
-            <input type="time" name="horaFin" onChange={handleInputChange} className="w-full rounded-xl"/>
+            <input type="time" name="horaFin" onChange={handleInputChange} className="w-full rounded-xl text-black"/>
 
             <label className="w-full text-xl md:text-2xl 2xl:text-3xl">
               Detalles de la reserva
             </label>
-            <textarea name="detalles" onChange={handleInputChange} className="w-full rounded-xl"></textarea>
+            <textarea name="detalles" onChange={handleInputChange} className="w-full rounded-xl text-black"></textarea>
 
-            <button type="submit" className="bg-azulClaro p-3 text-xl rounded-xl m-8 md:text-2xl md:w-[40%] 2xl:text-3xl 2xl:p-5 text-white">
+            <button type="submit" className="bg-azulOscuro p-3 text-xl rounded-xl mt-10 text-white font-Montserrat hover:bg-azulOscuro/60 md:text-2xl 2xl:text-3xl 2xl:p-5 ">
               Reservar
             </button>
           </section>
@@ -92,4 +206,3 @@ const handleSubmit = async (event) => {
 }
 
 export default ModalReservacion;
-

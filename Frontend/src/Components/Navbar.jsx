@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Transition } from "@headlessui/react";
 import { NavLink } from "react-router-dom";
 import paths from "../config/routePaths";
@@ -6,7 +6,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectUser } from "../features/auth/authSlice";
 import { useLocation } from "react-router-dom";
 import { logout } from "../features/auth/authSlice";
-
+import { useTranslation } from "react-i18next";
+import ButtonLenguage from "./ButtonLenguage";
 export default function Navbar() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
@@ -19,25 +20,24 @@ export default function Navbar() {
     dispatch(logout());
   };
 
+  const { i18n, t } = useTranslation();
+
   return (
     <nav className="shadow-lg">
       <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-end w-full h-20 lg:h-24">
           <div className="flex items-center justify-between w-full">
             <NavLink to={"/"}>
-              <img
-                src="\src\assets\logo.png"
-                alt="logo"
-                className="w-[20%]"
-              />
+              <img src="\src\assets\logo.png" alt="logo" className="w-[20%]" />
             </NavLink>
             <div className="hidden lg:block w-full">
-              <div className=" flex justify-end items-end w-full ">
+              <div className=" flex justify-end items-center w-full ">
+                <ButtonLenguage />
                 <NavLink
                   to={paths.OFFICES_PATH}
                   className="text-azulOscuro   hover:bg-azulOscuro hover:text-white hover:rounded-md hover:transition-all block px-3 py-2 text-lg rounded-md font-Marcellus  text-center xl:text-lg "
                 >
-                  Oficinas
+                  {t("offices")}
                 </NavLink>
 
                 {!user ? (
@@ -47,7 +47,7 @@ export default function Navbar() {
                         to={paths.LOGIN_PATH}
                         className="text-azulOscuro   hover:bg-azulOscuro hover:text-white hover:rounded-md hover:transition-all block px-3 py-2 text-lg rounded-md font-Marcellus  text-center xl:text-lg "
                       >
-                        Iniciar sesión
+                        {t("login")}
                       </NavLink>
                     )}
 
@@ -56,7 +56,7 @@ export default function Navbar() {
                         to={paths.REGISTER_PATH}
                         className="text-azulOscuro   hover:bg-azulOscuro hover:text-white hover:rounded-md hover:transition-all block px-3 py-2 text-lg rounded-md font-Marcellus  text-center  "
                       >
-                        Registro
+                        {t("register")}
                       </NavLink>
                     )}
                   </>
@@ -67,7 +67,7 @@ export default function Navbar() {
                         to={paths.ADMIN_PATH}
                         className="text-azulOscuro hover:bg-azulOscuro hover:text-white hover:rounded-md hover:transition-all block px-3 py-2 text-lg rounded-md font-Marcellus text-center"
                       >
-                        Administrador
+                        {t("admin")}
                       </NavLink>
                     )}
 
@@ -75,7 +75,7 @@ export default function Navbar() {
                       to={paths.PROFILE_PATH}
                       className="text-azulOscuro hover:bg-azulOscuro hover:text-white hover:rounded-md hover:transition-all block px-3 py-2 text-lg rounded-md font-Marcellus text-center xl:text-lg"
                     >
-                      Perfil
+                      {t("profile")}
                     </NavLink>
 
                     <NavLink
@@ -83,7 +83,7 @@ export default function Navbar() {
                       className="text-azulOscuro hover:bg-white hover:text-red-500 block px-3 py-2  text-lg rounded-md font-Marcellus text-left transition-all duration-500"
                       onClick={handleLogout}
                     >
-                      Cerrar Sesión
+                      {t("logout")}
                     </NavLink>
                   </>
                 )}
@@ -146,12 +146,13 @@ export default function Navbar() {
         leaveTo="opacity-0 scale-95"
       >
         <div className="lg:hidden" id="mobile-menu">
-          <div className="px-2 pt-2 pb-3 space-y-2 sm:px-3 ">
+          <div className="px-5 pt-2 pb-3 space-y-2 sm:px-3 ">
+            <ButtonLenguage />
             <NavLink
               to={paths.OFFICES_PATH}
               className="text-azulOscuro   hover:bg-azulOscuro hover:text-white hover:rounded-md hover:transition-all block px-3 py-2 text-lg rounded-md font-OpenSans w-full text-left"
             >
-              Oficinas
+              {t("offices")}
             </NavLink>
 
             {!user ? (
@@ -161,7 +162,7 @@ export default function Navbar() {
                     to={paths.LOGIN_PATH}
                     className="text-azulOscuro   hover:bg-azulOscuro hover:text-white hover:rounded-md hover:transition-all block px-3 py-2 text-lg rounded-md font-OpenSans w-full text-left"
                   >
-                    Iniciar sesión
+                    {t("login")}
                   </NavLink>
                 )}
 
@@ -170,7 +171,7 @@ export default function Navbar() {
                     to={paths.REGISTER_PATH}
                     className="text-azulOscuro   hover:bg-azulOscuro hover:text-white hover:rounded-md hover:transition-all block px-3 py-2 text-lg rounded-md font-OpenSans w-full text-left"
                   >
-                    Registro
+                    {t("register")}
                   </NavLink>
                 )}
               </>
@@ -181,7 +182,7 @@ export default function Navbar() {
                     to={paths.ADMIN_PATH}
                     className="text-azulOscuro   hover:bg-azulOscuro hover:text-white hover:rounded-md hover:transition-all block px-3 py-2 text-lg rounded-md font-OpenSans w-full text-left"
                   >
-                    Administrador
+                    {t("admin")}
                   </NavLink>
                 )}
 
@@ -189,7 +190,7 @@ export default function Navbar() {
                   to={paths.PROFILE_PATH}
                   className="text-azulOscuro   hover:bg-azulOscuro hover:text-white hover:rounded-md hover:transition-all block px-3 py-2 text-lg rounded-md font-OpenSans w-full text-left"
                 >
-                  Perfil
+                  {t("profile")}
                 </NavLink>
 
                 <NavLink
@@ -197,7 +198,7 @@ export default function Navbar() {
                   className="text-azulOscuro   hover:bg-azulOscuro hover:text-white hover:rounded-md hover:transition-all block px-3 py-2  text-lg rounded-md font-Marcellus w-full text-left transition-all duration-500"
                   onClick={handleLogout}
                 >
-                  Cerrar Sesión
+                  {t("logout")}
                 </NavLink>
               </>
             )}

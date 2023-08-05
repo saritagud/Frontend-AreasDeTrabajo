@@ -6,27 +6,25 @@ import { useEffect, useState } from "react";
 import { getOfficeDetails } from "../../api/officeApi";
 import CenteredSpinner from "../CenteredSpinner";
 import MapOffice from "./MapOffice";
+import { useTranslation } from "react-i18next";
+import { useDispatch } from 'react-redux';
+import { setEspacioId } from '../../features/office/officeSlice';
 
+//Funcion para renderizar los detalles de una oficina
 function DetallesOficina() {
   const [details, setDetails] = useState(null);
   const [error, setError] = useState(null);
-  const [mapsLoaded, setMapsLoaded] = useState(false);
 
+  const dispatch = useDispatch();
   const { id } = useParams();
+  dispatch(setEspacioId(id));
+  const { t } = useTranslation();
 
   useEffect(() => {
     getOfficeDetails(id)
       .then((data) => setDetails(data.espacioTrabajo))
       .catch((error) => setError(error));
   }, [id]);
-
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik`;
-    script.async = true;
-    script.onload = () => setMapsLoaded(true);
-    document.body.appendChild(script);
-  }, []);
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -35,7 +33,7 @@ function DetallesOficina() {
   if (!details) {
     return <CenteredSpinner />;
   }
-
+  
   return (
     <>
       <NavBar />
@@ -52,31 +50,31 @@ function DetallesOficina() {
           </div>
 
           <div className="space-y-4 ">
-            <p className="font-bold">Precio de alquiler</p>
+            <p className="font-bold">{t("priceOffice")}</p>
             <p>{details.precioDia}</p>
 
-            <p className="font-bold">Descripción</p>
+            <p className="font-bold">{t("description")}</p>
             <p>{details.descripcion}</p>
 
-            <p className="font-bold">Dirección</p>
+            <p className="font-bold">{t("direction")}</p>
             <p>{details.direccion}</p>
 
-            <p className="font-bold">Capacidad</p>
+            <p className="font-bold">{t("capacity")}</p>
             <p>{details.capacidad}</p>
 
             <ModalReservacion />
           </div>
-
         </div>
-          <p className="font-bold lg:w-full lg:text-left lg:mt-10">Ubicación</p>
-          {mapsLoaded ? (
-            <MapOffice
-              lat={details.ubicacion.latitud}
-              lng={details.ubicacion.longitud}
-            />
-          ) : (
-            <div>Cargando map...</div>
-          )}
+        <p className="font-bold lg:w-full lg:text-left lg:mt-10">{t("ubication")}</p>
+        <MapOffice
+          lat={details.ubicacion.latitud}
+          lng={details.ubicacion.longitud}
+          titulo={details.titulo}
+          descripcion={details.descripcion}
+          imagenReferencia={details.imagenReferencia}
+          direccion={details.direccion}
+          precioDia={details.precioDia}
+        />
       </section>
       <Footer />
     </>

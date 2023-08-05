@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -11,15 +11,19 @@ import {
   selectCurrentPage,
   selectIsLoadingOffices,
 } from "../../features/office/officeSlice";
-import { getAllOffices } from "../../api/officeApi";
+import { getAllOffices, getOfficesForMap } from "../../api/officeApi";
 import CardOficina from "./CardOficina";
 import Paginador from "../Paginador";
 import NavBar from "../Navbar";
 import Footer from "../Footer";
 import CenteredSpinner from "../CenteredSpinner";
 import paths from "../../config/routePaths";
+import MapOfficeGlobal from "../Oficinas/MapOfficeGlobal";
+import { useTranslation } from "react-i18next";
+import SearchOffice from '../Oficinas/SearhOffice';
 
 export default function VistaOficinas() {
+  const [mapOffices, setMapOffices] = useState([]);
   const { pag } = useParams();
   const dispatch = useDispatch();
   const offices = useSelector(selectOffices);
@@ -30,16 +34,14 @@ export default function VistaOficinas() {
   useEffect(() => {
     const getOffices = async () => {
       try {
-        // Enviar solicitud para taer las oficinas
+        // enviamos la solicitud para taer las oficinas
         const responseData = await getAllOffices();
         dispatch(getAllOfficesSuccess(responseData.espacioTrabajo));
 
-        // Calcular totalPages y establecer currentPage después de obtener los datos
+        // calulamos totalPages y establecmos currentPage luego de obtener los datos
         const totalOffices = responseData.espacioTrabajo.length;
         const calculatedTotalPages = Math.ceil(totalOffices / 6);
-        dispatch(getAllOfficesSuccess(responseData.espacioTrabajo));
-
-        const pagInt = parseInt(pag, 10); // Convertir pag a un número entero
+        const pagInt = parseInt(pag, 10);
 
         if (pag > 0 && pag <= calculatedTotalPages)
           dispatch(setCurrentPage(pagInt));
@@ -53,17 +55,27 @@ export default function VistaOficinas() {
     getOffices();
   }, []);
 
+  useEffect(() => {
+    getOfficesForMap().then((data) => {
+      setMapOffices(data.espaciosTrabajo);
+      console.log(mapOffices);
+    });
+  }, []);
+
   const handlePageChange = (page) => {
     dispatch(setCurrentPage(page));
   };
+  const { t } = useTranslation();
+
   return (
     <>
       <NavBar />
       <section className="mt-12 flex flex-col justify-center items-center lg:space-y-10">
         <h1 className="font-Montserrat font-bold text-3xl ">
-          Todas las oficinas
+        {t("allOffices")}
         </h1>
-        {/* mapa */}
+        {!isLoadingOffices && <MapOfficeGlobal offices={mapOffices} />}
+        <SearchOffice />
         {isLoadingOffices ? (
           <>
             <CenteredSpinner />
@@ -72,7 +84,7 @@ export default function VistaOficinas() {
           <>
             {offices.length === 0 ? (
               <div className="text-center text-3xl text-gray-600 my-28 italic">
-                No se encontraron oficinas disponibles en este momento.
+                {t("officesNotFound")}
               </div>
             ) : (
               <div className="w-full flex flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:gap-5">

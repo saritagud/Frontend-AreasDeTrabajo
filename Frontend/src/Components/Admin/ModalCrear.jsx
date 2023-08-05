@@ -1,15 +1,15 @@
 import { FaWindowClose } from "react-icons/fa";
 import { useState } from "react";
 
-function ModalCrear() {
+export default function ModalCrear({ elementName }) {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
       <button
-        className=" bg-azulOscuro p-3 text-xl rounded-xl m-5 text-white font-Montserrat hover:bg-azulClaro   2xl:p-5 "
+        className="bg-azulOscuro p-3 text-xl rounded-xl text-white font-Montserrat hover:bg-azulClaro 2xl:p-5"
         onClick={() => setIsOpen(true)}
       >
-        Agregar Oficina
+        Agregar {elementName}
       </button>
 
       {isOpen && (
@@ -71,5 +71,3 @@ function ModalCrear() {
     </>
   );
 }
-
-export default ModalCrear;
