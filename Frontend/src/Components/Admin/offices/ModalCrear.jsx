@@ -3,8 +3,14 @@ import { useState } from "react";
 import MapGoogle from "./MapGoogle";
 import { useDispatch, useSelector } from "react-redux";
 import { addOffice, getAllOffices } from "../../../api/officeApi";
-import { addOfficesFailure, addOfficesRequest, addOfficesSuccess, getAllOfficesSuccess, selectIsLoadingOffices } from "../../../features/office/officeSlice";
-import { selectToken } from '../../../features/auth/authSlice';
+import {
+  addOfficesFailure,
+  addOfficesRequest,
+  addOfficesSuccess,
+  getAllOfficesSuccess,
+  selectIsLoadingOffices,
+} from "../../../features/office/officeSlice";
+import { selectToken } from "../../../features/auth/authSlice";
 import CenteredSpinner from "../../CenteredSpinner";
 import { toast } from "react-hot-toast";
 import CustomToast, { typeToast } from "../../toast/CustomToast";
@@ -57,11 +63,10 @@ function ModalCrear() {
       const error = validacion();
 
       if (error) {
-        alert("Ingresaste un campo inválido");
         toast.custom(
           (t) => (
             <CustomToast
-              message="No se logró Agregar la Oficina"
+              message="Ingresaste un campo inválido"
               type={typeToast.error}
             />
           ),
@@ -76,12 +81,12 @@ function ModalCrear() {
       const data = e.currentTarget;
       const formData = new FormData(data);
 
-      formData.append('ubicacion[latitud]', state['ubicacion[latitud]']);
-      formData.append('ubicacion[longitud]', state['ubicacion[longitud]']);
+      formData.append("ubicacion[latitud]", state["ubicacion[latitud]"]);
+      formData.append("ubicacion[longitud]", state["ubicacion[longitud]"]);
 
       dispatch(addOfficesRequest());
       await addOffice(formData, token);
-      const responseData = await getAllOffices()
+      const responseData = await getAllOffices();
       dispatch(getAllOfficesSuccess(responseData.espacioTrabajo));
 
       toast.custom(
@@ -233,7 +238,11 @@ function ModalCrear() {
                   value={state["ubicacion[longitud]"]}
                 />
 
-                <MapGoogle state={state} setState={setState} ubicacion={false} />
+                <MapGoogle
+                  state={state}
+                  setState={setState}
+                  ubicacion={false}
+                />
 
                 <button className="bg-azulClaro p-3 text-xl rounded-xl m-8 md:text-2xl md:w-[40%] 2xl:text-3xl 2xl:p-5 dark:bg-white dark:text-black">
                   {t("buttonAdd")}
