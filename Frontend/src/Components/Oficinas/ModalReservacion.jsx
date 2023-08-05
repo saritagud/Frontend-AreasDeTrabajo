@@ -48,8 +48,8 @@ function ModalReservacion() {
       return;
     }
     
-    // Validar que todos los campos sean obligatorios
-    if (!reservationData.fechaInicio || !reservationData.fechaFin || !reservationData.horaInicio || !reservationData.horaFin) {
+    // validamos que todos los campos sean obligatorios
+    if (!reservationData.fechaInicio || !reservationData.fechaFin || !reservationData.horaInicio || !reservationData.horaFin || !reservationData.detalles) {
       toast.custom(
         (t) => (
           <CustomToast
@@ -65,7 +65,7 @@ function ModalReservacion() {
       return;
     }
     
-    // Verificar que la fecha de inicio sea anterior a la fecha de finalización
+    // verificamos que la fecha de inicio sea anterior a la fecha de finalizasion
     if (new Date(reservationData.fechaInicio) > new Date(reservationData.fechaFin)) {
       toast.custom(
         (t) => (
@@ -82,7 +82,7 @@ function ModalReservacion() {
       return;
     }
     
-    // Verificar que la hora de inicio sea anterior a la hora de finalización
+    // verificamos que la hora de inicio sea anterior a la hora de finalizacion
     if (reservationData.horaInicio >= reservationData.horaFin) {
       toast.custom(
         (t) => (
@@ -103,7 +103,7 @@ function ModalReservacion() {
       dispatch(addBookingRequest());
       const response = await addReservation(espacioId, user.id, reservationData);
       if (response.error) {
-        // manejar error
+        // manejamos el error
         toast.custom(
           (t) => (
             <CustomToast
@@ -118,7 +118,7 @@ function ModalReservacion() {
         );
         dispatch(addBookingFailure(response.error));
       } else {
-        // manejar éxito
+        // manejar el proceso exitoso
         toast.custom(
           (t) => (
             <CustomToast
@@ -135,7 +135,7 @@ function ModalReservacion() {
         dispatch(addBookingSuccess(response));
       }
     } catch (error) {
-      // manejar error
+      // mmanejamos el error
       toast.custom(
         (t) => (
           <CustomToast

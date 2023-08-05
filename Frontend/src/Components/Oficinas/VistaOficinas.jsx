@@ -20,6 +20,7 @@ import CenteredSpinner from "../CenteredSpinner";
 import paths from "../../config/routePaths";
 import MapOfficeGlobal from "../Oficinas/MapOfficeGlobal";
 import { useTranslation } from "react-i18next";
+import SearchOffice from '../Oficinas/SearhOffice';
 
 export default function VistaOficinas() {
   const [mapOffices, setMapOffices] = useState([]);
@@ -30,19 +31,17 @@ export default function VistaOficinas() {
   const currentPage = useSelector(selectCurrentPage);
   const isLoadingOffices = useSelector(selectIsLoadingOffices);
 
-  const { t } = useTranslation();
-
   useEffect(() => {
     const getOffices = async () => {
       try {
-        // Enviar solicitud para taer las oficinas
+        // enviamos la solicitud para taer las oficinas
         const responseData = await getAllOffices();
         dispatch(getAllOfficesSuccess(responseData.espacioTrabajo));
 
-        // Calcular totalPages y establecer currentPage después de obtener los datos
+        // calulamos totalPages y establecmos currentPage luego de obtener los datos
         const totalOffices = responseData.espacioTrabajo.length;
         const calculatedTotalPages = Math.ceil(totalOffices / 6);
-        const pagInt = parseInt(pag, 10); // Convertir pag a un número entero
+        const pagInt = parseInt(pag, 10);
 
         if (pag > 0 && pag <= calculatedTotalPages)
           dispatch(setCurrentPage(pagInt));
@@ -59,12 +58,14 @@ export default function VistaOficinas() {
   useEffect(() => {
     getOfficesForMap().then((data) => {
       setMapOffices(data.espaciosTrabajo);
+      console.log(mapOffices);
     });
   }, []);
 
   const handlePageChange = (page) => {
     dispatch(setCurrentPage(page));
   };
+  const { t } = useTranslation();
 
   return (
     <>
@@ -74,7 +75,7 @@ export default function VistaOficinas() {
         {t("allOffices")}
         </h1>
         {!isLoadingOffices && <MapOfficeGlobal offices={mapOffices} />}
-
+        <SearchOffice />
         {isLoadingOffices ? (
           <>
             <CenteredSpinner />

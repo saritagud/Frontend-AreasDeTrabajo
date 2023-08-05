@@ -22,7 +22,7 @@ const userSlice = createSlice({
     updateUserSuccess: (state, action) => {
       state.isLoading = false;
       state.error = null;
-      // Actualizar el usuario existente en el estado con el usuario actualizado
+      
       const updatedUserIndex = state.allUsers.findIndex((user) => user._id === action.payload._id);
       if (updatedUserIndex !== -1) {
         state.allUsers[updatedUserIndex] = action.payload;
